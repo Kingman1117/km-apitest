@@ -115,6 +115,7 @@ class AdminClient(BaseClient):
         """保存session到缓存"""
         try:
             cache_data = {
+                'username': self.username,  # 新增：记录用户名
                 'cookies': self.session.cookies,
                 '_token': self._token,
                 'wxapp_aid': self.wxapp_aid,
@@ -135,6 +136,14 @@ class AdminClient(BaseClient):
         try:
             with open(self.SESSION_CACHE, 'rb') as f:
                 cache_data = pickle.load(f)
+            
+            # 新增：检查用户名是否匹配
+            cached_username = cache_data.get('username')
+            if cached_username and cached_username != self.username:
+                logger.info("admin session 缓存用户不匹配（缓存: %s, 当前: %s），清除缓存", 
+                           cached_username, self.username)
+                self.SESSION_CACHE.unlink()
+                return False
             
             # 检查缓存是否过期
             cache_age = time.time() - cache_data['timestamp']

@@ -49,6 +49,11 @@ python scripts/run_api_tests.py api_tests/admin -v
 python scripts/run_api_tests.py api_tests/edupc -v
 python scripts/run_api_tests.py api_tests/h5 -v
 
+# 生成测试报告
+python scripts/run_api_tests.py --junit              # JUnit XML（CI/CD集成）
+python scripts/run_api_tests.py --html               # HTML报告（本地查看）
+python scripts/run_api_tests.py --junit --html       # 同时生成两种报告
+
 # 禁用TAPD回填
 python scripts/run_api_tests.py --no-tapd-report
 
@@ -162,6 +167,28 @@ cd /d E:\kmsk
 python scripts/run_api_tests.py
 ```
 
+## 测试报告
+
+框架支持两种报告格式：
+
+### JUnit XML（推荐用于 CI/CD）
+
+```bash
+python scripts/run_api_tests.py --junit
+# 报告位置: reports/junit.xml
+```
+
+适用于 Jenkins、GitLab CI、GitHub Actions 等 CI 系统集成。
+
+### HTML 报告（推荐用于本地查看）
+
+```bash
+python scripts/run_api_tests.py --html
+# 报告位置: reports/report-<timestamp>.html
+```
+
+包含详细的用例执行信息、失败截图、日志输出，支持浏览器直接打开。
+
 ## 常用命令
 
 ```bash
@@ -173,6 +200,9 @@ python scripts/run_api_tests.py api_tests/admin/test_admin_add_audio.py -v
 
 # 运行包含跨端用例
 python scripts/run_api_tests.py -m "cross_platform or not cross_platform"
+
+# 完整回归 + 生成报告
+python scripts/run_api_tests.py --junit --html
 ```
 
 ## 相关文档

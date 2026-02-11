@@ -16,12 +16,14 @@ class BaseClient:
     """HTTP客户端基类"""
     
     BASE_URL = ""  # 子类需要覆盖
+    DEFAULT_TIMEOUT = 30  # 默认超时时间（秒）
     
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update({
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
         })
+        self.timeout = self.DEFAULT_TIMEOUT
     
     @property
     def common_params(self) -> Dict[str, Any]:
@@ -35,13 +37,17 @@ class BaseClient:
         Args:
             path: 接口路径
             params: URL参数
-            **kwargs: requests额外参数
+            **kwargs: requests额外参数（可覆盖 timeout）
             
         Returns:
             响应字典
         """
         url = f"{self.BASE_URL}{path}"
         query = {**self.common_params, **(params or {})}
+        
+        # 设置默认超时，允许 kwargs 覆盖
+        if "timeout" not in kwargs:
+            kwargs["timeout"] = self.timeout
         
         logger.debug("GET %s", url)
         logger.debug("Params: %s", query)
@@ -57,13 +63,17 @@ class BaseClient:
             path: 接口路径
             data: POST数据（dict或str）
             params: URL参数
-            **kwargs: requests额外参数
+            **kwargs: requests额外参数（可覆盖 timeout）
             
         Returns:
             响应字典
         """
         url = f"{self.BASE_URL}{path}"
         query = {**self.common_params, **(params or {})}
+        
+        # 设置默认超时，允许 kwargs 覆盖
+        if "timeout" not in kwargs:
+            kwargs["timeout"] = self.timeout
         
         logger.debug("POST %s", url)
         logger.debug("Params: %s", query)

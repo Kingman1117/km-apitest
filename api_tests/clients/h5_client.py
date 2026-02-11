@@ -111,6 +111,7 @@ class H5Client(BaseClient):
     def _save_session_cache(self):
         """保存session到缓存"""
         cache_data = {
+            "username": self.username,  # 新增：记录用户名
             "cookies": self.session.cookies,
             "_token": self._token,
             "stu_id": self.stu_id,
@@ -130,10 +131,19 @@ class H5Client(BaseClient):
             with open(self.SESSION_CACHE, "rb") as f:
                 cache_data = pickle.load(f)
             
+            # 新增：检查用户名是否匹配
+            cached_username = cache_data.get("username")
+            if cached_username and cached_username != self.username:
+                logger.info("H5 session 缓存用户不匹配（缓存: %s, 当前: %s），清除缓存",
+                           cached_username, self.username)
+                self.SESSION_CACHE.unlink()
+                return False
+            
             # 检查缓存是否过期（30分钟）
             age = time.time() - cache_data["timestamp"]
             if age > 1800:
                 logger.info("H5 session 缓存已过期（%.0f 秒）", age)
+                self.SESSION_CACHE.unlink()
                 return False
             
             # 恢复session
@@ -145,4 +155,6 @@ class H5Client(BaseClient):
             return True
         except Exception as e:
             logger.warning("H5 加载缓存失败: %s", e)
+            if self.SESSION_CACHE.exists():
+                self.SESSION_CACHE.unlink()
             return False

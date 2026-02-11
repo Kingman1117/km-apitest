@@ -58,6 +58,10 @@ def main():
     commit_msg = "feat: 初始化接口自动化测试框架\n\n- 基于 Python + pytest + requests 三层架构\n- 支持 Admin/EduPC/H5 多端测试\n- 集成 TAPD 回填和企业微信通知\n- 32个核心用例覆盖"
     run_cmd(f'git commit -m "{commit_msg}"')
     
+    # 6.5. 重命名分支为 main
+    print("\n[步骤6.5] 重命名分支为 main...")
+    run_cmd("git branch -M main")
+    
     # 7. 推送到 GitHub
     print("\n[步骤7] 推送到 GitHub...")
     print("注意：首次推送需要输入 GitHub 用户名和密码（或 Personal Access Token）")
