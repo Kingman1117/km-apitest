@@ -2,6 +2,7 @@
 EduPCClient - EduPC端API客户端
 """
 import logging
+import os
 import pickle
 import time
 from pathlib import Path
@@ -9,6 +10,7 @@ from pathlib import Path
 from .base_client import BaseClient
 from security_utils import md5
 from test_data_manager import TestDataManager
+from constants import DefaultValues
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +18,7 @@ logger = logging.getLogger(__name__)
 class EduPCClient(BaseClient):
     """EduPC端API客户端"""
     
-    BASE_URL = "http://huaedu1-110.365hjy.com.faidev.cc"
+    BASE_URL = os.getenv("EDUPC_BASE_URL", "http://huaedu1-110.365hjy.com.faidev.cc")
     LOGIN_URL = f"{BASE_URL}/ajax/login_h.jsp?cmd=wafNotCk_loginAcct"
     SESSION_CACHE = Path(__file__).parent.parent / ".edupc_session_cache.pkl"
     
@@ -29,9 +31,9 @@ class EduPCClient(BaseClient):
         self.union_user_id = None
         # 从配置读取默认值
         defaults = TestDataManager.get_all_defaults()
-        self.wxapp_aid = defaults.get("wxapp_aid", "3444128")
-        self.wxapp_id = defaults.get("wxapp_id", "110")
-        self.aid = defaults.get("aid", "31687084")
+        self.wxapp_aid = defaults.get("wxapp_aid", DefaultValues.DEFAULT_WXAPP_AID)
+        self.wxapp_id = defaults.get("wxapp_id", DefaultValues.DEFAULT_WXAPP_ID)
+        self.aid = defaults.get("aid", DefaultValues.DEFAULT_AID)
     
     @property
     def common_params(self):
@@ -88,7 +90,7 @@ class EduPCClient(BaseClient):
         
         # 如果没有stuId，使用默认值
         if not self.stu_id:
-            self.stu_id = "57711"
+            self.stu_id = DefaultValues.DEFAULT_STU_ID
             logger.info("EduPC 使用默认 stuId: %s", self.stu_id)
     
     def _save_session_cache(self):

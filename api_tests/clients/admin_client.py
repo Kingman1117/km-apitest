@@ -2,6 +2,7 @@
 AdminClient - 管理后台API客户端
 """
 import logging
+import os
 import pickle
 import re
 import time
@@ -16,8 +17,8 @@ logger = logging.getLogger(__name__)
 class AdminClient(BaseClient):
     """管理后台API客户端"""
     
-    BASE_URL = "http://i.edu.fkw.com.faidev.cc"
-    LOGIN_URL = "http://i.fkw.com.faidev.cc/ajax/login_h.jsp?dogSrc=3"
+    BASE_URL = os.getenv("ADMIN_BASE_URL", "http://i.edu.fkw.com.faidev.cc")
+    LOGIN_URL = os.getenv("ADMIN_LOGIN_URL", "http://i.fkw.com.faidev.cc/ajax/login_h.jsp?dogSrc=3")
     SESSION_CACHE = Path(__file__).parent.parent / ".session_cache.pkl"
     
     def __init__(self, username: str, password: str):
@@ -104,10 +105,11 @@ class AdminClient(BaseClient):
             self._token = token_match.group(1)
         
         # 提取wxappAid/wxappId
+        from constants import DefaultValues as DV
         aid_match = re.search(r'wxappAid["\']?\s*[:=]\s*["\']?(\d+)', html)
         wid_match = re.search(r'wxappId["\']?\s*[:=]\s*["\']?(\d+)', html)
-        self.wxapp_aid = aid_match.group(1) if aid_match else "3444128"
-        self.wxapp_id = wid_match.group(1) if wid_match else "110"
+        self.wxapp_aid = aid_match.group(1) if aid_match else DV.DEFAULT_WXAPP_AID
+        self.wxapp_id = wid_match.group(1) if wid_match else DV.DEFAULT_WXAPP_ID
         
         logger.info("提取 admin token 和站点参数成功")
     

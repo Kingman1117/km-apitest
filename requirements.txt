@@ -1,0 +1,16 @@
+# API 自动化测试框架核心依赖
+# Python >= 3.8
+
+# HTTP 请求
+requests==2.32.5
+urllib3>=1.26.0,<3.0.0
+
+# 测试框架
+pytest==9.0.2
+pytest-xdist==3.5.0          # 并发执行
+pytest-rerunfailures==12.0   # 失败重试
+pytest-html==4.1.1           # HTML 报告
+pytest-metadata==3.1.1       # 元数据支持
+
+# 可选：Allure 报告（如需要）
+# allure-pytest==2.15.2

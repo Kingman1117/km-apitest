@@ -4,7 +4,7 @@
 
 接口: POST /ajax/video_h.jsp?cmd=addVideo
 """
-from actions.content_actions import ContentActions
+from actions.video_actions import VideoActions
 from test_data_manager import TestDataManager
 
 
@@ -15,7 +15,7 @@ def test_admin_add_video(admin_client, timestamp):
     file_id = TestDataManager.get_file_id("video")
 
     # Act: 创建视频
-    video_id = ContentActions.create_video(admin_client, name, file_id)
+    video_id = VideoActions.create_video(admin_client, name, file_id)
 
     # Assert: 验证创建成功
     assert video_id, "视频创建失败"

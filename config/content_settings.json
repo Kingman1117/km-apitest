@@ -1,0 +1,142 @@
+{
+  "audio_default_setting": {
+    "bp": 0,
+    "bml": 1,
+    "btype": 0,
+    "bmtgs": [],
+    "pageStyle": 1,
+    "pfk": {
+      "ss": false,
+      "pm": 0,
+      "pa": 0.01,
+      "sst": 0,
+      "vsu": 0,
+      "atm": 0,
+      "duration": 0,
+      "asp": 0,
+      "lp": 0.01,
+      "slp": 0,
+      "validityType": 0,
+      "validityDate": ""
+    },
+    "fdl": {
+      "s": 0,
+      "ip": 0,
+      "fil": [],
+      "viewType": 0
+    }
+  },
+  "video_default_setting": {
+    "bp": 0,
+    "bml": 1,
+    "btype": 0,
+    "bmtgs": [],
+    "pfk": {
+      "ss": false,
+      "pm": 0,
+      "pa": 0.01,
+      "sst": 0,
+      "vsu": 0,
+      "atm": 0,
+      "duration": 0,
+      "asp": 0,
+      "lp": 0.01,
+      "slp": 0,
+      "validityType": 0,
+      "validityDate": ""
+    },
+    "fdl": {
+      "s": 0,
+      "ip": 0,
+      "fil": [],
+      "viewType": 0
+    }
+  },
+  "news_default_setting": {
+    "sd": 0,
+    "bp": 0,
+    "bml": 1,
+    "btype": 0,
+    "bmtgs": [],
+    "pfk": {
+      "ss": false,
+      "pm": 0,
+      "pa": 0.01,
+      "sst": 0,
+      "vsu": 0,
+      "duration": 0,
+      "asp": 0,
+      "svct": 0,
+      "ovc": 0,
+      "lp": 0.01,
+      "slp": 0,
+      "validityType": 0,
+      "validityDate": ""
+    },
+    "fdl": {
+      "s": 0,
+      "ip": 0,
+      "fil": [],
+      "viewType": 0
+    }
+  },
+  "column_default_setting": {
+    "so": 0,
+    "vo": 0,
+    "bp": 0,
+    "bml": 1,
+    "sm": 0,
+    "ds": 0,
+    "btype": 0,
+    "bmtgs": [],
+    "snt": 1,
+    "vct": 1,
+    "utt": 2,
+    "duration": 0,
+    "asp": 0,
+    "lp": 0.01,
+    "slp": 0,
+    "obsd": 0,
+    "oasd": 0,
+    "hd": 0,
+    "bsdd": {
+      "qrCodeUrl": "",
+      "qrCode": "",
+      "eg": "添加老师微信，获取更多服务",
+      "wt": "微信二维码",
+      "wd": "长按二维码添加微信",
+      "apuw": false
+    },
+    "asdd": {
+      "qrCodeUrl": "",
+      "qrCode": "",
+      "eg": "添加老师微信，获取更多服务",
+      "wt": "微信二维码",
+      "wd": "长按二维码添加微信",
+      "apuw": false
+    },
+    "stmo": 0,
+    "apl": {
+      "painlt": 0,
+      "esinlt": 0
+    },
+    "dds": 0,
+    "dateModeDetail": {
+      "type": 1,
+      "day": 1,
+      "time": "08:00",
+      "num": 1,
+      "itemType": 3
+    },
+    "columnDirectoryStyle": 1,
+    "validityType": 0,
+    "validityDate": "",
+    "fdl": {
+      "s": 0,
+      "ip": 0,
+      "fil": [],
+      "viewType": 0,
+      "showTime": 0
+    }
+  }
+}

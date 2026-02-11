@@ -11,6 +11,7 @@
 import json
 import logging
 from actions.order_actions import OrderActions
+from actions.refund_actions import RefundActions
 from data_factory import DataFactory
 from test_data_manager import TestDataManager
 
@@ -64,7 +65,7 @@ def test_h5_order_product_and_refund(h5_client, admin_client):
     order_item_id = order_detail["order_item_id"]
 
     # Act: 管理后台退款
-    OrderActions.refund_order(
+    RefundActions.refund_order(
         admin_client,
         order_no=order_no,
         order_item_id=order_item_id,

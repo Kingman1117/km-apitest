@@ -9,6 +9,7 @@ import json
 from typing import Any, Dict, Optional
 
 from test_data_manager import TestDataManager
+from constants import ClientFrom, PayType, RefundType, RefundMethod, DefaultValues
 
 
 class DataFactory:
@@ -19,14 +20,14 @@ class DataFactory:
         """优先使用登录态中的 stu_id，不存在时回退到配置默认值。"""
         if client_stu_id:
             return str(client_stu_id)
-        return str(TestDataManager.get_default("stu_id", "57711"))
+        return str(TestDataManager.get_default("stu_id", DefaultValues.DEFAULT_STU_ID))
 
     @staticmethod
     def resolve_union_user_id(client_union_user_id: Optional[Any]) -> str:
         """优先使用登录态中的 union_user_id，不存在时回退到配置默认值。"""
         if client_union_user_id:
             return str(client_union_user_id)
-        return str(TestDataManager.get_default("union_user_id", "57655"))
+        return str(TestDataManager.get_default("union_user_id", DefaultValues.DEFAULT_UNION_USER_ID))
 
     @classmethod
     def build_edupc_commit_order_data(
@@ -104,8 +105,8 @@ class DataFactory:
         return {
             "reason": "自动化测试退款",
             "refundList": json.dumps(refund_list, ensure_ascii=False),
-            "refundType": "1",
+            "refundType": str(RefundType.FULL),         # 1 → RefundType.FULL
             "stuId": stu_id,
             "unionUserId": "0",
-            "refundMethod": "1",
+            "refundMethod": str(RefundMethod.ORIGINAL), # 1 → RefundMethod.ORIGINAL
         }

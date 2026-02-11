@@ -16,11 +16,20 @@
 """
 
 import argparse
+import logging
 import os
 import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
+
+
+# P1-4: 在入口脚本统一配置日志（避免 conftest.py 重复配置）
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] [%(name)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 
 def main() -> int:
@@ -64,7 +73,7 @@ def main() -> int:
         print(f"[INFO] HTML 报告将保存到: {html_report}")
 
     env = os.environ.copy()
-    if not args.with_third-party-plugins:
+    if not args.with_third_party_plugins:
         env["PYTEST_DISABLE_PLUGIN_AUTOLOAD"] = "1"
 
     cmd = [sys.executable, "-m", "pytest", *pytest_args]

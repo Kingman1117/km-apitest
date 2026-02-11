@@ -10,12 +10,14 @@ import time
 
 import pytest
 
-# 全局日志配置（仅在入口处配置一次）
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] [%(name)s] %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-)
+# P1-4: 避免重复配置日志（仅在无 handler 时配置）
+# 推荐：将日志配置移到 run_api_tests.py 入口脚本
+if not logging.getLogger().handlers:
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] [%(name)s] %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
 
 from config_loader import load_tapd_config, load_test_plan_config
 from tapd_reporter import report_case_result
@@ -73,15 +75,38 @@ def timestamp():
 
 
 @pytest.fixture(autouse=True)
-def rate_limit_delay():
-    """每条用例后延时，避免接口限频。"""
+def rate_limit_delay(request):
+    """
+    每条用例后延时，避免接口限频。
+    
+    P1-5: 仅对标记了 @pytest.mark.write 或 @pytest.mark.rate_limited 的用例延时
+    未标记的用例（通常是查询类）不延时，提升执行效率
+    
+    环境变量控制：
+    - API_RATE_LIMIT_SECONDS: 延时秒数（默认2秒，设为0禁用）
+    - API_RATE_LIMIT_ALL: 设为"1"时对所有用例延时（旧行为）
+    """
     yield
+    
+    # 检查是否需要延时
+    force_all = os.getenv("API_RATE_LIMIT_ALL", "0") == "1"
+    has_write_mark = request.node.get_closest_marker("write") is not None
+    has_rate_limit_mark = request.node.get_closest_marker("rate_limited") is not None
+    fspath = str(getattr(request.node, "fspath", "")).replace("\\", "/")
+    is_h5_test = "/api_tests/h5/" in fspath
+    
+    should_delay = force_all or has_write_mark or has_rate_limit_mark or is_h5_test
+    
+    if not should_delay:
+        return
+    
     delay_str = os.getenv("API_RATE_LIMIT_SECONDS", "2")
     try:
         delay_seconds = float(delay_str)
     except ValueError:
         delay_seconds = 2.0
         logger.warning("API_RATE_LIMIT_SECONDS 非法，回退到默认 2 秒: %s", delay_str)
+    
     if delay_seconds > 0:
         time.sleep(delay_seconds)
 

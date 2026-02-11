@@ -18,4 +18,10 @@ assets/
 # 敏感配置（不提交）
 config/test_plan_config.json
 config/tapd_config.json
+.env
+.env.local
+
+# 依赖
 node_modules
+venv/
+.venv/

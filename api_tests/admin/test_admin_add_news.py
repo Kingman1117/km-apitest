@@ -4,7 +4,7 @@
 
 接口: POST /ajax/wxAppNews_h.jsp?cmd=addNews
 """
-from actions.content_actions import ContentActions
+from actions.news_actions import NewsActions
 
 
 def test_admin_add_news(admin_client, timestamp):
@@ -13,7 +13,7 @@ def test_admin_add_news(admin_client, timestamp):
     name = f"接口测试图文_{timestamp}"
 
     # Act: 创建图文
-    news_id = ContentActions.create_news(admin_client, name)
+    news_id = NewsActions.create_news(admin_client, name)
 
     # Assert: 验证创建成功
     assert news_id, "图文创建失败"

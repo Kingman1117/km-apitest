@@ -9,6 +9,7 @@
 3. 管理后台退款
 """
 from actions.order_actions import OrderActions
+from actions.refund_actions import RefundActions
 from test_data_manager import TestDataManager
 
 
@@ -30,7 +31,7 @@ def test_edupc_order_news_and_refund(edupc_client, admin_client):
     order_detail = OrderActions.get_order_detail(admin_client, order_no)
 
     # Act: 管理后台退款
-    OrderActions.refund_order(
+    RefundActions.refund_order(
         admin_client,
         order_no=order_no,
         order_item_id=order_detail["order_item_id"],

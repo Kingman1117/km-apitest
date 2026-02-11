@@ -4,7 +4,7 @@
 
 接口: POST /ajax/wxAppColumn_h.jsp?cmd=addColumn
 """
-from actions.content_actions import ContentActions
+from actions.column_actions import ColumnActions
 
 
 def test_admin_add_column(admin_client, timestamp):
@@ -13,7 +13,7 @@ def test_admin_add_column(admin_client, timestamp):
     name = f"接口测试系列课_{timestamp}"
 
     # Act: 创建系列课
-    column_id = ContentActions.create_column(admin_client, name)
+    column_id = ColumnActions.create_column(admin_client, name)
 
     # Assert: 验证创建成功
     assert column_id, "系列课创建失败"
