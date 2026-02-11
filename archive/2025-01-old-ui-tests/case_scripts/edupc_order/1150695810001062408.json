@@ -1,0 +1,93 @@
+{
+  "caseId": "1150695810001062408",
+  "name": "edupc正常访问系列课，提交免费/付费订单",
+  "group": "edupc_order",
+  "needsLogin": "student_edupc",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://huaedu1-110.365hjy.com.faidev.cc/cod.jsp?id=3344",
+      "description": "访问免费系列课页面"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "a:has-text('订阅')",
+      "fallbacks": ["button:has-text('订阅')", "text=免费订阅", "text=订阅内容"],
+      "description": "点击订阅按钮（免费系列课，需snapshot确认按钮文案）"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('提交订单')",
+      "fallbacks": ["text=提交订单", ".submit-btn"],
+      "description": "点击提交订单"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "订单|成功|已订阅|已购买|支付",
+      "snapshot": true,
+      "description": "验证免费系列课订单提交成功"
+    },
+    {
+      "action": "goto",
+      "url": "http://huaedu1-110.365hjy.com.faidev.cc/cod.jsp?id=3345",
+      "description": "访问付费系列课页面"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "a:has-text('订阅')",
+      "fallbacks": ["button:has-text('订阅')", "text=订阅内容", "text=免费订阅"],
+      "description": "点击订阅按钮（付费系列课，需snapshot确认按钮文案）"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": "text=使用",
+      "fallbacks": ["button:has-text('使用')", ".use-balance", "label:has-text('使用')"],
+      "description": "点击使用启用余额抵扣"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('提交订单')",
+      "fallbacks": ["text=提交订单", ".submit-btn"],
+      "description": "点击提交订单"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "订单|成功|已订阅|已购买|支付",
+      "snapshot": true,
+      "description": "验证付费系列课订单提交成功"
+    }
+  ],
+  "cleanup": {
+    "type": "refund",
+    "adminOrderUrl": "http://i.edu.fkw.com.faidev.cc/?__aacct=huaedu1#/order/index"
+  },
+  "verify": "订单|成功|已订阅|已购买"
+}

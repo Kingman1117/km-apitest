@@ -1,0 +1,142 @@
+{
+  "caseId": "1150695810001062423",
+  "name": "移动端设计器正常切换和访问各页面",
+  "group": "mobile_designer",
+  "needsLogin": "admin",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://i.edu.fkw.com.faidev.cc/editorNew.jsp?_wxappId=110&__aacct=huaedu1#/"
+    },
+    {
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "action": "evaluate",
+      "script": "const btn = document.querySelector('.know-btn, button:has-text(\"我知道了\"), .guide-close'); if(btn) btn.click();",
+      "description": "关闭可能出现的遮罩提示（我知道了）"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "click",
+      "selector": "text=页面",
+      "fallbacks": [".page-tab", ".left-panel-tab:has-text('页面')", "[data-tab='page']"],
+      "description": "点击左侧「页面」tab"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": "text=我的页面",
+      "fallbacks": [".my-page-tab", ".page-group:has-text('我的页面')", "[data-group='my']"],
+      "description": "点击「我的页面」"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": ".page-list .page-item:nth-child(1), .my-page-list .page-item:nth-child(1)",
+      "fallbacks": [".page-list li:nth-child(1)", ".page-item:first-child"],
+      "description": "切换到我的页面第1个"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const btn = document.querySelector('.know-btn, button:has-text(\"我知道了\"), .guide-close'); if(btn) btn.click();",
+      "description": "关闭可能出现的遮罩提示"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "click",
+      "selector": ".page-list .page-item:nth-child(2), .my-page-list .page-item:nth-child(2)",
+      "fallbacks": [".page-list li:nth-child(2)", ".page-item:nth-child(2)"],
+      "description": "切换到我的页面第2个"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": ".page-list .page-item:nth-child(3), .my-page-list .page-item:nth-child(3)",
+      "fallbacks": [".page-list li:nth-child(3)", ".page-item:nth-child(3)"],
+      "description": "切换到我的页面第3个"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "text=系统页面",
+      "fallbacks": [".system-page-tab", ".page-group:has-text('系统页面')", "[data-group='system']"],
+      "description": "点击「系统页面」"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": ".page-list .page-item:nth-child(1), .system-page-list .page-item:nth-child(1)",
+      "fallbacks": [".page-list li:nth-child(1)", ".page-item:first-child"],
+      "description": "切换到系统页面第1个"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const btn = document.querySelector('.know-btn, button:has-text(\"我知道了\"), .guide-close'); if(btn) btn.click();",
+      "description": "关闭可能出现的遮罩提示"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "click",
+      "selector": ".page-list .page-item:nth-child(2), .system-page-list .page-item:nth-child(2)",
+      "fallbacks": [".page-list li:nth-child(2)", ".page-item:nth-child(2)"],
+      "description": "切换到系统页面第2个"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": ".page-list .page-item:nth-child(3), .system-page-list .page-item:nth-child(3)",
+      "fallbacks": [".page-list li:nth-child(3)", ".page-item:nth-child(3)"],
+      "description": "切换到系统页面第3个"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "页面|设计器|模块",
+      "snapshot": true,
+      "description": "验证页面切换正常，设计器展示正常"
+    }
+  ],
+  "cleanup": null,
+  "verify": "页面|设计器|模块",
+  "_note": "基础框架脚本，选择器需实际执行后校准。切换我的页面和系统页面各2-3个"
+}

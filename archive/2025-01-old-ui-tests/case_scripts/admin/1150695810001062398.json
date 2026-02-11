@@ -1,0 +1,117 @@
+{
+  "caseId": "1150695810001062398",
+  "name": "管理后台正常添加答题活动",
+  "group": "admin",
+  "needsLogin": "admin",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://i.edu.fkw.com.faidev.cc/?__aacct=huaedu1#/assistance/answer/listManager"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加活动')",
+      "fallbacks": ["text=添加活动"],
+      "description": "点击添加活动按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": "text=考试",
+      "fallbacks": ["div:has-text('考试')", ".el-dropdown-menu__item:has-text('考试')"],
+      "description": "选择考试类型"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='名称']",
+      "value": "答题活动{timestamp}",
+      "fallbacks": ["input[placeholder*='请输入名称']", "input[placeholder*='考试名称']", "input[placeholder*='请输入考试名称']"],
+      "description": "输入考试名称"
+    },
+    {
+      "action": "evaluate",
+      "script": "const radios = document.querySelectorAll('.el-radio'); for(const r of radios) { if(r.textContent.includes('不限')) { r.querySelector('input') ? r.querySelector('input').click() : r.click(); break; } }",
+      "description": "考试时间选择不限"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const radios = document.querySelectorAll('.el-radio'); let found = false; for(const r of radios) { if(found && r.textContent.includes('不限')) { r.querySelector('input') ? r.querySelector('input').click() : r.click(); break; } if(r.textContent.includes('不限')) found = true; }",
+      "description": "参与次数选择不限"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const tabs = document.querySelectorAll('.el-tabs__item'); for(const t of tabs) { if(t.textContent.trim() === '添加题目') { t.click(); break; } }",
+      "description": "点击【添加题目】tab（exact match）"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('从题库中选择题目')",
+      "fallbacks": ["text=从题库中选择题目", "button:has-text('题库中选择')"],
+      "description": "点击从题库中选择题目"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const checkboxes = document.querySelectorAll('.el-checkbox__input:not(.is-checked)'); if(checkboxes.length > 1) { checkboxes[1].querySelector('input') ? checkboxes[1].querySelector('input').click() : checkboxes[1].click(); } else if(checkboxes.length > 0) { checkboxes[0].querySelector('input') ? checkboxes[0].querySelector('input').click() : checkboxes[0].click(); }",
+      "description": "勾选任一题目"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "click",
+      "selector": ".el-dialog__footer button.el-button--primary",
+      "fallbacks": ["button:has-text('确定')", "button:has-text('确 定')"],
+      "force": true,
+      "description": "点击题库弹窗确定按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "evaluate",
+      "script": "const dialogs = document.querySelectorAll('.el-dialog__wrapper[style*=\"display\"]'); let outerDialog = null; for(const d of dialogs) { if(d.style.display !== 'none' && d.querySelector('.el-dialog__footer')) { outerDialog = d; } } if(outerDialog) { const btn = outerDialog.querySelector('.el-dialog__footer button.el-button--primary'); if(btn) btn.click(); }",
+      "description": "点击最外层确定按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "创建成功|操作成功|保存成功|答题活动",
+      "snapshot": true,
+      "description": "验证正常创建答题活动"
+    }
+  ],
+  "cleanup": null,
+  "verify": "创建成功|操作成功|保存成功"
+}

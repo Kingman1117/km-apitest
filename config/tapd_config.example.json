@@ -1,0 +1,19 @@
+{
+  "workspace_id": "your_workspace_id",
+  "api_user": "your_tapd_api_user",
+  "api_password": "your_tapd_api_password",
+  "base_url": "https://api.tapd.cn",
+  "enabled": false,
+  "current_test_plan": {
+    "id": "your_test_plan_id",
+    "name": "your_test_plan_name",
+    "created_at": "2026-02-11",
+    "url": "https://www.tapd.cn/your_workspace/sparrow/test_plan/detail/your_test_plan_id"
+  },
+  "tester": "自动化测试",
+  "wecom_webhook": "",
+  "wecom_enabled": false,
+  "wecom_notify_on_success": true,
+  "wecom_notify_on_failure": true,
+  "comment": "复制为 tapd_config.json 后填入真实值，或通过环境变量覆盖"
+}

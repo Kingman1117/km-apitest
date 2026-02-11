@@ -1,0 +1,65 @@
+{
+  "caseId": "1150695810001062407",
+  "name": "edupc访问搜索模块，正常筛选",
+  "group": "edupc_func",
+  "needsLogin": "none",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://huaedu1-110.365hjy.com.faidev.cc/col.jsp?id=101",
+      "description": "访问搜索模块页面"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "fill",
+      "selector": "input[type='text']",
+      "value": "自动化测试系列课_04632795",
+      "fallbacks": ["input[placeholder*='搜索']", "input.search-input", ".d_searchInput input"],
+      "description": "搜索框输入关键词"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "click",
+      "selector": ".d_searchBtn",
+      "fallbacks": ["button:has-text('搜索')", "a:has-text('搜索')", ".search-btn"],
+      "description": "点击搜索按钮（如超时则用Enter）"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "try { document.querySelector('.d_searchBtn').click(); } catch(e) { document.querySelector('input[type=\"text\"]').dispatchEvent(new KeyboardEvent('keydown', {key:'Enter',code:'Enter',keyCode:13,bubbles:true})); }",
+      "description": "备选：搜索按钮可能timeout，用evaluate确保提交（含Enter fallback）"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "text=系列课",
+      "fallbacks": ["a:has-text('系列课')", ".tab:has-text('系列课')", "[data-tab='系列课']"],
+      "description": "点击【系列课】tab筛选"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "系列课|自动化测试系列课_04632795|搜索结果",
+      "snapshot": true,
+      "description": "验证搜索和筛选结果正常"
+    }
+  ],
+  "cleanup": null,
+  "verify": "系列课|自动化测试系列课_04632795"
+}

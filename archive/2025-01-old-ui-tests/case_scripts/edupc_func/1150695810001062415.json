@@ -1,0 +1,25 @@
+{
+  "caseId": "1150695810001062415",
+  "name": "edupc访问首页，内容正常加载",
+  "group": "edupc_func",
+  "needsLogin": "none",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://huaedu1-110.365hjy.com.faidev.cc/",
+      "description": "访问edupc首页"
+    },
+    {
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "action": "verify",
+      "expect": "首页|课程|系列课|图文|视频|音频|登录",
+      "snapshot": true,
+      "description": "验证首页内容正常加载"
+    }
+  ],
+  "cleanup": null,
+  "verify": "首页|课程|登录"
+}

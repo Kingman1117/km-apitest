@@ -1,0 +1,142 @@
+{
+  "services": {
+    "column": {
+      "service_type": 5,
+      "edupc": {
+        "service_id": 3345,
+        "amount": 2000
+      },
+      "h5": {
+        "service_id": 3342,
+        "amount": 2500
+      }
+    },
+    "news": {
+      "service_type": 1,
+      "edupc": {
+        "service_id": 2289,
+        "amount": 2000
+      },
+      "h5": {
+        "service_id": 2287,
+        "amount": 9987
+      }
+    },
+    "video": {
+      "service_type": 4,
+      "edupc": {
+        "service_id": 4942,
+        "amount": 2000
+      },
+      "h5": {
+        "service_id": 4940,
+        "amount": 5000
+      }
+    },
+    "audio": {
+      "service_type": 2,
+      "edupc": {
+        "service_id": 1163,
+        "amount": 2000
+      },
+      "h5": {
+        "service_id": 1161,
+        "amount": 1099
+      }
+    },
+    "ebook": {
+      "service_type": 18,
+      "h5": {
+        "service_id": 113,
+        "amount": 1000
+      }
+    },
+    "checkpoint": {
+      "service_type": 3,
+      "h5": {
+        "service_id": 495,
+        "amount": 2000
+      }
+    },
+    "evaluation": {
+      "service_type": 24,
+      "h5": {
+        "service_id": 217,
+        "amount": 2000
+      }
+    },
+    "question_bank": {
+      "service_type": 25,
+      "h5": {
+        "service_id": 103,
+        "amount": 2000
+      }
+    }
+  },
+  "files": {
+    "audio": "AJQBCAAQNxgAIKrF18sGKICiiKQCMAA4AA",
+    "video": "AJQBCAAQOhgAIOa0m74GKK7W_8gCMAA4AA",
+    "ebook": "AJQBCAAQPRgAIMDPgMwGKMSu9ogDMAA4AA",
+    "image": "AJQBCAAQAhgAIKWqgMwGKObW7pcGMLgIOLgI"
+  },
+  "order_item_templates": {
+    "h5_book_service": [
+      {
+        "serviceType": 15,
+        "serviceId": "548",
+        "type": 0,
+        "payPrice": 0,
+        "quantity": 1,
+        "bookTime": "",
+        "tempFileList": "[]",
+        "couponId": -1,
+        "couponRecordId": -1,
+        "formData": "{\"name\":\"km课外预约\"}",
+        "specificationOpen": false,
+        "limitKind": 0,
+        "stuId": 57711
+      }
+    ],
+    "h5_offline_course": [
+      {
+        "serviceId": 1250,
+        "serviceType": 0,
+        "specsId": 1717,
+        "quantity": 1,
+        "payPrice": 0,
+        "couponId": -1,
+        "couponRecordId": -1,
+        "formData": "{}",
+        "hasPhone": false,
+        "stuId": 57711,
+        "tempFileList": "[]"
+      }
+    ],
+    "h5_product": [
+      {
+        "serviceId": 28,
+        "serviceType": 14,
+        "skuId": 7214,
+        "payPrice": 0,
+        "quantity": 1,
+        "formData": {},
+        "hasPhone": false,
+        "tempFileList": "[]",
+        "distribute": 1,
+        "couponId": -1,
+        "couponRecordId": -1,
+        "addressId": 1,
+        "phone": "18945612398",
+        "name": "km",
+        "stuId": 57711
+      }
+    ]
+  },
+  "defaults": {
+    "stu_id": "57711",
+    "union_user_id": "57655",
+    "aid": "31687084",
+    "wxapp_aid": "3444128",
+    "wxapp_id": "110"
+  }
+}

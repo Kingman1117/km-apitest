@@ -1,0 +1,28 @@
+{
+  "currentPlan": {
+    "planUrl": "https://www.tapd.cn/your_workspace/sparrow/test_plan/detail/your_plan_id",
+    "planId": "your_plan_id",
+    "environment": "DEP",
+    "executionDate": "2026-02-11"
+  },
+  "credentials": {
+    "admin": {
+      "url": "http://i.edu.example.com/?__aacct=your_admin_account",
+      "orderListUrl": "http://i.edu.example.com/?__aacct=your_admin_account#/order/index",
+      "username": "your_admin_username",
+      "password": "your_admin_password"
+    },
+    "student": {
+      "h5LoginUrl": "http://your_h5_domain/webIndex.jsp#/loginPages/pwdLogin/pwdLogin",
+      "edupcLoginUrl": "http://your_edupc_domain/login.jsp",
+      "username": "your_student_username",
+      "password": "your_student_password"
+    }
+  },
+  "executionGroups": [],
+  "cleanupRules": {
+    "needRefund": [],
+    "needWriteOff": [],
+    "noCleanup": []
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "caseId": "1150695810001062401",
+  "name": "管理后台正常添加测评活动",
+  "group": "admin",
+  "needsLogin": "admin",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://i.edu.fkw.com.faidev.cc/?__aacct=huaedu1#/assistance/evaluation"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加测评')",
+      "fallbacks": ["text=添加测评"],
+      "description": "点击添加测评按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "click",
+      "selector": "text=添加测评",
+      "fallbacks": [".el-dropdown-menu__item:has-text('添加测评')"],
+      "description": "选择添加测评选项"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='名称']",
+      "value": "测评活动{timestamp}",
+      "fallbacks": ["input[placeholder*='请输入名称']", "input[placeholder*='测评名称']", "input[placeholder*='请输入测评名称']"],
+      "description": "输入测评活动名称"
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('下一步')",
+      "fallbacks": ["button:has-text('下 一 步')"],
+      "description": "点击下一步"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加题目')",
+      "fallbacks": ["text=添加题目"],
+      "description": "点击添加题目（第一题-单选）"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const iframes = document.querySelectorAll('iframe'); for(const iframe of iframes) { try { const body = iframe.contentDocument.querySelector('body'); if(body) { body.innerHTML = '<p>以下哪个选项是正确的？</p>'; body.dispatchEvent(new Event('input', {bubbles:true})); break; } } catch(e) {} }",
+      "description": "设置单选题题干（UEditor iframe用innerHTML）"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const inputs = document.querySelectorAll('input[placeholder*=\"选项\"]'); if(inputs.length >= 2) { inputs[0].focus(); inputs[0].value = '选项A正确答案'; inputs[0].dispatchEvent(new Event('input',{bubbles:true})); inputs[0].dispatchEvent(new Event('change',{bubbles:true})); inputs[1].focus(); inputs[1].value = '选项B错误答案'; inputs[1].dispatchEvent(new Event('input',{bubbles:true})); inputs[1].dispatchEvent(new Event('change',{bubbles:true})); }",
+      "description": "填写单选题选项"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "click",
+      "selector": ".el-dialog__footer button.el-button--primary",
+      "fallbacks": ["button:has-text('确定')", "button:has-text('确 定')"],
+      "force": true,
+      "description": "点击确定保存单选题"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加题目')",
+      "fallbacks": ["text=添加题目"],
+      "description": "点击添加题目（第二题-多选）"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const selects = document.querySelectorAll('.el-select'); for(const s of selects) { const input = s.querySelector('input'); if(input) { s.click(); break; } } setTimeout(() => { const options = document.querySelectorAll('.el-select-dropdown__item'); for(const o of options) { if(o.textContent.includes('多选')) { o.click(); break; } } }, 500);",
+      "description": "题型选择多选"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "evaluate",
+      "script": "const iframes = document.querySelectorAll('iframe'); for(const iframe of iframes) { try { const body = iframe.contentDocument.querySelector('body'); if(body) { body.innerHTML = '<p>以下哪些选项是正确的？（多选）</p>'; body.dispatchEvent(new Event('input', {bubbles:true})); break; } } catch(e) {} }",
+      "description": "设置多选题题干（UEditor iframe用innerHTML）"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const inputs = document.querySelectorAll('input[placeholder*=\"选项\"]'); if(inputs.length >= 2) { inputs[0].focus(); inputs[0].value = '多选选项A'; inputs[0].dispatchEvent(new Event('input',{bubbles:true})); inputs[0].dispatchEvent(new Event('change',{bubbles:true})); inputs[1].focus(); inputs[1].value = '多选选项B'; inputs[1].dispatchEvent(new Event('input',{bubbles:true})); inputs[1].dispatchEvent(new Event('change',{bubbles:true})); }",
+      "description": "填写多选题选项"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "click",
+      "selector": ".el-dialog__footer button.el-button--primary",
+      "fallbacks": ["button:has-text('确定')", "button:has-text('确 定')"],
+      "force": true,
+      "description": "点击确定保存多选题"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('下一步')",
+      "fallbacks": ["button:has-text('下 一 步')"],
+      "description": "点击下一步进入测评结果设置"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const radios = document.querySelectorAll('input[type=\"radio\"]'); for(const r of radios) { const label = r.closest('label') || r.parentElement; if(label && label.textContent.includes('显示')) { r.click(); break; } }",
+      "description": "测评结果设置：显示测评分数（radio）"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('下一步')",
+      "fallbacks": ["button:has-text('下 一 步')"],
+      "description": "点击下一步进入运营设置"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('保存')",
+      "fallbacks": ["button:has-text('保 存')", "button.el-button--primary:has-text('保存')"],
+      "force": true,
+      "description": "运营设置页点击保存"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "保存成功|操作成功|创建成功|测评活动",
+      "snapshot": true,
+      "description": "验证正常添加测评活动"
+    }
+  ],
+  "cleanup": null,
+  "verify": "保存成功|操作成功|创建成功"
+}

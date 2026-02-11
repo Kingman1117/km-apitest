@@ -1,0 +1,109 @@
+{
+  "caseId": "1150695810001062403",
+  "name": "管理后台正常添加优惠券后发放给学员",
+  "group": "admin",
+  "needsLogin": "admin",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://i.edu.fkw.com.faidev.cc/?__aacct=huaedu1#/marketing/coupon"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加优惠券')",
+      "fallbacks": ["text=添加优惠券"],
+      "description": "点击添加优惠券按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "evaluate",
+      "script": "const dialog = document.querySelector('.el-dialog__wrapper[style*=\"display\"]:not([style*=\"none\"])') || document.querySelector('.el-dialog__wrapper:last-of-type'); if(dialog) { const input = dialog.querySelector('input[placeholder*=\"名称\"]') || dialog.querySelector('input[placeholder*=\"优惠券\"]') || dialog.querySelector('input[type=\"text\"]'); if(input) { input.focus(); input.value = '优惠券' + Date.now().toString().slice(-8); input.dispatchEvent(new Event('input',{bubbles:true})); input.dispatchEvent(new Event('change',{bubbles:true})); } }",
+      "description": "在dialog内输入优惠券名称"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const radios = document.querySelectorAll('.el-radio'); for(const r of radios) { if(r.textContent.includes('领取后生效')) { const input = r.querySelector('input'); if(input) input.click(); else r.click(); break; } }",
+      "description": "有效时间选择领取后生效"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const dialog = document.querySelector('.el-dialog__wrapper[style*=\"display\"]:not([style*=\"none\"])') || document.querySelector('.el-dialog__wrapper:last-of-type'); if(dialog) { const btn = dialog.querySelector('.el-dialog__footer button.el-button--primary'); if(btn) btn.click(); }",
+      "description": "点击dialog内确定按钮创建优惠券"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const btns = document.querySelectorAll('button, span.option-btn, a'); for(const b of btns) { if(b.textContent.trim() === '发放' || b.textContent.trim().includes('发放')) { b.click(); break; } }",
+      "description": "点击列表中的发放按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('选择发放账号')",
+      "fallbacks": ["text=选择发放账号", "button:has-text('选择账号')"],
+      "description": "点击选择发放账号"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const checkboxes = document.querySelectorAll('.el-checkbox__input:not(.is-checked)'); if(checkboxes.length > 1) { const input = checkboxes[1].querySelector('input'); if(input) input.click(); else checkboxes[1].click(); } else if(checkboxes.length > 0) { const input = checkboxes[0].querySelector('input'); if(input) input.click(); else checkboxes[0].click(); }",
+      "description": "勾选任一学员"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const dialogs = document.querySelectorAll('.el-dialog__wrapper'); for(const d of dialogs) { if(d.style.display !== 'none') { const btn = d.querySelector('.el-dialog__footer button.el-button--primary'); if(btn) { btn.click(); break; } } }",
+      "description": "选择学员弹窗点击确定"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('确定并发放')",
+      "fallbacks": ["button:has-text('确定发放')", "button:has-text('确 定')"],
+      "force": true,
+      "description": "点击确定并发放"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "发放成功|操作成功|创建成功|优惠券",
+      "snapshot": true,
+      "description": "验证正常创建优惠券并发放"
+    }
+  ],
+  "cleanup": null,
+  "verify": "发放成功|操作成功|创建成功"
+}

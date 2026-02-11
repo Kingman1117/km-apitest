@@ -1,0 +1,71 @@
+{
+  "caseId": "1150695810001062388",
+  "name": "管理后台正常创建学员",
+  "group": "admin",
+  "needsLogin": "admin",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://i.edu.fkw.com.faidev.cc/?__aacct=huaedu1#/customer/student/studentList"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加学员')",
+      "fallbacks": ["text=添加学员"],
+      "description": "点击添加学员按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='账号']",
+      "value": "ht{timestamp}",
+      "fallbacks": ["input[placeholder*='请输入账号']"],
+      "description": "填写账号（ht+时间戳，不超20字符）"
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='密码']:nth-of-type(1)",
+      "value": "123456",
+      "fallbacks": ["input[type='password']"],
+      "description": "填写密码"
+    },
+    {
+      "action": "evaluate",
+      "script": "const pwdInputs = document.querySelectorAll('input[type=\"password\"]'); if(pwdInputs.length >= 2) { const el = pwdInputs[1]; el.focus(); el.value = '123456'; el.dispatchEvent(new Event('input', {bubbles:true})); el.dispatchEvent(new Event('change', {bubbles:true})); el.blur(); }",
+      "description": "填写确认密码"
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='姓名']",
+      "value": "后台添加{timestamp}",
+      "fallbacks": ["input[placeholder*='请输入姓名']"],
+      "description": "填写姓名（后台添加+时间戳，不超20字符）"
+    },
+    {
+      "action": "click",
+      "selector": ".el-dialog__footer button.el-button--primary",
+      "fallbacks": [".el-dialog__footer button:has-text('确定')", "button:has-text('确 定')"],
+      "force": true,
+      "description": "点击底部确定按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "添加成功|操作成功|学员列表",
+      "snapshot": true,
+      "description": "验证正常添加学员"
+    }
+  ],
+  "cleanup": null,
+  "verify": "添加成功|操作成功"
+}

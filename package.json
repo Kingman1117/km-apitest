@@ -1,0 +1,13 @@
+{
+  "name": "kmsk-api-tests",
+  "version": "2.0.0",
+  "description": "KMSK 自动化验收测试 - Python API + pytest + requests",
+  "scripts": {
+    "test": "py -3 scripts/run_api_tests.py",
+    "acceptance:api-core": "py -3 scripts/run_api_tests.py api_tests -v -s",
+    "acceptance:api-core:no-tapd": "py -3 scripts/run_api_tests.py api_tests -v -s --no-tapd-report"
+  },
+  "keywords": ["api", "pytest", "requests", "automation"],
+  "author": "",
+  "license": "MIT"
+}

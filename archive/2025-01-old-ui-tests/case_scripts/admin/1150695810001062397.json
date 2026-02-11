@@ -1,0 +1,61 @@
+{
+  "caseId": "1150695810001062397",
+  "name": "管理后台正常添加超级题库",
+  "group": "admin",
+  "needsLogin": "admin",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://i.edu.fkw.com.faidev.cc/?__aacct=huaedu1#/assistance/sqb"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加题库')",
+      "fallbacks": ["text=添加题库"],
+      "description": "点击添加题库按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='名称']",
+      "value": "题库{timestamp}",
+      "fallbacks": ["input[placeholder*='请输入名称']", "input[placeholder*='题库名称']", "input[placeholder*='请输入题库名称']"],
+      "description": "输入题库名称"
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('保存')",
+      "fallbacks": ["button:has-text('保 存')", ".el-dialog__footer button.el-button--primary"],
+      "force": true,
+      "description": "点击保存按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const closeBtn = document.querySelector('.el-message-box__btns button'); if(closeBtn) closeBtn.click(); else { const btns = document.querySelectorAll('button'); for(const b of btns) { if(b.textContent.includes('Close') || b.textContent.includes('关闭')) { b.click(); break; } } }",
+      "description": "关闭「创建成功」提示弹窗（点Close）"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "verify",
+      "expect": "创建成功|操作成功|题库",
+      "snapshot": true,
+      "description": "验证正常添加题库"
+    }
+  ],
+  "cleanup": null,
+  "verify": "创建成功|操作成功"
+}

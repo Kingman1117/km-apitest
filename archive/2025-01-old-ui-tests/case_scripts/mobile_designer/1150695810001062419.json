@@ -1,0 +1,133 @@
+{
+  "caseId": "1150695810001062419",
+  "name": "移动端设计器正常添加自定义页面和常用模块",
+  "group": "mobile_designer",
+  "needsLogin": "admin",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://i.edu.fkw.com.faidev.cc/editorNew.jsp?_wxappId=110&__aacct=huaedu1#/"
+    },
+    {
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "action": "evaluate",
+      "script": "const btn = document.querySelector('.know-btn, button:has-text(\"我知道了\"), .guide-close'); if(btn) btn.click();",
+      "description": "关闭可能出现的遮罩提示（我知道了）"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "click",
+      "selector": "text=页面",
+      "fallbacks": [".page-tab", ".left-panel-tab:has-text('页面')", "[data-tab='page']"],
+      "description": "点击左侧「页面」tab"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": "text=添加页面",
+      "fallbacks": [".add-page-btn", "button:has-text('添加页面')", ".page-add"],
+      "description": "点击「添加页面」"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='页面名称'], input[placeholder*='请输入'], .page-name-input input",
+      "value": "自定义{timestamp}",
+      "fallbacks": [".el-dialog input", ".modal input[type='text']"],
+      "description": "输入页面名称（自定义+时间戳）"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('确定'), button:has-text('确 定')",
+      "fallbacks": [".el-dialog__footer .el-button--primary", ".modal-footer .btn-primary"],
+      "description": "确认添加页面"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const btn = document.querySelector('.know-btn, button:has-text(\"我知道了\"), .guide-close'); if(btn) btn.click();",
+      "description": "关闭可能出现的遮罩提示（我知道了）"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "click",
+      "selector": "text=添加模块",
+      "fallbacks": [".add-module-btn", "button:has-text('添加模块')", ".module-add-btn"],
+      "description": "点击中间区域的「添加模块」"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "text=常用",
+      "fallbacks": [".module-category:has-text('常用')", ".tab-item:has-text('常用')"],
+      "description": "选择「常用」模块分类"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "click",
+      "selector": ".module-list .module-item:first-child, .module-item:first-child",
+      "fallbacks": [".common-module-list .module-item:first-child"],
+      "description": "点击第一个常用模块添加"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const btn = document.querySelector('.know-btn, button:has-text(\"我知道了\"), .guide-close'); if(btn) btn.click();",
+      "description": "关闭可能出现的遮罩提示"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "click",
+      "selector": "text=保存",
+      "fallbacks": ["button:has-text('保存')", ".save-btn", ".header-save-btn"],
+      "description": "点击保存"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "保存成功|保存|自定义",
+      "snapshot": true,
+      "description": "验证页面和常用模块添加成功"
+    }
+  ],
+  "cleanup": null,
+  "verify": "保存成功|保存|自定义",
+  "_note": "基础框架脚本，选择器需实际执行后校准"
+}

@@ -1,0 +1,167 @@
+{
+  "caseId": "1150695810001062404",
+  "name": "管理后台正常添加兑换码",
+  "group": "admin",
+  "needsLogin": "admin",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://i.edu.fkw.com.faidev.cc/?__aacct=huaedu1#/marketing/redeemCode"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加兑换码')",
+      "fallbacks": ["text=添加兑换码"],
+      "description": "点击添加兑换码按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='名称']",
+      "value": "兑换码{timestamp}",
+      "fallbacks": ["input[placeholder*='请输入名称']", "input[placeholder*='兑换码名称']"],
+      "description": "输入兑换码名称"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const icons = document.querySelectorAll('.el-input__icon, .el-icon-date, i[class*=\"calendar\"], i[class*=\"date\"], .el-range__icon'); if(icons.length > 0) { icons[0].click(); }",
+      "description": "点击日历图标打开开始时间日历"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "evaluate",
+      "script": "const btns = document.querySelectorAll('button, a, span'); for(const b of btns) { if(b.textContent.trim() === '此刻') { b.click(); break; } }",
+      "description": "点击「此刻」按钮设置开始时间"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const confirmBtns = document.querySelectorAll('.el-picker-panel button, .el-picker-panel__footer button'); for(const b of confirmBtns) { if(b.textContent.includes('确定') || b.textContent.includes('确 定')) { b.click(); break; } }",
+      "description": "确认开始时间"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "evaluate",
+      "script": "const icons = document.querySelectorAll('.el-input__icon, .el-icon-date, i[class*=\"calendar\"], i[class*=\"date\"], .el-range__icon'); if(icons.length > 1) { icons[1].click(); } else if(icons.length > 0) { icons[0].click(); }",
+      "description": "点击日历图标打开结束时间日历"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "evaluate",
+      "script": "const nextBtns = document.querySelectorAll('.el-picker-panel__icon-btn, button[aria-label*=\"下个月\"], .el-icon-arrow-right'); for(const b of nextBtns) { if(b.classList.contains('el-icon-arrow-right') || b.getAttribute('aria-label')?.includes('下个月') || b.className.includes('arrow-right')) { b.click(); break; } }",
+      "description": "结束时间选晚一天：先翻到下个日期"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const cells = document.querySelectorAll('.el-date-table td.available'); if(cells.length > 0) { cells[0].click(); }",
+      "description": "选择结束日期"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const confirmBtns = document.querySelectorAll('.el-picker-panel button, .el-picker-panel__footer button'); for(const b of confirmBtns) { if(b.textContent.includes('确定') || b.textContent.includes('确 定')) { b.click(); break; } }",
+      "description": "确认结束时间"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='兑换码']",
+      "value": "DY0202",
+      "fallbacks": ["input[placeholder*='请输入兑换码']", "input[placeholder*='兑换码号']"],
+      "description": "输入兑换码号DY0202"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加内容')",
+      "fallbacks": ["text=添加内容"],
+      "description": "点击添加内容按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "evaluate",
+      "script": "const selects = document.querySelectorAll('.el-select'); for(const s of selects) { s.click(); break; } setTimeout(() => { const options = document.querySelectorAll('.el-select-dropdown__item'); for(const o of options) { if(o.textContent.includes('线下课') || o.textContent.includes('线下课程')) { o.click(); break; } } }, 500);",
+      "description": "下拉选择线下课程"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "evaluate",
+      "script": "const radios = document.querySelectorAll('.el-radio__input:not(.is-checked)'); if(radios.length > 0) { const input = radios[0].querySelector('input'); if(input) input.click(); else radios[0].click(); }",
+      "description": "勾选一项线下课程（radio）"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "evaluate",
+      "script": "const dialogs = document.querySelectorAll('.el-dialog__wrapper'); for(const d of dialogs) { if(d.style.display !== 'none') { const btn = d.querySelector('.el-dialog__footer button.el-button--primary'); if(btn) { btn.click(); break; } } }",
+      "description": "点击内容选择弹窗确定"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('确定')",
+      "fallbacks": ["button:has-text('确 定')", ".footer button.el-button--primary"],
+      "force": true,
+      "description": "点击最外层确定按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "创建成功|操作成功|保存成功|兑换码",
+      "snapshot": true,
+      "description": "验证正常添加兑换码"
+    }
+  ],
+  "cleanup": null,
+  "verify": "创建成功|操作成功|保存成功"
+}

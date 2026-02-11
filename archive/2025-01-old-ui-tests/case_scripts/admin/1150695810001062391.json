@@ -1,0 +1,61 @@
+{
+  "caseId": "1150695810001062391",
+  "name": "管理后台正常添加图文课程",
+  "group": "admin",
+  "needsLogin": "admin",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://i.edu.fkw.com.faidev.cc/?__aacct=huaedu1#/curriculum/onlineCourse/articlesManage"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加图文')",
+      "fallbacks": ["text=添加图文", "button:has-text('添加')"],
+      "description": "点击添加图文按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='标题']",
+      "value": "图文课程{timestamp}",
+      "fallbacks": ["input[placeholder*='请输入标题']", "input[placeholder*='名称']"],
+      "description": "输入图文标题"
+    },
+    {
+      "action": "evaluate",
+      "script": "const editor = document.querySelector('.ql-editor, .w-e-text, [contenteditable=\"true\"]'); if(editor) { editor.innerHTML = '<p>自动化测试图文内容</p>'; editor.dispatchEvent(new Event('input', {bubbles:true})); }",
+      "description": "输入图文内容"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('保存')",
+      "fallbacks": ["button:has-text('保 存')", ".footer button.el-button--primary"],
+      "force": true,
+      "description": "点击保存按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "保存成功|操作成功|添加成功|图文",
+      "snapshot": true,
+      "description": "验证正常添加图文课程"
+    }
+  ],
+  "cleanup": null,
+  "verify": "保存成功|操作成功|添加成功"
+}

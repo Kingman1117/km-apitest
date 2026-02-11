@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+.pytest_cache/
+api_tests/__pycache__/
+api_tests/**/__pycache__/
+
+# Session缓存
+api_tests/.session_cache.pkl
+api_tests/.edupc_session_cache.pkl
+api_tests/.h5_session_cache.pkl
+
+# 敏感配置（不提交）
+config/test_plan_config.json
+config/tapd_config.json

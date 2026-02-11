@@ -1,0 +1,48 @@
+{
+  "caseId": "1150695810001062380",
+  "name": "H5电子书订单",
+  "group": "h5",
+  "needsLogin": "student_h5",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://huaedu1-110.m.365hjy.com.faidev.cc/#/pages/entry/share?o=modal&type=47&id=106"
+    },
+    {
+      "action": "wait",
+      "ms": 6000
+    },
+    {
+      "action": "iframeClick",
+      "iframeSelector": "#mainIframe",
+      "selector": "text=/(购买|￥|立即报名)/",
+      "description": "点击底部购买按钮（可能显示价格）"
+    },
+    {
+      "action": "wait",
+      "ms": 6000
+    },
+    {
+      "action": "submitOrder",
+      "platform": "h5",
+      "useBalance": true,
+      "iframeSelector": "#mainIframe",
+      "description": "使用余额抵扣并提交订单"
+    },
+    {
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "action": "verify",
+      "expect": "支付成功|订单详情|已购买|购买成功",
+      "snapshot": true,
+      "description": "验证H5电子书订单提交成功"
+    }
+  ],
+  "cleanup": {
+    "type": "refund",
+    "adminOrderUrl": "http://i.edu.fkw.com.faidev.cc/?__aacct=huaedu1#/order/index"
+  },
+  "verify": "支付成功|订单详情|已购买|购买成功"
+}

@@ -1,0 +1,116 @@
+{
+  "caseId": "1150695810001062396",
+  "name": "管理后台正常添加实物商品",
+  "group": "admin",
+  "needsLogin": "admin",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://i.edu.fkw.com.faidev.cc/?__aacct=huaedu1#/commodity"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加商品')",
+      "fallbacks": ["text=添加商品"],
+      "description": "点击添加商品按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='标题']",
+      "value": "实物商品{timestamp}",
+      "fallbacks": ["input[placeholder*='商品标题']", "input[placeholder*='名称']", "input[placeholder*='请输入商品标题']"],
+      "description": "输入商品标题"
+    },
+    {
+      "action": "selectResource",
+      "type": "image",
+      "description": "选择商品主图"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加商品规格')",
+      "fallbacks": ["text=添加商品规格", "button:has-text('添加规格')"],
+      "description": "点击添加商品规格"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='规格名称']",
+      "value": "默认规格",
+      "fallbacks": ["input[placeholder*='请输入规格名称']"],
+      "description": "输入规格名称"
+    },
+    {
+      "action": "evaluate",
+      "script": "const checkbox = document.querySelector('.el-checkbox:has(.el-checkbox__label)'); if(checkbox) { const labels = document.querySelectorAll('.el-checkbox__label'); for(const label of labels) { if(label.textContent.includes('添加规格图片')) { const checkboxEl = label.closest('.el-checkbox'); if(checkboxEl && checkboxEl.classList.contains('is-checked')) { checkboxEl.querySelector('.el-checkbox__input input, .el-checkbox__original').click(); } break; } } }",
+      "description": "取消勾选【添加规格图片】"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='规格值']",
+      "value": "标准",
+      "fallbacks": ["input[placeholder*='请输入规格值']"],
+      "description": "输入规格值"
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "fillSpinbutton",
+      "index": 0,
+      "value": "0.01",
+      "description": "填写商品价格"
+    },
+    {
+      "action": "fillSpinbutton",
+      "index": 1,
+      "value": "0.02",
+      "description": "填写划线价格"
+    },
+    {
+      "action": "fillSpinbutton",
+      "index": 2,
+      "value": "10",
+      "description": "填写库存"
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('保存')",
+      "fallbacks": ["button:has-text('保 存')", ".footer button.el-button--primary"],
+      "force": true,
+      "description": "点击保存按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "保存成功|操作成功|添加成功|实物商品",
+      "snapshot": true,
+      "description": "验证正常添加实物商品"
+    }
+  ],
+  "cleanup": null,
+  "verify": "保存成功|操作成功|添加成功"
+}

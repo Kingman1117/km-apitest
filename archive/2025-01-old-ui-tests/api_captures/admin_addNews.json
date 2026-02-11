@@ -1,0 +1,55 @@
+{
+  "caseId": "1150695810001062391",
+  "caseName": "管理后台正常添加图文课程",
+  "captureTime": "2026-02-06T16:14:00",
+  "keyApi": {
+    "method": "POST",
+    "url": "/ajax/wxAppNews_h.jsp?cmd=addNews&_TOKEN={token}&wxappAid=3444128&wxappId=110",
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+      "X-Requested-With": "XMLHttpRequest"
+    },
+    "requestBody": {
+      "title": "抓包测试图文_1770365000",
+      "autoSummary": "true",
+      "summary": "",
+      "views": "0",
+      "content": "<p>抓包测试图文内容</p>",
+      "picId": "",
+      "publicTime": "2026-02-06 16:14",
+      "top": "false",
+      "isCusPic": "false",
+      "tdk": "{\"t\":\"\",\"d\":\"\",\"k\":\"\"}",
+      "setting": "{\"sd\":0,\"bp\":0,\"bml\":1,\"btype\":0,\"bmtgs\":[],\"pfk\":{\"ss\":false,\"pm\":0,\"pa\":0.01,\"sst\":0,\"vsu\":0,\"duration\":0,\"asp\":0,\"svct\":0,\"ovc\":0,\"lp\":0.01,\"slp\":0,\"validityType\":0,\"validityDate\":\"2026-02-06\"},\"fdl\":{\"s\":0,\"ip\":0,\"fil\":[],\"viewType\":0}}",
+      "homeworkId": "0",
+      "isRelevancyColumn": "false",
+      "classifyIdList": "[]",
+      "isCusAgreement": "false",
+      "isOpenAgreement": "false",
+      "agreementId": "0",
+      "agreementName": ""
+    },
+    "responseStatus": 200,
+    "responseBody": {
+      "success": true,
+      "data": {
+        "id": 2295,
+        "title": "抓包测试图文_1770365000",
+        "flag": 1,
+        "createTime": "2026-02-06 16:14"
+      }
+    }
+  },
+  "verifyApi": {
+    "method": "GET",
+    "url": "ajax/wxAppNews_h.jsp?cmd=getList&_TOKEN={token}&wxappAid=3444128&wxappId=110&classifyId=-1&title=&pageSize=10&pageNo=1",
+    "note": "保存后自动刷新列表，可用于验证图文是否创建成功"
+  },
+  "authInfo": {
+    "_TOKEN": "e2f6d5e5323e79f1ecf82e829bfba6fd",
+    "wxappAid": "3444128",
+    "wxappId": "110",
+    "note": "_TOKEN 通过 Cookie 登录态获取，wxappAid/wxappId 为站点标识"
+  }
+}

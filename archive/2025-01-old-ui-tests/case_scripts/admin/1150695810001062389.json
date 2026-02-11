@@ -1,0 +1,80 @@
+{
+  "caseId": "1150695810001062389",
+  "name": "管理后台正常创建线下课程",
+  "group": "admin",
+  "needsLogin": "admin",
+  "steps": [
+    {
+      "action": "goto",
+      "url": "http://i.edu.fkw.com.faidev.cc/?__aacct=huaedu1#/curriculum/offlineCourse"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('添加课程')",
+      "fallbacks": ["text=添加课程"],
+      "description": "点击添加课程按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 1500
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='名称']",
+      "value": "线下课{timestamp}",
+      "fallbacks": ["input[placeholder*='请输入名称']", "input[placeholder*='课程名称']"],
+      "description": "填写课程名称"
+    },
+    {
+      "action": "selectResource",
+      "type": "image",
+      "description": "选择课程封面图片"
+    },
+    {
+      "action": "wait",
+      "ms": 1000
+    },
+    {
+      "action": "fill",
+      "selector": "input[placeholder*='规格名称']",
+      "value": "默认规格",
+      "fallbacks": ["input[placeholder*='请输入规格名称']"],
+      "description": "填写规格名称"
+    },
+    {
+      "action": "fillSpinbutton",
+      "index": 0,
+      "value": "0.01",
+      "description": "填写规格价格"
+    },
+    {
+      "action": "fillSpinbutton",
+      "index": 1,
+      "value": "10",
+      "description": "填写规格总量"
+    },
+    {
+      "action": "click",
+      "selector": "button:has-text('保存')",
+      "fallbacks": ["button:has-text('保 存')", ".footer button.el-button--primary"],
+      "force": true,
+      "description": "点击底部保存按钮"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "verify",
+      "expect": "保存成功|操作成功|添加成功|线下课程",
+      "snapshot": true,
+      "description": "验证正常创建线下课"
+    }
+  ],
+  "cleanup": null,
+  "verify": "保存成功|操作成功|添加成功"
+}
