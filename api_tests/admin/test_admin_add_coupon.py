@@ -7,6 +7,7 @@
 import json
 import time
 from actions.delete_actions import DeleteActions
+from utils.response_assert import assert_any_field
 
 
 def test_admin_add_coupon(admin_client, timestamp):
@@ -63,8 +64,7 @@ def test_admin_add_coupon(admin_client, timestamp):
         
         # Assert: 验证创建成功
         admin_client.assert_success(result, "添加优惠券失败")
-        coupon_id = result.get("coupon", {}).get("id") or result.get("id")
-        assert coupon_id, "优惠券创建失败"
+        coupon_id = assert_any_field(result, ["coupon.id", "id"], msg="优惠券创建失败")
     finally:
         # 清理：删除创建的优惠券
         if coupon_id:

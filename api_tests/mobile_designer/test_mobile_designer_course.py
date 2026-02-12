@@ -14,9 +14,8 @@ import json
 import pytest
 from pathlib import Path
 
-from actions.designer_common_actions import DesignerCommonActions
-from actions.edupc_designer_actions import EdupcDesignerActions
 from actions.mobile_designer_actions import MobileDesignerActions
+from utils.response_assert import assert_field, get_field
 
 
 @pytest.mark.write
@@ -27,8 +26,7 @@ def test_mobile_designer_course(admin_client):
 
     try:
         first_info = MobileDesignerActions.get_mobile_col_info(admin_client, col_id=col_id)
-        page_data = first_info.get("pageData", {})
-        assert isinstance(page_data, dict), f"pageData 类型异常: {first_info}"
+        page_data = assert_field(first_info, "pageData", dict, msg="pageData 类型异常")
 
         # 从 HAR 提取的课程模块完整配置
         course_payload_path = Path(__file__).parent.parent.parent / "config/designer_payloads/mobile_course_modules.json"
@@ -44,8 +42,8 @@ def test_mobile_designer_course(admin_client):
             "name": f"课程{col_id[-4:]}",
             "oriName": "自定义",
             "tdk": {"t": "", "k": "", "d": ""},
-            "pattern": page_data.get("pattern", {}),
-            "setting": page_data.get("setting", {}),
+            "pattern": get_field(page_data, "pattern", default={}),
+            "setting": get_field(page_data, "setting", default={}),
             "moduleIdList": module_id_list,
             "addModuleInfoList": add_module_info_list,
             "delModuleIdList": [],
@@ -54,9 +52,10 @@ def test_mobile_designer_course(admin_client):
         MobileDesignerActions.mobile_designer_handle_save(admin_client, set_col_info_list=[set_col_info])
 
         second_info = MobileDesignerActions.get_mobile_col_info(admin_client, col_id=col_id)
-        assert second_info.get("success") is True, f"保存后读取页面失败: {second_info}"
-        saved_page_data = second_info.get("pageData", {})
-        saved_modules = saved_page_data.get("moduleList", [])
+        success = assert_field(second_info, "success", bool, msg="保存后读取页面失败")
+        assert success is True, f"保存后读取页面失败: {second_info}"
+        saved_page_data = assert_field(second_info, "pageData", dict, msg="保存后 pageData 缺失")
+        saved_modules = get_field(saved_page_data, "moduleList", default=[])
         assert len(saved_modules) > 0, f"保存后 moduleList 为空: {saved_page_data}"
     finally:
         # 清理：删除自定义页面

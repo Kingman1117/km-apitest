@@ -7,6 +7,7 @@ import json
 import logging
 from typing import Any, Dict, List
 
+from utils.response_assert import assert_any_field, get_field
 
 logger = logging.getLogger(__name__)
 
@@ -52,8 +53,7 @@ class EdupcDesignerActions:
             },
         )
         edupc_designer_client.assert_success(result, "设计器新增栏目失败")
-        col_id = result.get("id") or result.get("data", {}).get("id")
-        assert col_id, f"新增栏目成功但未返回栏目ID: {result}"
+        col_id = assert_any_field(result, ["id", "data.id"], msg="新增栏目成功但未返回栏目ID")
         return str(col_id)
 
     @staticmethod
@@ -73,12 +73,11 @@ class EdupcDesignerActions:
             },
         )
         edupc_designer_client.assert_success(result, f"设计器新增模块失败: {module_info}")
-        module_id = result.get("id") or result.get("moduleId") or result.get("mid")
-        if not module_id:
-            data = result.get("data", {})
-            if isinstance(data, dict):
-                module_id = data.get("id") or data.get("moduleId") or data.get("mid")
-        assert module_id, f"新增模块成功但未返回 module_id: {result}"
+        module_id = assert_any_field(
+            result,
+            ["id", "moduleId", "mid", "data.id", "data.moduleId", "data.mid"],
+            msg="新增模块成功但未返回 module_id",
+        )
         return str(module_id)
 
     @staticmethod
@@ -233,7 +232,8 @@ class EdupcDesignerActions:
             },
         )
         # 某些环境会返回 success=false,wgd=true（权限网关侧），这里统一视为接口已受理
-        assert result.get("success") is True or result.get("wgd") is True, f"简化保存栏目失败: {result}"
+        assert get_field(result, "success", default=False) is True or get_field(result, "wgd", default=False) is True, \
+            f"简化保存栏目失败: {result}"
         return result
 
     @staticmethod
@@ -288,7 +288,8 @@ class EdupcDesignerActions:
             },
         )
         # 某些环境会返回 success=false,wgd=true（权限网关侧），这里统一视为接口已受理
-        assert result.get("success") is True or result.get("wgd") is True, f"删除栏目失败: {result}"
+        assert get_field(result, "success", default=False) is True or get_field(result, "wgd", default=False) is True, \
+            f"删除栏目失败: {result}"
         return result
 
     @staticmethod

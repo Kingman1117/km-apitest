@@ -7,6 +7,7 @@
 import json
 from actions.delete_actions import DeleteActions
 from test_data_manager import TestDataManager
+from utils.response_assert import assert_any_field
 
 
 def test_admin_add_ebook(admin_client, timestamp):
@@ -69,8 +70,7 @@ def test_admin_add_ebook(admin_client, timestamp):
         
         # Assert: 验证创建成功
         admin_client.assert_success(result, "添加电子书失败")
-        ebook_id = result.get("data", {}).get("id") or result.get("id")
-        assert ebook_id, "电子书创建失败"
+        ebook_id = assert_any_field(result, ["data.id", "id"], msg="电子书创建失败")
     finally:
         # 清理：删除创建的电子书
         if ebook_id:

@@ -7,6 +7,7 @@ import json
 import logging
 from typing import Any, Dict, List
 
+from utils.response_assert import assert_any_field
 
 logger = logging.getLogger(__name__)
 
@@ -35,8 +36,7 @@ class MobileDesignerActions:
             },
         )
         admin_client.assert_success(result, "移动端设计器新增自定义页面失败")
-        col_id = result.get("colId") or result.get("id") or result.get("data", {}).get("colId")
-        assert col_id, f"新增页面成功但未返回 col_id: {result}"
+        col_id = assert_any_field(result, ["colId", "id", "data.colId", "data.id"], msg="新增页面成功但未返回 col_id")
         return str(col_id)
 
     @staticmethod

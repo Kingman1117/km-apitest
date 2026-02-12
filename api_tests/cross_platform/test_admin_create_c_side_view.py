@@ -15,6 +15,7 @@ import logging
 import pytest
 
 from test_data_manager import TestDataManager
+from utils.response_assert import assert_field, get_field
 
 
 logger = logging.getLogger(__name__)
@@ -59,8 +60,7 @@ def test_admin_create_audio_then_view_on_c_side(admin_client, edupc_client, h5_c
     
     # 验收点1: 创建成功
     admin_client.assert_success(create_result, "创建音频失败")
-    audio_id = create_result.get("id")
-    assert audio_id, "音频ID为空"
+    audio_id = assert_field(create_result, "id", msg="音频ID为空")
     logger.info("管理后台创建成功: id=%s, name=%s", audio_id, audio_name)
     
     # ===== 步骤2: EduPC端查询音频列表 =====
@@ -77,7 +77,7 @@ def test_admin_create_audio_then_view_on_c_side(admin_client, edupc_client, h5_c
         )
         
         if edupc_list_result.get("success"):
-            edupc_list = edupc_list_result.get("data", {}).get("list", [])
+            edupc_list = get_field(edupc_list_result, "data.list", default=[])
             
             # 验收点2: EduPC端能查到音频
             edupc_audio = None
@@ -112,7 +112,7 @@ def test_admin_create_audio_then_view_on_c_side(admin_client, edupc_client, h5_c
         )
         
         if h5_list_result.get("success"):
-            h5_list = h5_list_result.get("data", {}).get("list", [])
+            h5_list = get_field(h5_list_result, "data.list", default=[])
             
             # 验收点4: H5端能查到音频
             h5_audio = None
@@ -143,7 +143,7 @@ def test_admin_create_audio_then_view_on_c_side(admin_client, edupc_client, h5_c
         )
         
         if edupc_detail_result.get("success"):
-            edupc_detail = edupc_detail_result.get("data", {})
+            edupc_detail = assert_field(edupc_detail_result, "data", dict, msg="EduPC详情data为空")
             
             # 验收点6: EduPC详情数据完整
             assert edupc_detail.get("name") == audio_name, "EduPC详情名称不匹配"
@@ -165,7 +165,7 @@ def test_admin_create_audio_then_view_on_c_side(admin_client, edupc_client, h5_c
         )
         
         if h5_detail_result.get("success"):
-            h5_detail = h5_detail_result.get("data", {})
+            h5_detail = assert_field(h5_detail_result, "data", dict, msg="H5详情data为空")
             
             # 验收点7: H5详情数据完整
             assert h5_detail.get("name") == audio_name, "H5详情名称不匹配"

@@ -6,6 +6,7 @@
 """
 import json
 from actions.delete_actions import DeleteActions
+from utils.response_assert import assert_any_field
 
 
 def test_admin_add_form(admin_client, timestamp):
@@ -46,8 +47,7 @@ def test_admin_add_form(admin_client, timestamp):
         
         # Assert: 验证创建成功
         admin_client.assert_success(result, "添加表单失败")
-        form_id = result.get("data", {}).get("id") or result.get("id")
-        assert form_id, "表单创建失败"
+        form_id = assert_any_field(result, ["data.id", "id"], msg="表单创建失败")
     finally:
         # 清理：删除创建的表单
         if form_id:

@@ -7,6 +7,7 @@ import json
 import logging
 from typing import Dict, Any, List
 
+from utils.response_assert import assert_any_field, assert_field, get_field
 
 logger = logging.getLogger(__name__)
 
@@ -156,9 +157,12 @@ class AnswerActions:
         
         edupc_client.assert_success(result, f"创建答题记录失败 (activity_id={activity_id}, stu_id={stu_id})")
         
-        # 提取 recordId
-        record_id = result.get("id") or result.get("data", {}).get("id")
-        assert record_id, f"未获取到答题记录ID: {result}"
+        # 提取 recordId（兼容 id 在顶层或 data 层）
+        record_id = assert_any_field(
+            result,
+            ["id", "data.id"],
+            msg="未获取到答题记录ID",
+        )
         
         record_id = str(record_id)
         logger.info("答题记录创建成功: record_id=%s, activity_id=%s", record_id, activity_id)
@@ -288,7 +292,14 @@ class AnswerActions:
         
         admin_client.assert_success(result, f"查询答题记录详情失败: recordId={record_id}")
         logger.info("答题记录查询成功: record_id=%s", record_id)
-        return result.get("data", {})
+
+        # 兼容两种结构：
+        # 1) {"success": true, "data": {...}}
+        # 2) {"success": true, "record": {...}, "activity": {...}}
+        detail = get_field(result, "data", default=None)
+        if isinstance(detail, dict):
+            return detail
+        return result
     
     @staticmethod
     def review_answer(

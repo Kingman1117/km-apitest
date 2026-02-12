@@ -19,9 +19,6 @@ def test_admin_add_audio(admin_client, timestamp):
     try:
         # Act: 创建音频
         audio_id = AudioActions.create_audio(admin_client, name, file_id)
-
-        # Assert: 验证创建成功
-        assert audio_id, "音频创建失败"
     finally:
         # 清理：删除创建的音频
         if audio_id:

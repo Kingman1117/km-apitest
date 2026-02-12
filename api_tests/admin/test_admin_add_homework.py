@@ -7,6 +7,7 @@
 """
 import json
 from actions.delete_actions import DeleteActions
+from utils.response_assert import assert_any_field
 
 
 def test_admin_add_homework(admin_client, timestamp):
@@ -98,8 +99,7 @@ def test_admin_add_homework(admin_client, timestamp):
         
         # Assert: 验证创建成功
         admin_client.assert_success(result, "新建作业失败")
-        homework_id = result.get("checkpoint", {}).get("id")
-        assert homework_id, "作业创建失败"
+        homework_id = assert_any_field(result, ["checkpoint.id", "id", "data.id"], msg="作业创建失败")
     finally:
         # 清理：删除创建的作业
         if homework_id:

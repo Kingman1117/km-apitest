@@ -8,6 +8,7 @@ import logging
 from typing import Dict, Any
 
 from data_factory import DataFactory
+from utils.response_assert import assert_any_field, assert_field, get_field
 
 
 logger = logging.getLogger(__name__)
@@ -48,8 +49,7 @@ class OrderActions:
         edupc_client.assert_success(result, "EduPC订单提交失败")
         
         # 提取订单号
-        order_no = result.get("data", {}).get("orderNo")
-        assert order_no, f"订单号为空: {result}"
+        order_no = assert_field(result, "data.orderNo", str, msg="订单号为空")
         
         logger.info(
             "EduPC订单提交成功: order_no=%s, service_id=%s, amount=%s",
@@ -88,8 +88,7 @@ class OrderActions:
         h5_client.assert_success(result, "H5订单提交失败")
         
         # 提取订单号
-        order_no = result.get("data", {}).get("orderNo")
-        assert order_no, f"订单号为空: {result}"
+        order_no = assert_field(result, "data.orderNo", str, msg="订单号为空")
         
         logger.info(
             "H5订单提交成功: order_no=%s, service_id=%s, amount=%s",
@@ -122,19 +121,28 @@ class OrderActions:
         admin_client.assert_success(result, f"查询订单详情失败: orderNo={order_no}")
         
         # 提取订单信息
-        detail_data = result.get("data", {})
-        order_info = detail_data.get("orderInfo", {})
-        order_items = order_info.get("itemList", [])
-        
-        # 如果orderInfo下没有，尝试从顶层获取
-        if not order_items:
-            order_items = detail_data.get("itemList", []) or detail_data.get("orderItems", [])
-        
-        assert len(order_items) > 0, f"订单详情中无商品明细: {result}"
-        
-        # 提取orderItemId
-        order_item_id = order_items[0].get("orderItemId") or order_items[0].get("id")
-        assert order_item_id, f"订单明细ID为空: {result}"
+        detail_data = assert_field(result, "data", dict, msg=f"订单详情响应中缺少data: orderNo={order_no}")
+        order_info = get_field(result, "data.orderInfo", default={})
+        order_items = assert_any_field(
+            result,
+            ["data.orderInfo.itemList", "data.itemList", "data.orderItems"],
+            list,
+            msg=f"订单详情中无商品明细: orderNo={order_no}",
+        )
+
+        # 提取orderItemId（兼容不同字段命名）
+        order_item_id = assert_any_field(
+            result,
+            [
+                "data.orderInfo.itemList.0.orderItemId",
+                "data.orderInfo.itemList.0.id",
+                "data.itemList.0.orderItemId",
+                "data.itemList.0.id",
+                "data.orderItems.0.orderItemId",
+                "data.orderItems.0.id",
+            ],
+            msg=f"订单明细ID为空: orderNo={order_no}",
+        )
         
         logger.info("订单详情查询成功: order_no=%s, order_item_id=%s", order_no, order_item_id)
         

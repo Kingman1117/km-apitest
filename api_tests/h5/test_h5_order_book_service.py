@@ -14,6 +14,7 @@ from actions.order_actions import OrderActions
 from actions.refund_actions import RefundActions
 from data_factory import DataFactory
 from test_data_manager import TestDataManager
+from utils.response_assert import assert_field
 
 
 logger = logging.getLogger(__name__)
@@ -56,8 +57,7 @@ def test_h5_order_book_service_and_refund(h5_client, admin_client):
     )
     
     h5_client.assert_success(order_result, "提交课外服务订单失败")
-    order_no = order_result.get("data", {}).get("orderNo")
-    assert order_no, f"订单号为空: {order_result}"
+    order_no = assert_field(order_result, "data.orderNo", str, msg="订单号为空")
     logger.info("H5 课外服务订单提交成功: orderNo=%s", order_no)
     
     # Act: 管理后台查询订单详情

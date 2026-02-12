@@ -5,6 +5,7 @@
 接口: POST /api/manage/superQuestionBank/addSuperQuestionBank
 """
 from actions.delete_actions import DeleteActions
+from utils.response_assert import assert_any_field
 
 
 def test_admin_add_question_bank(admin_client, timestamp):
@@ -40,8 +41,7 @@ def test_admin_add_question_bank(admin_client, timestamp):
         
         # Assert: 验证创建成功
         admin_client.assert_success(result, "添加超级题库失败")
-        bank_id = result.get("data", {}).get("id") or result.get("id")
-        assert bank_id, "超级题库创建失败"
+        bank_id = assert_any_field(result, ["data.id", "id"], msg="超级题库创建失败")
     finally:
         # 清理：删除创建的题库
         if bank_id:

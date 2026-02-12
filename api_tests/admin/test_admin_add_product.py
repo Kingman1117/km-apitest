@@ -5,6 +5,7 @@
 接口: POST /ajax/eduProduct_h.jsp?cmd=addProduct
 """
 from actions.delete_actions import DeleteActions
+from utils.response_assert import assert_any_field
 
 
 def test_admin_add_product(admin_client, timestamp):
@@ -47,8 +48,7 @@ def test_admin_add_product(admin_client, timestamp):
         
         # Assert: 验证创建成功
         admin_client.assert_success(result, "添加实物商品失败")
-        product_id = result.get("data", {}).get("id") or result.get("id")
-        assert product_id, "实物商品创建失败"
+        product_id = assert_any_field(result, ["data.id", "id"], msg="实物商品创建失败")
     finally:
         # 清理：删除创建的实物商品
         if product_id:

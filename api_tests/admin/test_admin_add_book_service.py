@@ -5,6 +5,7 @@
 接口: POST /api/manage/book/addBookService
 """
 from actions.delete_actions import DeleteActions
+from utils.response_assert import assert_field
 
 
 def test_admin_add_book_service(admin_client, timestamp):
@@ -42,8 +43,7 @@ def test_admin_add_book_service(admin_client, timestamp):
         
         # Assert: 验证创建成功
         admin_client.assert_success(result, "添加课外服务失败")
-        service_id = result.get("data")
-        assert service_id, "课外服务创建失败"
+        service_id = assert_field(result, "data", msg="课外服务创建失败")
     finally:
         # 清理：删除创建的课外服务
         if service_id:

@@ -5,6 +5,7 @@
 接口: POST /ajax/eduCourse_h.jsp?cmd=addCourse
 """
 from actions.delete_actions import DeleteActions
+from utils.response_assert import assert_any_field
 
 
 def test_admin_add_offline_course(admin_client, timestamp):
@@ -48,8 +49,7 @@ def test_admin_add_offline_course(admin_client, timestamp):
 
         # Assert: 验证创建成功
         admin_client.assert_success(result, "创建线下课程失败")
-        course_id = result.get("data", {}).get("id") or result.get("id")
-        assert course_id, "线下课程创建失败"
+        course_id = assert_any_field(result, ["data.id", "id"], msg="线下课程创建失败")
     finally:
         # 清理：删除创建的线下课程
         if course_id:

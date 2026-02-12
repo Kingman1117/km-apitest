@@ -6,6 +6,7 @@
 """
 import json
 from security_utils import md5
+from utils.response_assert import assert_field
 
 
 def test_admin_add_student(admin_client, timestamp):
@@ -46,6 +47,6 @@ def test_admin_add_student(admin_client, timestamp):
 
     # Assert: 验证创建成功
     admin_client.assert_success(result, "创建学员失败")
-    assert result["data"]["name"] == name, f"学员名称不匹配"
-    student_id = result["data"]["id"]
-    assert student_id, "学员创建失败"
+    student_name = assert_field(result, "data.name", str, msg="学员名称缺失")
+    assert student_name == name, f"学员名称不匹配"
+    assert_field(result, "data.id", msg="学员创建失败")

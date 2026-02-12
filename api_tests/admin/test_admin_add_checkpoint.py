@@ -7,6 +7,7 @@
 """
 import json
 from actions.delete_actions import DeleteActions
+from utils.response_assert import assert_any_field
 
 
 def test_admin_add_checkpoint(admin_client, timestamp):
@@ -98,8 +99,7 @@ def test_admin_add_checkpoint(admin_client, timestamp):
         
         # Assert: 验证创建成功
         admin_client.assert_success(result, "添加打卡活动失败")
-        checkpoint_id = result.get("checkpoint", {}).get("id")
-        assert checkpoint_id, "打卡活动创建失败"
+        checkpoint_id = assert_any_field(result, ["checkpoint.id", "id", "data.id"], msg="打卡活动创建失败")
     finally:
         # 清理：删除创建的打卡活动
         if checkpoint_id:
