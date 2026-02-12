@@ -2,6 +2,7 @@
 from .date_utils import future_date
 from .contract_validator import ContractValidationError, validate_contract
 from .response_assert import assert_any_field, assert_field, get_field
+from .log_sanitizer import sanitize, sanitize_response_text, build_snippet
 
 __all__ = [
     "future_date",
@@ -10,4 +11,7 @@ __all__ = [
     "assert_any_field",
     "validate_contract",
     "ContractValidationError",
+    "sanitize",
+    "sanitize_response_text",
+    "build_snippet",
 ]

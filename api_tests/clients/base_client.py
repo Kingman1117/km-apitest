@@ -5,6 +5,7 @@ BaseClient - HTTP请求基类
 """
 import json
 import logging
+import os
 import time
 import uuid
 import requests
@@ -13,9 +14,22 @@ from urllib3.util.retry import Retry
 from typing import Optional, Dict, Any, Union
 
 from utils.contract_validator import ContractValidationError, validate_contract
+from utils.log_sanitizer import (
+    sanitize,
+    sanitize_response_text,
+    build_snippet,
+    should_log_request,
+    LOG_SNIPPET_LIMIT,
+)
 
 
 logger = logging.getLogger(__name__)
+
+# 日志级别控制（环境变量可覆盖）
+# DEBUG: 完整请求/响应日志
+# INFO: 仅关键节点日志
+# WARNING: 仅异常日志
+LOG_HTTP_LEVEL = os.getenv("LOG_HTTP_LEVEL", "INFO").upper()
 
 
 class BaseClient:
@@ -24,16 +38,6 @@ class BaseClient:
     BASE_URL = ""  # 子类需要覆盖
     DEFAULT_TIMEOUT = 30  # 默认超时时间（秒）
     ENABLE_RETRY = True  # 是否启用重试（子类可覆盖）
-    LOG_SNIPPET_LIMIT = 800
-    SENSITIVE_KEYS = (
-        "token",
-        "password",
-        "pwd",
-        "authorization",
-        "cookie",
-        "session",
-        "_token",
-    )
     
     def __init__(self):
         self.session = requests.Session()
@@ -407,30 +411,36 @@ class BaseClient:
         return str(client_request_id)
 
     def _build_response_snippet(self, text: str) -> str:
-        compact = text.strip() if text else "[empty]"
-        if len(compact) > self.LOG_SNIPPET_LIMIT:
-            return compact[: self.LOG_SNIPPET_LIMIT] + "...(truncated)"
-        return compact
+        """构建响应片段（带脱敏）。"""
+        return sanitize_response_text(text)
 
     def _sanitize_for_log(self, value: Any) -> Any:
-        if isinstance(value, dict):
-            masked = {}
-            for key, item in value.items():
-                key_lower = str(key).lower()
-                if any(secret in key_lower for secret in self.SENSITIVE_KEYS):
-                    masked[key] = "***"
-                else:
-                    masked[key] = self._sanitize_for_log(item)
-            return masked
-        if isinstance(value, list):
-            return [self._sanitize_for_log(item) for item in value]
-        if isinstance(value, tuple):
-            return tuple(self._sanitize_for_log(item) for item in value)
-        if isinstance(value, str) and len(value) > self.LOG_SNIPPET_LIMIT:
-            return value[: self.LOG_SNIPPET_LIMIT] + "...(truncated)"
-        return value
+        """递归脱敏日志数据（委托给 log_sanitizer）。"""
+        return sanitize(value)
 
     def _log_http_event(self, level: str, event: str, payload: Dict[str, Any]) -> None:
+        """
+        记录 HTTP 事件日志（带体积控制）。
+        
+        - LOG_HTTP_LEVEL=WARNING 时，仅输出 error 级别日志
+        - LOG_HTTP_LEVEL=INFO 时，输出 info 及以上日志
+        - LOG_HTTP_LEVEL=DEBUG 时，输出所有日志
+        - 高频请求自动采样（60秒内同一 endpoint 最多 20 条）
+        """
+        # 日志级别过滤
+        level_priority = {"debug": 0, "info": 1, "warning": 2, "error": 3}
+        config_priority = level_priority.get(LOG_HTTP_LEVEL.lower(), 1)
+        event_priority = level_priority.get(level.lower(), 1)
+        
+        if event_priority < config_priority:
+            return
+        
+        # 高频请求采样（仅对成功响应进行采样，错误始终记录）
+        if level.lower() == "info" and event == "http.response":
+            url = payload.get("request", {}).get("url", "")
+            if url and not should_log_request(url):
+                return
+        
         message = json.dumps(
             {"event": event, **payload},
             ensure_ascii=False,

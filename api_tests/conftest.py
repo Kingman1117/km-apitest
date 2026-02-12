@@ -106,6 +106,7 @@ def rate_limit_delay(request):
     
     环境变量控制：
     - API_RATE_LIMIT_SECONDS: 延时秒数（默认2秒，设为0禁用）
+    - API_RATE_LIMIT_H5_SECONDS: H5 订单用例延时秒数（默认5秒，业务系统限频更严）
     - API_RATE_LIMIT_ALL: 设为"1"时对所有用例延时（旧行为）
     """
     yield
@@ -122,12 +123,17 @@ def rate_limit_delay(request):
     if not should_delay:
         return
     
-    delay_str = os.getenv("API_RATE_LIMIT_SECONDS", "2")
+    # H5 订单用例使用更长的延时（业务系统限频更严格）
+    if is_h5_test:
+        delay_str = os.getenv("API_RATE_LIMIT_H5_SECONDS", "5")
+    else:
+        delay_str = os.getenv("API_RATE_LIMIT_SECONDS", "2")
+    
     try:
         delay_seconds = float(delay_str)
     except ValueError:
-        delay_seconds = 2.0
-        logger.warning("API_RATE_LIMIT_SECONDS 非法，回退到默认 2 秒: %s", delay_str)
+        delay_seconds = 5.0 if is_h5_test else 2.0
+        logger.warning("延时配置非法，回退到默认: %s", delay_str)
     
     if delay_seconds > 0:
         time.sleep(delay_seconds)
