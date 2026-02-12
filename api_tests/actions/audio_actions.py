@@ -3,16 +3,12 @@
 """
 import json
 import logging
-from datetime import datetime, timedelta
+
 from content_settings_loader import ContentSettingsLoader
+from utils.date_utils import future_date
 
 
 logger = logging.getLogger(__name__)
-
-
-def _future_date(days: int = 365) -> str:
-    """生成未来日期字符串（默认1年后），格式 YYYY-MM-DD"""
-    return (datetime.now() + timedelta(days=days)).strftime("%Y-%m-%d")
 
 
 class AudioActions:
@@ -33,7 +29,7 @@ class AudioActions:
         Returns:
             audio_id: 音频ID
         """
-        validity_date = _future_date()
+        validity_date = future_date()
         setting = ContentSettingsLoader.get_audio_setting(validity_date)
         
         data = {

@@ -139,3 +139,36 @@ class TestDataManager:
         """获取所有默认值配置"""
         instance = cls()
         return instance._data.get("defaults", {})
+    
+    @classmethod
+    def get_answer_activity_data(cls, activity_name: str) -> Dict[str, Any]:
+        """
+        获取答题活动测试数据
+        
+        Args:
+            activity_name: 活动名称（test_activity等）
+            
+        Returns:
+            包含activity_id、answer_list的字典
+        """
+        instance = cls()
+        activity_config = instance._data.get("answer_activities", {}).get(activity_name, {})
+        
+        if not activity_config:
+            raise ValueError(f"未找到答题活动配置: {activity_name}")
+        
+        return activity_config
+
+    @classmethod
+    def get_designer_data(cls, client_type: str) -> Dict[str, Any]:
+        """
+        获取设计器端测试数据。
+
+        Args:
+            client_type: 设计器类型（edupc/mobile）
+        """
+        instance = cls()
+        designer_config = instance._data.get("designer", {}).get(client_type, {})
+        if not designer_config:
+            raise ValueError(f"未找到设计器配置: designer.{client_type}")
+        return designer_config

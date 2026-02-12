@@ -138,5 +138,28 @@
     "aid": "31687084",
     "wxapp_aid": "3444128",
     "wxapp_id": "110"
+  },
+  "answer_activities": {
+    "test_activity": {
+      "activity_id": 2856,
+      "answer_list": [
+        {
+          "qid": 77614,
+          "v": "自动化测试答案"
+        },
+        {
+          "qid": 77615,
+          "o": [1, 2],
+          "v": 1
+        }
+      ]
+    }
+  },
+  "designer": {
+    "edupc": {
+      "form_row_id": 51,
+      "answer_row_id": 52,
+      "answer_activity_id": 2856
+    }
   }
 }

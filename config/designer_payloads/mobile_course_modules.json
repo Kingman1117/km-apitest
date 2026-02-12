@@ -1,0 +1,537 @@
+{
+  "id": 2710,
+  "type": 1,
+  "name": "课程模块页面",
+  "oriName": "自定义",
+  "tdk": {
+    "t": "",
+    "k": "",
+    "d": ""
+  },
+  "pattern": {
+    "ms": {
+      "t": 0,
+      "n": 0
+    },
+    "sm": {
+      "t": 0,
+      "l": 0,
+      "r": 0
+    },
+    "pbg": {
+      "t": 2,
+      "f": "",
+      "p": "",
+      "r": 3,
+      "po": 4,
+      "c": "#fff",
+      "e": 0,
+      "o": 100,
+      "v": 0,
+      "mutilPicType": 0,
+      "mutilPicList": [],
+      "backgroundRepeat": "no-repeat",
+      "backgroundPositionX": "center",
+      "backgroundPositionY": "center",
+      "backgroundSize": "cover",
+      "backgroundAttachment": "scroll",
+      "overlayType": 0,
+      "layerBackgroundColor": "",
+      "layerBackgroundImgId": "",
+      "layerBackgroundImage": "",
+      "layerBackgroundRepeat": "no-repeat",
+      "layerBackgroundPositionX": "center",
+      "layerBackgroundPositionY": "center",
+      "layerBackgroundSize": "cover",
+      "layerBackgroundAttachment": "",
+      "layerOpacity": 1,
+      "overlayShape": 0,
+      "overlayHeight": 160,
+      "overlayScrollType": 0,
+      "useOverlay": false,
+      "overlayFinalHeight": 300,
+      "overlayGradient": "",
+      "in": 1,
+      "backgroundColor": "",
+      "backgroundImgId": "",
+      "backgroundImage": "",
+      "opacity": 1,
+      "activeThumbnailIndex": 0,
+      "type": 2
+    }
+  },
+  "setting": {
+    "bp": 0,
+    "bml": 1,
+    "btype": 0,
+    "bmtgs": [],
+    "es": {},
+    "shareInfo": {
+      "h5": {
+        "title": "",
+        "desc": "",
+        "imgId": "",
+        "imgPath": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      },
+      "wxapp": {
+        "title": "",
+        "desc": "",
+        "imgId": "",
+        "imgPath": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      },
+      "wxappLine": {
+        "title": "",
+        "desc": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      }
+    },
+    "topSetting": {
+      "tc": {
+        "t": 0,
+        "c": "#000000"
+      },
+      "bg": {
+        "t": 0,
+        "c": "#ffffff"
+      },
+      "s": {
+        "h": false
+      },
+      "ts": {
+        "s": 0,
+        "m": 0
+      },
+      "in": 0
+    },
+    "qzShareInfo": {
+      "it": 0,
+      "tt": 0,
+      "img": "",
+      "tle": ""
+    }
+  },
+  "moduleIdList": [
+    -1011,
+    -1012,
+    -1013,
+    -1014,
+    -1015,
+    -1016,
+    -1017,
+    -1018,
+    -1019,
+    -1020,
+    -1021
+  ],
+  "addModuleInfoList": [
+    {
+      "id": -1011,
+      "style": 35,
+      "component": "offlineCourse",
+      "content": {
+        "title": "线下课程",
+        "subtitle": "副标题",
+        "style": 0,
+        "courseIdList": [
+          1267
+        ],
+        "classifyIdList": [],
+        "type": 0,
+        "setCourseShowLimit": true,
+        "courseShowLimit": 5,
+        "le": false,
+        "sbl": false
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "sm": true,
+        "is": 0,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "bd": true,
+        "sd": 2,
+        "ht": {
+          "t": 0,
+          "n": 120
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1012,
+      "style": 33,
+      "component": "specialColumn",
+      "content": {
+        "title": "系列课",
+        "subtitle": "副标题",
+        "idList": [
+          3364
+        ],
+        "style": 0,
+        "showMore": 1,
+        "moreType": 0
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1013,
+      "style": 28,
+      "component": "videoList",
+      "content": {
+        "title": "视频课程",
+        "subtitle": "副标题",
+        "style": 0,
+        "idList": [
+          4962
+        ],
+        "type": 0,
+        "classifyIdList": [],
+        "showLimit": 6
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "sm": true,
+        "is": 1
+      },
+      "hidden": false
+    },
+    {
+      "id": -1014,
+      "style": 23,
+      "component": "audioList",
+      "content": {
+        "title": "音频课程",
+        "subtitle": "副标题",
+        "type": 0,
+        "showLimit": 10,
+        "idList": [
+          1204
+        ],
+        "classifyIdList": [],
+        "style": 0
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "sm": 1,
+        "is": 0,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1015,
+      "style": 9,
+      "component": "newsList",
+      "content": {
+        "title": "图文课程",
+        "subtitle": "副标题",
+        "type": 0,
+        "style": 0,
+        "newsIdList": [
+          2285
+        ],
+        "classifyIdList": [],
+        "setNewsShowLimit": true,
+        "newsShowLimit": 5
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "all": true,
+        "is": 0,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1016,
+      "style": 47,
+      "component": "ebookModule",
+      "content": {
+        "title": "电子书",
+        "subtitle": "副标题",
+        "idList": [
+          106
+        ],
+        "style": 0
+      },
+      "pattern": {
+        "sm": true,
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1017,
+      "style": 42,
+      "component": "commodityModule",
+      "content": {
+        "title": "实物商品",
+        "subtitle": "副标题",
+        "style": 1,
+        "productIdList": [
+          24
+        ],
+        "optionIdList": [
+          1
+        ],
+        "selectedList": [],
+        "type": 0,
+        "setCourseShowLimit": true,
+        "productShowLimit": 100,
+        "le": false,
+        "sbl": false
+      },
+      "pattern": {
+        "e": true,
+        "se": true,
+        "sm": 1,
+        "is": 0,
+        "sys": true,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "bd": 1,
+        "sd": 1,
+        "ht": {
+          "t": 0,
+          "n": 108
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1018,
+      "style": 43,
+      "component": "extraService",
+      "content": {
+        "title": "课外服务",
+        "subtitle": "副标题",
+        "style": 0,
+        "serviceIdList": [
+          552
+        ],
+        "classifyIdList": [],
+        "type": 0,
+        "setServiceShowLimit": true,
+        "serviceShowLimit": 5,
+        "le": false,
+        "sbl": false
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "sm": true,
+        "is": 0,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "bd": true,
+        "sd": 2,
+        "ht": {
+          "t": 0,
+          "n": 120
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1019,
+      "style": 37,
+      "component": "liveModule",
+      "content": {
+        "title": "直播课程",
+        "subtitle": "副标题",
+        "style": 0,
+        "roomIdList": [
+          101
+        ],
+        "showAnchorName": true,
+        "showService": true,
+        "roomList": [],
+        "open": false,
+        "cloneModule": false
+      },
+      "pattern": {
+        "w": 1,
+        "h": 1,
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "is": 1,
+        "s": 0
+      },
+      "hidden": false
+    },
+    {
+      "id": -1020,
+      "style": 109,
+      "component": "categoryListModule",
+      "content": {
+        "title": "内容列表",
+        "subtitle": "副标题",
+        "type": 2,
+        "classifyIdList": [
+          123
+        ],
+        "serviceIdList": [],
+        "serviceAll": true,
+        "showServiceTypeIds": [],
+        "showCategoryNav": true,
+        "navDirection": 1,
+        "showLevel": 3,
+        "listStyle": 1,
+        "showInfoTypes": [
+          1,
+          2,
+          4
+        ],
+        "buttonStyle": 1,
+        "limitCount": 50,
+        "limitCountCategory": 50,
+        "showAdv": false,
+        "advUnified": true,
+        "advUnifiedSetting": {},
+        "advIndepSetting": [],
+        "sortType": 1,
+        "sortDesc": true,
+        "showMore": false,
+        "moreType": 0,
+        "jIde": "",
+        "jInfo": {}
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "is": 1,
+        "ht": {
+          "t": 0,
+          "n": 120
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1021,
+      "style": 110,
+      "component": "categoryNavModule",
+      "content": {
+        "title": "分类导航",
+        "subtitle": "副标题",
+        "pageStyleType": 0,
+        "selectClassifyIds": [
+          123
+        ],
+        "showLevel": 1
+      },
+      "pattern": {
+        "se": false,
+        "e": true,
+        "sm": false
+      },
+      "hidden": false
+    }
+  ],
+  "delModuleIdList": []
+}

@@ -1,0 +1,629 @@
+{
+  "id": 2712,
+  "type": 1,
+  "name": "助学页面",
+  "oriName": "自定义",
+  "tdk": {
+    "t": "",
+    "k": "",
+    "d": ""
+  },
+  "pattern": {
+    "ms": {
+      "t": 0,
+      "n": 0
+    },
+    "sm": {
+      "t": 0,
+      "l": 0,
+      "r": 0
+    },
+    "pbg": {
+      "t": 2,
+      "f": "",
+      "p": "",
+      "r": 3,
+      "po": 4,
+      "c": "#fff",
+      "e": 0,
+      "o": 100,
+      "v": 0,
+      "mutilPicType": 0,
+      "mutilPicList": [],
+      "backgroundRepeat": "no-repeat",
+      "backgroundPositionX": "center",
+      "backgroundPositionY": "center",
+      "backgroundSize": "cover",
+      "backgroundAttachment": "scroll",
+      "overlayType": 0,
+      "layerBackgroundColor": "",
+      "layerBackgroundImgId": "",
+      "layerBackgroundImage": "",
+      "layerBackgroundRepeat": "no-repeat",
+      "layerBackgroundPositionX": "center",
+      "layerBackgroundPositionY": "center",
+      "layerBackgroundSize": "cover",
+      "layerBackgroundAttachment": "",
+      "layerOpacity": 1,
+      "overlayShape": 0,
+      "overlayHeight": 160,
+      "overlayScrollType": 0,
+      "useOverlay": false,
+      "overlayFinalHeight": 300,
+      "overlayGradient": "",
+      "in": 1,
+      "backgroundColor": "",
+      "backgroundImgId": "",
+      "backgroundImage": "",
+      "opacity": 1,
+      "activeThumbnailIndex": 0,
+      "type": 2
+    }
+  },
+  "setting": {
+    "bp": 0,
+    "bml": 1,
+    "btype": 0,
+    "bmtgs": [],
+    "es": {},
+    "shareInfo": {
+      "h5": {
+        "title": "",
+        "desc": "",
+        "imgId": "",
+        "imgPath": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      },
+      "wxapp": {
+        "title": "",
+        "desc": "",
+        "imgId": "",
+        "imgPath": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      },
+      "wxappLine": {
+        "title": "",
+        "desc": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      }
+    },
+    "topSetting": {
+      "tc": {
+        "t": 0,
+        "c": "#000000"
+      },
+      "bg": {
+        "t": 0,
+        "c": "#ffffff"
+      },
+      "s": {
+        "h": false
+      },
+      "ts": {
+        "s": 0,
+        "m": 0
+      },
+      "in": 0
+    },
+    "qzShareInfo": {
+      "it": 0,
+      "tt": 0,
+      "img": "",
+      "tle": ""
+    }
+  },
+  "moduleIdList": [
+    -1000,
+    -1001,
+    -1002,
+    -1003,
+    -1004,
+    -1005,
+    -1006,
+    -1007,
+    -1008,
+    -1009,
+    -1010,
+    -1011
+  ],
+  "addModuleInfoList": [
+    {
+      "id": -1000,
+      "style": 111,
+      "component": "superQuestionBank",
+      "content": {
+        "title": "题库",
+        "subtitle": "副标题",
+        "type": 0,
+        "style": 2,
+        "showMore": 1,
+        "jumpType": 0,
+        "serviceIdList": [
+          103
+        ],
+        "classifyIdList": [],
+        "showLimit": 100,
+        "showInfoTypes": [
+          1
+        ]
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "is": 0,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "bd": 0,
+        "sd": 0,
+        "ht": {
+          "t": 0,
+          "n": 120
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1001,
+      "style": 29,
+      "component": "answerModule",
+      "content": {
+        "title": "答题",
+        "subtitle": "副标题",
+        "idList": [
+          2858
+        ],
+        "style": 0
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1002,
+      "style": 24,
+      "component": "queryModule",
+      "content": {
+        "title": "查询",
+        "subtitle": "副标题",
+        "style": 1,
+        "resultPageStyle": 1,
+        "id": 219
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1003,
+      "style": 8,
+      "component": "formModule",
+      "content": {
+        "title": "表单",
+        "subtitle": "副标题",
+        "btnName": "马上提交",
+        "formId": 181,
+        "jIde": ""
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1004,
+      "style": 18,
+      "component": "messageBoard",
+      "content": {
+        "title": "留言板",
+        "subtitle": "副标题"
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "sm": true
+      },
+      "hidden": false
+    },
+    {
+      "id": -1005,
+      "style": 20,
+      "component": "vote",
+      "content": {
+        "title": "投票",
+        "subtitle": "副标题",
+        "voteId": 205
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "sm": true,
+        "is": 1
+      },
+      "hidden": false
+    },
+    {
+      "id": -1006,
+      "style": 27,
+      "component": "checkpoint",
+      "content": {
+        "title": "打卡",
+        "subtitle": "副标题",
+        "style": 0,
+        "checkpointIdList": [
+          495
+        ],
+        "cloneList": []
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1007,
+      "style": 16,
+      "component": "announcement",
+      "content": {
+        "title": "公告",
+        "subtitle": "副标题",
+        "pStyle": 1,
+        "i": {
+          "t": 0,
+          "ifi": false,
+          "f": "",
+          "ifc": "",
+          "ifco": "",
+          "fic": "#fff",
+          "fu": "",
+          "idc": true,
+          "w": 50,
+          "h": 50
+        },
+        "bl": [
+          {
+            "c": "这是一条公告内容，可设置向上或向左滚动哦！",
+            "jIde": "",
+            "jInfo": {
+              "t": 0,
+              "o": "",
+              "u": ""
+            }
+          }
+        ]
+      },
+      "pattern": {
+        "e": false,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "fc": "#000",
+        "fct": 0
+      },
+      "hidden": false
+    },
+    {
+      "id": -1008,
+      "style": 12,
+      "component": "searchModule",
+      "content": {
+        "title": "搜索",
+        "subtitle": "副标题",
+        "ms": 0,
+        "sc": 0,
+        "st": "请输入关键词",
+        "kw": [],
+        "scl": [
+          {
+            "ci": 2,
+            "s": true,
+            "n": "图文",
+            "t": 2
+          },
+          {
+            "ci": 3,
+            "s": true,
+            "n": "名片",
+            "t": 3
+          },
+          {
+            "ci": 7,
+            "t": 7,
+            "n": "音频",
+            "s": false
+          },
+          {
+            "ci": 8,
+            "t": 8,
+            "n": "视频",
+            "s": false
+          },
+          {
+            "ci": 9,
+            "t": 9,
+            "n": "系列课",
+            "s": false
+          },
+          {
+            "ci": 10,
+            "t": 10,
+            "n": "线下课程",
+            "s": false
+          },
+          {
+            "ci": 11,
+            "t": 11,
+            "n": "电子书",
+            "s": false
+          },
+          {
+            "ci": 18,
+            "t": 18,
+            "n": "超级题库",
+            "s": false
+          },
+          {
+            "ci": 12,
+            "t": 12,
+            "n": "答题",
+            "s": false
+          },
+          {
+            "ci": 13,
+            "t": 13,
+            "n": "打卡",
+            "s": false
+          },
+          {
+            "ci": 17,
+            "t": 17,
+            "n": "测评",
+            "s": false
+          },
+          {
+            "ci": 14,
+            "t": 14,
+            "n": "直播",
+            "s": false
+          },
+          {
+            "ci": 15,
+            "t": 15,
+            "n": "商品",
+            "s": false
+          },
+          {
+            "ci": 16,
+            "t": 16,
+            "n": "课外服务",
+            "s": false
+          }
+        ],
+        "sr": {
+          "courseName": true,
+          "courseContent": true
+        }
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "mc": {
+          "t": 0,
+          "c": "#f2f2f2"
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1009,
+      "style": 31,
+      "component": "fileDownload",
+      "content": {
+        "title": "文件",
+        "subtitle": "副标题",
+        "fileIdList": [
+          "AJQBCAAQPRgAIMDPgMwGKMSu9ogDMAA4AA",
+          "AJQBCAAQPhgAIMqiysgGKNTBusgGMAA4AA"
+        ],
+        "isPage": 0,
+        "pageSize": 5,
+        "viewType": 0
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1010,
+      "style": 108,
+      "component": "evaluation",
+      "content": {
+        "title": "测评",
+        "subtitle": "副标题",
+        "type": 0,
+        "style": 0,
+        "showMore": 1,
+        "jumpType": 0,
+        "evaluationIdList": [
+          221
+        ],
+        "classifyIdList": [],
+        "setEvaluationShowLimit": true,
+        "evaluationShowLimit": 5
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "is": 0,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false,
+      "changed": true,
+      "isNewAdd": true
+    },
+    {
+      "id": -1011,
+      "style": 17,
+      "component": "mapModule",
+      "content": {
+        "title": "地图",
+        "subtitle": "副标题",
+        "city": "广州",
+        "addr": "乐峰广场",
+        "mark": "广东省 广州市 海珠区  ",
+        "sd": false,
+        "gup": false,
+        "p": "",
+        "bh": "",
+        "intro": ""
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "ht": {
+          "t": 0,
+          "n": 100
+        }
+      },
+      "hidden": false
+    }
+  ],
+  "delModuleIdList": []
+}

@@ -5,6 +5,7 @@
 接口: POST /ajax/wxAppAudio_h.jsp?cmd=add
 """
 from actions.audio_actions import AudioActions
+from actions.delete_actions import DeleteActions
 from test_data_manager import TestDataManager
 
 
@@ -13,9 +14,15 @@ def test_admin_add_audio(admin_client, timestamp):
     # Arrange: 准备测试数据
     name = f"接口测试音频_{timestamp}"
     file_id = TestDataManager.get_file_id("audio")
+    audio_id = None
 
-    # Act: 创建音频
-    audio_id = AudioActions.create_audio(admin_client, name, file_id)
+    try:
+        # Act: 创建音频
+        audio_id = AudioActions.create_audio(admin_client, name, file_id)
 
-    # Assert: 验证创建成功
-    assert audio_id, "音频创建失败"
+        # Assert: 验证创建成功
+        assert audio_id, "音频创建失败"
+    finally:
+        # 清理：删除创建的音频
+        if audio_id:
+            DeleteActions.delete_audio(admin_client, audio_id)

@@ -6,6 +6,7 @@
 """
 import json
 import time
+from actions.delete_actions import DeleteActions
 
 
 def test_admin_add_coupon(admin_client, timestamp):
@@ -13,6 +14,7 @@ def test_admin_add_coupon(admin_client, timestamp):
     # Arrange: 准备测试数据
     # 优惠券名称不能超过10字符（3+6=9）
     coupon_name = f"券{timestamp}"
+    coupon_id = None
     
     # 计算时间戳（开始时间和结束时间）
     start_time = int(time.time() * 1000)
@@ -33,32 +35,37 @@ def test_admin_add_coupon(admin_client, timestamp):
         {"type": 15, "selected": True, "name": "课外服务", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}}
     ]
     
-    # Act: 创建优惠券
-    result = admin_client.post(
-        "/ajax/coupon_h.jsp",
-        params={"cmd": "addCoupon"},
-        data={
-            "wxappId": admin_client.wxapp_id,
-            "id": "-1",
-            "name": coupon_name,
-            "type": "0",
-            "discountPrice": "100",
-            "discount": "9.8",
-            "timeType": "1",
-            "startTime": "",
-            "endTime": "",
-            "day": "1000",
-            "remainType": "1",
-            "remainCount": "1",
-            "entries": json.dumps(entries, ensure_ascii=False),
-            "rule": "",
-            "isIntegralMall": "false",
-            "targetUser": '{"bp":0,"btype":0,"bmtgs":[],"bml":1}',
-            "isNewClassify": "true",
-        },
-    )
-    
-    # Assert: 验证创建成功
-    admin_client.assert_success(result, "添加优惠券失败")
-    coupon_id = result.get("coupon", {}).get("id") or result.get("id")
-    assert coupon_id, "优惠券创建失败"
+    try:
+        # Act: 创建优惠券
+        result = admin_client.post(
+            "/ajax/coupon_h.jsp",
+            params={"cmd": "addCoupon"},
+            data={
+                "wxappId": admin_client.wxapp_id,
+                "id": "-1",
+                "name": coupon_name,
+                "type": "0",
+                "discountPrice": "100",
+                "discount": "9.8",
+                "timeType": "1",
+                "startTime": "",
+                "endTime": "",
+                "day": "1000",
+                "remainType": "1",
+                "remainCount": "1",
+                "entries": json.dumps(entries, ensure_ascii=False),
+                "rule": "",
+                "isIntegralMall": "false",
+                "targetUser": '{"bp":0,"btype":0,"bmtgs":[],"bml":1}',
+                "isNewClassify": "true",
+            },
+        )
+        
+        # Assert: 验证创建成功
+        admin_client.assert_success(result, "添加优惠券失败")
+        coupon_id = result.get("coupon", {}).get("id") or result.get("id")
+        assert coupon_id, "优惠券创建失败"
+    finally:
+        # 清理：删除创建的优惠券
+        if coupon_id:
+            DeleteActions.delete_coupon(admin_client, coupon_id)

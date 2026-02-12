@@ -13,6 +13,11 @@ from .audio_actions import AudioActions
 from .video_actions import VideoActions
 from .news_actions import NewsActions
 from .column_actions import ColumnActions
+from .answer_actions import AnswerActions
+from .designer_common_actions import DesignerCommonActions
+from .edupc_designer_actions import EdupcDesignerActions
+from .mobile_designer_actions import MobileDesignerActions
+from .delete_actions import DeleteActions
 
 __all__ = [
     'OrderActions',
@@ -21,4 +26,9 @@ __all__ = [
     'VideoActions',
     'NewsActions',
     'ColumnActions',
+    'AnswerActions',
+    'DesignerCommonActions',
+    'EdupcDesignerActions',
+    'MobileDesignerActions',
+    'DeleteActions',
 ]

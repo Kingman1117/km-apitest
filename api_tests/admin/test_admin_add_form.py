@@ -5,12 +5,14 @@
 接口: POST /ajax/wxAppForm_h.jsp?cmd=addWXAppForm
 """
 import json
+from actions.delete_actions import DeleteActions
 
 
 def test_admin_add_form(admin_client, timestamp):
     """管理后台正常添加表单"""
     # Arrange: 准备测试数据
     form_name = f"接口测试表单_{timestamp}"
+    form_id = None
     
     # contentList: 表单字段列表
     content_list = [
@@ -28,20 +30,25 @@ def test_admin_add_form(admin_client, timestamp):
         {"name": "手机号码", "type": 6, "placeholder": "", "input": "", "phoneSetting": {"ov": False}, "must": False}
     ]
 
-    # Act: 创建表单
-    result = admin_client.post(
-        "/ajax/wxAppForm_h.jsp",
-        params={"cmd": "addWXAppForm"},
-        data={
-            "name": form_name,
-            "contentList": json.dumps(content_list, ensure_ascii=False),
-            "wxappId": admin_client.wxapp_id,
-            "submitCount": "0",
-            "privacyStatus": "true",
-        },
-    )
-    
-    # Assert: 验证创建成功
-    admin_client.assert_success(result, "添加表单失败")
-    form_id = result.get("data", {}).get("id") or result.get("id")
-    assert form_id, "表单创建失败"
+    try:
+        # Act: 创建表单
+        result = admin_client.post(
+            "/ajax/wxAppForm_h.jsp",
+            params={"cmd": "addWXAppForm"},
+            data={
+                "name": form_name,
+                "contentList": json.dumps(content_list, ensure_ascii=False),
+                "wxappId": admin_client.wxapp_id,
+                "submitCount": "0",
+                "privacyStatus": "true",
+            },
+        )
+        
+        # Assert: 验证创建成功
+        admin_client.assert_success(result, "添加表单失败")
+        form_id = result.get("data", {}).get("id") or result.get("id")
+        assert form_id, "表单创建失败"
+    finally:
+        # 清理：删除创建的表单
+        if form_id:
+            DeleteActions.delete_form(admin_client, form_id)

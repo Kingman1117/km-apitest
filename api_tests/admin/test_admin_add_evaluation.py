@@ -3,6 +3,7 @@
 用例名称: 管理后台正常添加测评活动
 
 接口: POST /api/manage/evaluation/addEvaluation
+注意：测评活动比较特殊，暂不清理测试数据
 """
 
 

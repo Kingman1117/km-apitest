@@ -8,11 +8,14 @@
 2. 管理后台查询订单详情
 3. 管理后台退款
 """
+import pytest
+
 from actions.order_actions import OrderActions
 from actions.refund_actions import RefundActions
 from test_data_manager import TestDataManager
 
 
+@pytest.mark.write
 def test_edupc_order_news_and_refund(edupc_client, admin_client):
     """EduPC端图文订单 - 下单→查单→退款完整流程"""
 

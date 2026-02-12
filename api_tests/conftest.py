@@ -68,6 +68,28 @@ def h5_client(config):
     return client
 
 
+@pytest.fixture(scope="session")
+def edupc_designer_client(config):
+    """登录后的 EduPC 设计器客户端（session 复用）。"""
+    from clients.designer_client import EdupcDesignerClient
+
+    cred = config["credentials"]["admin"]
+    client = EdupcDesignerClient(cred["username"], cred["password"])
+    client.login()
+    return client
+
+
+@pytest.fixture(scope="session")
+def mobile_designer_client(config):
+    """登录后的移动端设计器客户端（session 复用）。"""
+    from clients.designer_client import MobileDesignerClient
+
+    cred = config["credentials"]["admin"]
+    client = MobileDesignerClient(cred["username"], cred["password"])
+    client.login()
+    return client
+
+
 @pytest.fixture
 def timestamp():
     """当前时间戳后 6 位（用于唯一命名）。"""

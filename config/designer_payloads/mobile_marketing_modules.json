@@ -1,0 +1,302 @@
+{
+  "id": 2715,
+  "type": 1,
+  "name": "营销模块页面",
+  "oriName": "自定义",
+  "tdk": {
+    "t": "",
+    "k": "",
+    "d": ""
+  },
+  "pattern": {
+    "ms": {
+      "t": 0,
+      "n": 0
+    },
+    "sm": {
+      "t": 0,
+      "l": 0,
+      "r": 0
+    },
+    "pbg": {
+      "t": 2,
+      "f": "",
+      "p": "",
+      "r": 3,
+      "po": 4,
+      "c": "#fff",
+      "e": 0,
+      "o": 100,
+      "v": 0,
+      "mutilPicType": 0,
+      "mutilPicList": [],
+      "backgroundRepeat": "no-repeat",
+      "backgroundPositionX": "center",
+      "backgroundPositionY": "center",
+      "backgroundSize": "cover",
+      "backgroundAttachment": "scroll",
+      "overlayType": 0,
+      "layerBackgroundColor": "",
+      "layerBackgroundImgId": "",
+      "layerBackgroundImage": "",
+      "layerBackgroundRepeat": "no-repeat",
+      "layerBackgroundPositionX": "center",
+      "layerBackgroundPositionY": "center",
+      "layerBackgroundSize": "cover",
+      "layerBackgroundAttachment": "",
+      "layerOpacity": 1,
+      "overlayShape": 0,
+      "overlayHeight": 160,
+      "overlayScrollType": 0,
+      "useOverlay": false,
+      "overlayFinalHeight": 300,
+      "overlayGradient": "",
+      "in": 1,
+      "backgroundColor": "",
+      "backgroundImgId": "",
+      "backgroundImage": "",
+      "opacity": 1,
+      "activeThumbnailIndex": 0,
+      "type": 2
+    }
+  },
+  "setting": {
+    "bp": 0,
+    "bml": 1,
+    "btype": 0,
+    "bmtgs": [],
+    "es": {},
+    "shareInfo": {
+      "h5": {
+        "title": "",
+        "desc": "",
+        "imgId": "",
+        "imgPath": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      },
+      "wxapp": {
+        "title": "",
+        "desc": "",
+        "imgId": "",
+        "imgPath": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      },
+      "wxappLine": {
+        "title": "",
+        "desc": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      }
+    },
+    "topSetting": {
+      "tc": {
+        "t": 0,
+        "c": "#000000"
+      },
+      "bg": {
+        "t": 0,
+        "c": "#ffffff"
+      },
+      "s": {
+        "h": false
+      },
+      "ts": {
+        "s": 0,
+        "m": 0
+      },
+      "in": 0
+    },
+    "qzShareInfo": {
+      "it": 0,
+      "tt": 0,
+      "img": "",
+      "tle": ""
+    }
+  },
+  "moduleIdList": [
+    -1000,
+    -1001,
+    -1002,
+    -1003
+  ],
+  "addModuleInfoList": [
+    {
+      "id": -1000,
+      "style": 36,
+      "component": "groupBuying",
+      "content": {
+        "btnText": "去拼团",
+        "title": "拼团",
+        "subtitle": "副标题",
+        "style": 0,
+        "groupIdList": [
+          517
+        ],
+        "optionIdList": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "idList": [],
+        "type": 0,
+        "setGroupShowLimit": true,
+        "groupShowLimit": 100,
+        "le": false,
+        "sbl": false
+      },
+      "pattern": {
+        "e": true,
+        "se": true,
+        "sm": 1,
+        "is": 0,
+        "sys": true,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "bd": 0,
+        "sd": 1,
+        "ht": {
+          "t": 0,
+          "n": 120
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1001,
+      "style": 26,
+      "component": "coupon",
+      "content": {
+        "title": "优惠券",
+        "subtitle": "副标题",
+        "style": 0,
+        "couponIdList": [
+          3461
+        ],
+        "cloneList": [],
+        "cloneModule": false
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "ci": 0,
+        "bc": "linear-gradient(-63deg,rgba(222,68,58,1) 0%,rgba(255,118,100,1) 100%)",
+        "bbc": "#DF483E"
+      },
+      "hidden": false
+    },
+    {
+      "id": -1002,
+      "style": 45,
+      "component": "pointModule",
+      "content": {
+        "title": "积分商城",
+        "subtitle": "副标题",
+        "style": 0,
+        "productIdList": [
+          5198
+        ],
+        "optionIdList": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "selectedList": [],
+        "type": 0,
+        "setproductShowLimit": true,
+        "productShowLimit": 20,
+        "le": false,
+        "sbl": false,
+        "btnText": "立即兑换"
+      },
+      "pattern": {
+        "e": true,
+        "se": true,
+        "sm": 1,
+        "is": 0,
+        "sys": true,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "bd": 0,
+        "sd": 2,
+        "ht": {
+          "t": 0,
+          "n": 120
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1003,
+      "style": 14,
+      "component": "cardList",
+      "content": {
+        "title": "智能名片",
+        "subtitle": "副标题",
+        "style": 0,
+        "cardIdList": [
+          281
+        ],
+        "selectedList": []
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "sm": true,
+        "is": 0,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "bd": true,
+        "sd": 2,
+        "ht": {
+          "t": 0,
+          "n": 50
+        }
+      },
+      "hidden": false
+    }
+  ],
+  "delModuleIdList": []
+}

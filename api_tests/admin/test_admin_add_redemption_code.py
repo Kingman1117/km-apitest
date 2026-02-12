@@ -3,6 +3,7 @@
 用例名称: 管理后台正常添加兑换码
 
 接口: POST /ajax/eduCouponCode_h.jsp?cmd=addWafCk_saveOrUpdateCoupon
+注意：兑换码比较特殊，暂不清理测试数据
 """
 
 

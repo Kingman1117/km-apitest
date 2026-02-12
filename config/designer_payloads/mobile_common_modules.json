@@ -1,0 +1,1654 @@
+{
+  "id": 2704,
+  "type": 1,
+  "name": "自定义2222",
+  "oriName": "自定义",
+  "tdk": {
+    "t": "",
+    "k": "",
+    "d": ""
+  },
+  "pattern": {
+    "ms": {
+      "t": 0,
+      "n": 0
+    },
+    "sm": {
+      "t": 0,
+      "l": 0,
+      "r": 0
+    },
+    "pbg": {
+      "t": 2,
+      "f": "",
+      "p": "",
+      "r": 3,
+      "po": 4,
+      "c": "#fff",
+      "e": 0,
+      "o": 100,
+      "v": 0,
+      "mutilPicType": 0,
+      "mutilPicList": [],
+      "backgroundRepeat": "no-repeat",
+      "backgroundPositionX": "center",
+      "backgroundPositionY": "center",
+      "backgroundSize": "cover",
+      "backgroundAttachment": "scroll",
+      "overlayType": 0,
+      "layerBackgroundColor": "",
+      "layerBackgroundImgId": "",
+      "layerBackgroundImage": "",
+      "layerBackgroundRepeat": "no-repeat",
+      "layerBackgroundPositionX": "center",
+      "layerBackgroundPositionY": "center",
+      "layerBackgroundSize": "cover",
+      "layerBackgroundAttachment": "",
+      "layerOpacity": 1,
+      "overlayShape": 0,
+      "overlayHeight": 160,
+      "overlayScrollType": 0,
+      "useOverlay": false,
+      "overlayFinalHeight": 300,
+      "overlayGradient": "",
+      "in": 1,
+      "backgroundColor": "",
+      "backgroundImgId": "",
+      "backgroundImage": "",
+      "opacity": 1,
+      "activeThumbnailIndex": 0,
+      "type": 2
+    }
+  },
+  "setting": {
+    "bp": 0,
+    "bml": 1,
+    "btype": 0,
+    "bmtgs": [],
+    "es": {},
+    "shareInfo": {
+      "h5": {
+        "title": "",
+        "desc": "",
+        "imgId": "",
+        "imgPath": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      },
+      "wxapp": {
+        "title": "",
+        "desc": "",
+        "imgId": "",
+        "imgPath": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      },
+      "wxappLine": {
+        "title": "",
+        "desc": "",
+        "imgLineId": "",
+        "imgPathLine": ""
+      }
+    },
+    "topSetting": {
+      "tc": {
+        "t": 0,
+        "c": "#000000"
+      },
+      "bg": {
+        "t": 0,
+        "c": "#ffffff"
+      },
+      "s": {
+        "h": false
+      },
+      "ts": {
+        "s": 0,
+        "m": 0
+      },
+      "in": 0
+    },
+    "qzShareInfo": {
+      "it": 0,
+      "tt": 0,
+      "img": "",
+      "tle": ""
+    }
+  },
+  "moduleIdList": [
+    -1001,
+    -1003,
+    -1005,
+    -1006,
+    -1007,
+    -1008,
+    -1009,
+    -1010,
+    -1011,
+    -1012,
+    -1013,
+    -1015,
+    -1016
+  ],
+  "addModuleInfoList": [
+    {
+      "id": -1001,
+      "style": 5,
+      "component": "pack",
+      "content": {
+        "title": "自由容器",
+        "subtitle": "副标题",
+        "moduleList": [
+          {
+            "id": -1000,
+            "t": 10,
+            "l": 10,
+            "component": "text"
+          }
+        ]
+      },
+      "pattern": {
+        "w": 0,
+        "h": 90,
+        "e": false,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1000,
+      "style": 4,
+      "component": "",
+      "content": {
+        "richText": "<p>接口111</p>",
+        "jIde": "",
+        "posBasesType": "v"
+      },
+      "pattern": {
+        "rx": 0,
+        "by": 0,
+        "w": 335,
+        "h": 36.96384811401367,
+        "fs": 14,
+        "fb": false,
+        "fc": "#353535",
+        "fd": false,
+        "fi": false,
+        "lh": 20,
+        "fp": 0,
+        "bc": "#3370ff"
+      },
+      "hidden": false
+    },
+    {
+      "id": -1003,
+      "style": 5,
+      "component": "pack",
+      "content": {
+        "title": "自由容器",
+        "subtitle": "副标题",
+        "moduleList": [
+          {
+            "id": -1002,
+            "t": 0,
+            "l": 0,
+            "component": "image"
+          }
+        ]
+      },
+      "pattern": {
+        "w": 0,
+        "h": 375,
+        "e": false,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1002,
+      "style": 2,
+      "component": "",
+      "content": {
+        "pi": "AJQBCAAQAhgAIKWqgMwGKObW7pcGMLgIOLgI",
+        "pp": "//3444128.s148i.faieduusr.com.faidev.cc/2/110/AJQBCAAQAhgAIKWqgMwGKObW7pcGMLgIOLgI.jpg",
+        "posBasesType": "v",
+        "fIcon": {
+          "fi": "",
+          "fc": "",
+          "fco": "#333"
+        },
+        "ifi": false,
+        "jIde": "",
+        "sbp": true,
+        "hotAreas": [],
+        "hotAreasContainerWidth": 1,
+        "hotAreasContainerHeight": 1,
+        "hrefType": 1,
+        "jumpHrefType": 0,
+        "borderRadius": {
+          "checked": false,
+          "value": 0,
+          "sides": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "border": {
+          "checked": false,
+          "value": 0,
+          "color": "rgba(255, 255, 255, 1)"
+        },
+        "boxShadow": {
+          "checked": false,
+          "param": [
+            0,
+            0,
+            10,
+            0
+          ],
+          "color": "rgba(0, 0, 0, 0.2)"
+        },
+        "new": 1
+      },
+      "pattern": {
+        "rx": 0,
+        "by": 0,
+        "w": 375,
+        "h": 375,
+        "lo": true
+      },
+      "hidden": false
+    },
+    {
+      "id": -1005,
+      "style": 5,
+      "component": "pack",
+      "content": {
+        "title": "自由容器",
+        "subtitle": "副标题",
+        "moduleList": [
+          {
+            "id": -1004,
+            "t": 10,
+            "l": 87,
+            "component": "button"
+          }
+        ]
+      },
+      "pattern": {
+        "w": 0,
+        "h": 60,
+        "e": false,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1004,
+      "style": 3,
+      "component": "",
+      "content": {
+        "text": "按钮",
+        "jIde": "",
+        "btnStyle": 3,
+        "posBasesType": "v"
+      },
+      "pattern": {
+        "rx": 0,
+        "by": 0,
+        "w": 200,
+        "h": 40,
+        "fs": 14,
+        "fc": "#fff",
+        "bc": "",
+        "bct": 0,
+        "fct": 0,
+        "lo": true,
+        "bsc": ""
+      },
+      "hidden": false
+    },
+    {
+      "id": -1006,
+      "style": 105,
+      "component": "swiper",
+      "content": {
+        "title": "轮播容器",
+        "moduleList": [
+          {
+            "describe": "这是一段示例文字",
+            "color": "#fff",
+            "image": "",
+            "imageId": "",
+            "jIde": "",
+            "jInfo": {},
+            "iId": 1,
+            "id": -1,
+            "content": {}
+          },
+          {
+            "describe": "这是一段示例文字",
+            "color": "#fff",
+            "image": "",
+            "imageId": "",
+            "jIde": "",
+            "jInfo": {},
+            "iId": 2,
+            "id": -1,
+            "content": {}
+          }
+        ],
+        "height": 194,
+        "forceHideSubTitle": false,
+        "forceHideTitle": false
+      },
+      "pattern": {
+        "theme": 1,
+        "autoPlay": {
+          "checked": true,
+          "speed": 0.5,
+          "delay": 3.5
+        },
+        "effect": {
+          "value": 1
+        },
+        "pagination": {
+          "checked": true,
+          "color": "#fff",
+          "theme": 1,
+          "align": "middle",
+          "offset": [
+            0,
+            0
+          ]
+        },
+        "describe": {
+          "checked": false,
+          "theme": 1,
+          "textColor": "#fff",
+          "backgroundColor": "rgba(0, 0, 0, 0.5)"
+        },
+        "fadeBottom": {
+          "checked": false,
+          "value": 40
+        },
+        "borderRadius": {
+          "checked": false,
+          "sides": [
+            true
+          ],
+          "value": 20
+        },
+        "border": {
+          "checked": false,
+          "value": 5,
+          "color": "#fff"
+        },
+        "shadow": {
+          "checked": false,
+          "param": [
+            0,
+            0,
+            10,
+            0
+          ],
+          "color": "rgba(0, 0, 0, 0.2)"
+        },
+        "marginX": {
+          "locked": true,
+          "value": [
+            0,
+            0
+          ]
+        },
+        "marginBottom": 10,
+        "marginTop": 0
+      },
+      "hidden": false
+    },
+    {
+      "id": -1007,
+      "style": 5,
+      "component": "pack",
+      "content": {
+        "title": "自由容器",
+        "subtitle": "副标题",
+        "moduleList": []
+      },
+      "pattern": {
+        "w": 0,
+        "h": 240,
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1008,
+      "style": 49,
+      "component": "grid",
+      "content": {
+        "title": "网格容器",
+        "subtitle": "副标题",
+        "moduleList": [
+          {
+            "N": 6,
+            "w": 2,
+            "x": 1,
+            "y": 1,
+            "h": 2,
+            "width": 114,
+            "height": 114,
+            "gridRow": "1 / 3",
+            "gridColumn": "1 / 3",
+            "recommendWidth": 360,
+            "recommendHeight": 360,
+            "backgroundObj": {
+              "imgId": "",
+              "imgPath": "",
+              "bgColor": ""
+            },
+            "content": {},
+            "id": -1
+          },
+          {
+            "N": 6,
+            "w": 2,
+            "x": 1,
+            "y": 3,
+            "h": 2,
+            "width": 114,
+            "height": 114,
+            "gridRow": "1 / 3",
+            "gridColumn": "3 / 5",
+            "recommendWidth": 360,
+            "recommendHeight": 360,
+            "backgroundObj": {
+              "imgId": "",
+              "imgPath": "",
+              "bgColor": ""
+            },
+            "content": {},
+            "id": -1
+          },
+          {
+            "N": 6,
+            "w": 2,
+            "x": 1,
+            "y": 5,
+            "h": 2,
+            "width": 114,
+            "height": 114,
+            "gridRow": "1 / 3",
+            "gridColumn": "5 / 7",
+            "recommendWidth": 360,
+            "recommendHeight": 360,
+            "backgroundObj": {
+              "imgId": "",
+              "imgPath": "",
+              "bgColor": ""
+            },
+            "content": {},
+            "id": -1
+          },
+          {
+            "N": 6,
+            "w": 2,
+            "x": 3,
+            "y": 1,
+            "h": 2,
+            "width": 114,
+            "height": 114,
+            "gridRow": "3 / 5",
+            "gridColumn": "1 / 3",
+            "recommendWidth": 360,
+            "recommendHeight": 360,
+            "backgroundObj": {
+              "imgId": "",
+              "imgPath": "",
+              "bgColor": ""
+            },
+            "content": {},
+            "id": -1
+          },
+          {
+            "N": 6,
+            "w": 2,
+            "x": 3,
+            "y": 3,
+            "h": 2,
+            "width": 114,
+            "height": 114,
+            "gridRow": "3 / 5",
+            "gridColumn": "3 / 5",
+            "recommendWidth": 360,
+            "recommendHeight": 360,
+            "backgroundObj": {
+              "imgId": "",
+              "imgPath": "",
+              "bgColor": ""
+            },
+            "content": {},
+            "id": -1
+          },
+          {
+            "N": 6,
+            "w": 2,
+            "x": 3,
+            "y": 5,
+            "h": 2,
+            "width": 114,
+            "height": 114,
+            "gridRow": "3 / 5",
+            "gridColumn": "5 / 7",
+            "recommendWidth": 360,
+            "recommendHeight": 360,
+            "backgroundObj": {
+              "imgId": "",
+              "imgPath": "",
+              "bgColor": ""
+            },
+            "content": {},
+            "id": -1
+          }
+        ]
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "height": 255,
+        "imgScale": 0,
+        "border": {
+          "checked": false,
+          "value": 5,
+          "color": "rgba(255, 255, 255, 1)"
+        },
+        "boxShadow": {
+          "checked": false,
+          "param": [
+            0,
+            0,
+            10,
+            0
+          ],
+          "color": "rgba(0, 0, 0, 0.2)"
+        },
+        "layoutKey": 3,
+        "paddingX": {
+          "locked": false,
+          "value": [
+            15,
+            15
+          ]
+        },
+        "paddingY": {
+          "locked": false,
+          "value": [
+            15,
+            15
+          ]
+        },
+        "gridItemStyle": {
+          "gap": 2,
+          "heightCoefficient": 100,
+          "borderRadius": 10
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1009,
+      "style": 50,
+      "component": "iconNav",
+      "content": {
+        "title": "图标导航",
+        "subtitle": "图标导航副标题",
+        "theme": 1,
+        "row": 1,
+        "rows": {
+          "checked": false,
+          "value": []
+        },
+        "col": 5,
+        "list": [
+          {
+            "title": "系列课",
+            "id": 1,
+            "svg": true,
+            "themeColor": "theme",
+            "iconId": "AIwBCAAQURgAILP_z5UGKKrK_bAGMBg4GA",
+            "icon": "//1.s140i.faiscm.com/81/AIwBCAAQURgAILP_z5UGKKrK_bAGMBg4GA.svg"
+          },
+          {
+            "title": "视频",
+            "id": 2,
+            "svg": true,
+            "themeColor": "theme",
+            "iconId": "AIwBCAAQURgAIOfNwJUGKKykn6oGMBg4GA",
+            "icon": "//1.s140i.faiscm.com/81/AIwBCAAQURgAIOfNwJUGKKykn6oGMBg4GA.svg"
+          },
+          {
+            "title": "直播",
+            "id": 3,
+            "svg": true,
+            "themeColor": "theme",
+            "iconId": "AIwBCAAQURgAIMK4wJUGKLfrld0DMBg4GA",
+            "icon": "//1.s140i.faiscm.com/81/AIwBCAAQURgAIMK4wJUGKLfrld0DMBg4GA.svg"
+          },
+          {
+            "title": "题库",
+            "id": 4,
+            "svg": true,
+            "themeColor": "theme",
+            "iconId": "AIwBCAAQURgAIIi4wJUGKI77hrgCMBg4GA",
+            "icon": "//1.s140i.faiscm.com/81/AIwBCAAQURgAIIi4wJUGKI77hrgCMBg4GA.svg"
+          },
+          {
+            "title": "打卡",
+            "id": 5,
+            "svg": true,
+            "themeColor": "theme",
+            "iconId": "AIwBCAAQURgAIIG4wJUGKID6hZcDMBg4GA",
+            "icon": "//1.s140i.faiscm.com/81/AIwBCAAQURgAIIG4wJUGKID6hZcDMBg4GA.svg"
+          },
+          {
+            "title": "会员",
+            "id": 6,
+            "svg": true,
+            "themeColor": "theme",
+            "iconId": "AIwBCAAQURgAIMaNwJUGKKj6lp4FMBg4GA",
+            "icon": "//1.s140i.faiscm.com/81/AIwBCAAQURgAIMaNwJUGKKj6lp4FMBg4GA.svg"
+          },
+          {
+            "title": "商城",
+            "id": 7,
+            "svg": true,
+            "themeColor": "theme",
+            "iconId": "AIwBCAAQURgAIK61wJUGKIG4268GMBg4GA",
+            "icon": "//1.s140i.faiscm.com/81/AIwBCAAQURgAIK61wJUGKIG4268GMBg4GA.svg"
+          },
+          {
+            "title": "拼团",
+            "id": 8,
+            "svg": true,
+            "themeColor": "theme",
+            "iconId": "AIwBCAAQURgAIMO1wJUGKMys40AwGDgY",
+            "icon": "//1.s140i.faiscm.com/81/AIwBCAAQURgAIMO1wJUGKMys40AwGDgY.svg"
+          },
+          {
+            "title": "资料包",
+            "id": 9,
+            "svg": true,
+            "themeColor": "theme",
+            "iconId": "AIwBCAAQURgAII64wJUGKMz1jvQCMBg4GA",
+            "icon": "//1.s140i.faiscm.com/81/AIwBCAAQURgAII64wJUGKMz1jvQCMBg4GA.svg"
+          },
+          {
+            "title": "推广员",
+            "id": 10,
+            "svg": true,
+            "themeColor": "theme",
+            "iconId": "AIwBCAAQURgAILu1wJUGKKDXxfoGMBg4GA",
+            "icon": "//1.s140i.faiscm.com/81/AIwBCAAQURgAILu1wJUGKKDXxfoGMBg4GA.svg"
+          }
+        ],
+        "themeColor": {
+          "type": 1,
+          "value": "1"
+        },
+        "styleConfig": {
+          "setting": [
+            {
+              "key": "r",
+              "value": "{\"v\":50}"
+            },
+            {
+              "key": "c",
+              "value": "{\"v\":\"#ffffff\",\"eff\":true,\"t\":0,\"d\":225,\"i\":50}"
+            },
+            {
+              "key": "g",
+              "value": "{\"l\":true,\"v\":\"theme\",\"eff\":true,\"t\":1,\"d\":45,\"i\":50}"
+            },
+            {
+              "key": "b",
+              "value": "{\"chk\":false,\"c\":\"#ffffff\",\"i\":2}"
+            },
+            {
+              "key": "s",
+              "value": "{\"chk\":false,\"c\":\"#000000\",\"o\":15,\"x\":0,\"y\":5,\"mh\":0}"
+            },
+            {
+              "key": "gs",
+              "value": "{\"chk\":true,\"c\":\"#000000\",\"o\":15,\"x\":0,\"y\":5,\"mh\":10}"
+            }
+          ]
+        }
+      },
+      "pattern": {
+        "e": false,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100,
+          "repeat": "no-repeat",
+          "positionX": "left",
+          "positionY": "center",
+          "size": "100% 100%"
+        },
+        "boxScale": 65,
+        "iconScale": 55,
+        "name": {
+          "checked": true,
+          "spacing": 10,
+          "fontSize": 12,
+          "color": "#353535",
+          "bold": false,
+          "italic": false,
+          "underline": false
+        },
+        "padding": {
+          "h": {
+            "lock": true,
+            "value": [
+              10,
+              10
+            ]
+          },
+          "v": {
+            "lock": true,
+            "value": [
+              15,
+              15
+            ]
+          }
+        },
+        "rowSpacing": 15,
+        "pagination": {
+          "height": 6,
+          "topSpacing": 10,
+          "checked": true,
+          "color": "#d9d9d9",
+          "activeColor": "theme"
+        },
+        "sideSpacing": {
+          "type": 0,
+          "lock": true,
+          "value": [
+            15,
+            15
+          ]
+        },
+        "bottomSpacing": {
+          "type": 0,
+          "value": 15
+        },
+        "borderRadius": {
+          "type": 0,
+          "value": 12,
+          "sides": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "border": {
+          "type": 0,
+          "sides": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "value": 1,
+          "color": "#000"
+        },
+        "shadow": {
+          "type": 0,
+          "value": [
+            0,
+            2,
+            4,
+            0
+          ],
+          "color": "rgba(0, 0, 0, .1)"
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1010,
+      "style": 11,
+      "component": "magicNav",
+      "content": {
+        "title": "魔方导航",
+        "subtitle": "副标题",
+        "style": 0,
+        "colNum": 1,
+        "navList": [
+          {
+            "t": "关于我们",
+            "st": "副标题",
+            "h": false,
+            "te": false,
+            "ste": false,
+            "ts": {
+              "t": 0,
+              "s": 12,
+              "c": "#000000",
+              "b": false
+            },
+            "sts": {
+              "t": 0,
+              "s": 12,
+              "c": "#D0D4D7",
+              "b": false
+            },
+            "i": {
+              "t": 0,
+              "ifi": false,
+              "f": "",
+              "ifc": "",
+              "ifco": "",
+              "fic": "#fff",
+              "fu": "",
+              "idc": true
+            },
+            "bg": {
+              "t": 0,
+              "f": "",
+              "p": "",
+              "r": 3,
+              "po": 4,
+              "c": "#fff",
+              "e": 0,
+              "o": 100,
+              "bc": true
+            },
+            "jc": {
+              "t": 0,
+              "jIde": "",
+              "jInfo": {}
+            },
+            "idx": 0,
+            "moduleStyle": 0
+          },
+          {
+            "t": "名师介绍",
+            "st": "副标题",
+            "h": false,
+            "te": false,
+            "ste": false,
+            "ts": {
+              "t": 0,
+              "s": 12,
+              "c": "#000000",
+              "b": false
+            },
+            "sts": {
+              "t": 0,
+              "s": 12,
+              "c": "#D0D4D7",
+              "b": false
+            },
+            "i": {
+              "t": 0,
+              "ifi": false,
+              "f": "",
+              "ifc": "",
+              "ifco": "",
+              "fic": "#fff",
+              "fu": "",
+              "idc": true
+            },
+            "bg": {
+              "t": 0,
+              "f": "",
+              "p": "",
+              "r": 3,
+              "po": 4,
+              "c": "#fff",
+              "e": 0,
+              "o": 100,
+              "bc": true
+            },
+            "jc": {
+              "t": 0,
+              "jIde": "",
+              "jInfo": {}
+            },
+            "idx": 1,
+            "moduleStyle": 0
+          },
+          {
+            "t": "预约报名",
+            "st": "副标题",
+            "h": false,
+            "te": false,
+            "ste": false,
+            "ts": {
+              "t": 0,
+              "s": 12,
+              "c": "#000000",
+              "b": false
+            },
+            "sts": {
+              "t": 0,
+              "s": 12,
+              "c": "#D0D4D7",
+              "b": false
+            },
+            "i": {
+              "t": 0,
+              "ifi": false,
+              "f": "",
+              "ifc": "",
+              "ifco": "",
+              "fic": "#fff",
+              "fu": "",
+              "idc": true
+            },
+            "bg": {
+              "t": 0,
+              "f": "",
+              "p": "",
+              "r": 3,
+              "po": 4,
+              "c": "#fff",
+              "e": 0,
+              "o": 100,
+              "bc": true
+            },
+            "jc": {
+              "t": 0,
+              "jIde": "",
+              "jInfo": {}
+            },
+            "idx": 2,
+            "moduleStyle": 0
+          },
+          {
+            "t": "直播专栏",
+            "st": "副标题",
+            "h": false,
+            "te": false,
+            "ste": false,
+            "ts": {
+              "t": 0,
+              "s": 12,
+              "c": "#000000",
+              "b": false
+            },
+            "sts": {
+              "t": 0,
+              "s": 12,
+              "c": "#D0D4D7",
+              "b": false
+            },
+            "i": {
+              "t": 0,
+              "ifi": false,
+              "f": "",
+              "ifc": "",
+              "ifco": "",
+              "fic": "#fff",
+              "fu": "",
+              "idc": true
+            },
+            "bg": {
+              "t": 0,
+              "f": "",
+              "p": "",
+              "r": 3,
+              "po": 4,
+              "c": "#fff",
+              "e": 0,
+              "o": 100,
+              "bc": true
+            },
+            "jc": {
+              "t": 0,
+              "jIde": "",
+              "jInfo": {}
+            },
+            "idx": 3,
+            "moduleStyle": 0
+          },
+          {
+            "t": "VIP会员",
+            "st": "副标题",
+            "h": false,
+            "te": false,
+            "ste": false,
+            "ts": {
+              "t": 0,
+              "s": 12,
+              "c": "#000000",
+              "b": false
+            },
+            "sts": {
+              "t": 0,
+              "s": 12,
+              "c": "#D0D4D7",
+              "b": false
+            },
+            "i": {
+              "t": 0,
+              "ifi": false,
+              "f": "",
+              "ifc": "",
+              "ifco": "",
+              "fic": "#fff",
+              "fu": "",
+              "idc": true
+            },
+            "bg": {
+              "t": 0,
+              "f": "",
+              "p": "",
+              "r": 3,
+              "po": 4,
+              "c": "#fff",
+              "e": 0,
+              "o": 100,
+              "bc": true
+            },
+            "jc": {
+              "t": 0,
+              "jIde": "",
+              "jInfo": {}
+            },
+            "idx": 4,
+            "moduleStyle": 0
+          },
+          {
+            "t": "每日打卡",
+            "st": "副标题",
+            "h": false,
+            "te": false,
+            "ste": false,
+            "ts": {
+              "t": 0,
+              "s": 12,
+              "c": "#000000",
+              "b": false
+            },
+            "sts": {
+              "t": 0,
+              "s": 12,
+              "c": "#D0D4D7",
+              "b": false
+            },
+            "i": {
+              "t": 0,
+              "ifi": false,
+              "f": "",
+              "ifc": "",
+              "ifco": "",
+              "fic": "#fff",
+              "fu": "",
+              "idc": true
+            },
+            "bg": {
+              "t": 0,
+              "f": "",
+              "p": "",
+              "r": 3,
+              "po": 4,
+              "c": "#fff",
+              "e": 0,
+              "o": 100,
+              "bc": true
+            },
+            "jc": {
+              "t": 0,
+              "jIde": "",
+              "jInfo": {}
+            },
+            "idx": 5,
+            "moduleStyle": 0
+          },
+          {
+            "t": "考试练习",
+            "st": "副标题",
+            "h": false,
+            "te": false,
+            "ste": false,
+            "ts": {
+              "t": 0,
+              "s": 12,
+              "c": "#000000",
+              "b": false
+            },
+            "sts": {
+              "t": 0,
+              "s": 12,
+              "c": "#D0D4D7",
+              "b": false
+            },
+            "i": {
+              "t": 0,
+              "ifi": false,
+              "f": "",
+              "ifc": "",
+              "ifco": "",
+              "fic": "#fff",
+              "fu": "",
+              "idc": true
+            },
+            "bg": {
+              "t": 0,
+              "f": "",
+              "p": "",
+              "r": 3,
+              "po": 4,
+              "c": "#fff",
+              "e": 0,
+              "o": 100,
+              "bc": true
+            },
+            "jc": {
+              "t": 0,
+              "jIde": "",
+              "jInfo": {}
+            },
+            "idx": 6,
+            "moduleStyle": 0
+          },
+          {
+            "t": "学员相册",
+            "st": "副标题",
+            "h": false,
+            "te": false,
+            "ste": false,
+            "ts": {
+              "t": 0,
+              "s": 12,
+              "c": "#000000",
+              "b": false
+            },
+            "sts": {
+              "t": 0,
+              "s": 12,
+              "c": "#D0D4D7",
+              "b": false
+            },
+            "i": {
+              "t": 0,
+              "ifi": false,
+              "f": "",
+              "ifc": "",
+              "ifco": "",
+              "fic": "#fff",
+              "fu": "",
+              "idc": true
+            },
+            "bg": {
+              "t": 0,
+              "f": "",
+              "p": "",
+              "r": 3,
+              "po": 4,
+              "c": "#fff",
+              "e": 0,
+              "o": 100,
+              "bc": true
+            },
+            "jc": {
+              "t": 0,
+              "jIde": "",
+              "jInfo": {}
+            },
+            "idx": 7,
+            "moduleStyle": 0
+          },
+          {
+            "t": "校区地址",
+            "st": "副标题",
+            "h": false,
+            "te": false,
+            "ste": false,
+            "ts": {
+              "t": 0,
+              "s": 12,
+              "c": "#000000",
+              "b": false
+            },
+            "sts": {
+              "t": 0,
+              "s": 12,
+              "c": "#D0D4D7",
+              "b": false
+            },
+            "i": {
+              "t": 0,
+              "ifi": false,
+              "f": "",
+              "ifc": "",
+              "ifco": "",
+              "fic": "#fff",
+              "fu": "",
+              "idc": true
+            },
+            "bg": {
+              "t": 0,
+              "f": "",
+              "p": "",
+              "r": 3,
+              "po": 4,
+              "c": "#fff",
+              "e": 0,
+              "o": 100,
+              "bc": true
+            },
+            "jc": {
+              "t": 0,
+              "jIde": "",
+              "jInfo": {}
+            },
+            "idx": 8,
+            "moduleStyle": 0
+          },
+          {
+            "t": "推广有礼",
+            "st": "副标题",
+            "h": false,
+            "te": false,
+            "ste": false,
+            "ts": {
+              "t": 0,
+              "s": 12,
+              "c": "#000000",
+              "b": false
+            },
+            "sts": {
+              "t": 0,
+              "s": 12,
+              "c": "#D0D4D7",
+              "b": false
+            },
+            "i": {
+              "t": 0,
+              "ifi": false,
+              "f": "",
+              "ifc": "",
+              "ifco": "",
+              "fic": "#fff",
+              "fu": "",
+              "idc": true
+            },
+            "bg": {
+              "t": 0,
+              "f": "",
+              "p": "",
+              "r": 3,
+              "po": 4,
+              "c": "#fff",
+              "e": 0,
+              "o": 100,
+              "bc": true
+            },
+            "jc": {
+              "t": 0,
+              "jIde": "",
+              "jInfo": {}
+            },
+            "idx": 9,
+            "moduleStyle": 0
+          }
+        ]
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1011,
+      "style": 19,
+      "component": "labelModule",
+      "content": {
+        "title": "标签",
+        "subtitle": "副标题",
+        "style": 0,
+        "moduleList": [
+          {
+            "name": "标签1",
+            "iId": 1,
+            "id": -1,
+            "content": {}
+          },
+          {
+            "name": "标签2",
+            "iId": 2,
+            "id": -1,
+            "content": {}
+          }
+        ]
+      },
+      "pattern": {
+        "e": true,
+        "se": false,
+        "sm": 1,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false,
+      "currentIndex": 1
+    },
+    {
+      "id": -1012,
+      "style": 112,
+      "component": "liftNav",
+      "content": {
+        "title": "电梯导航",
+        "subtitle": "电梯导航",
+        "moduleList": [
+          {
+            "title": "导航1",
+            "image": "",
+            "imageId": "",
+            "posModuleId": -1
+          },
+          {
+            "title": "导航2",
+            "image": "",
+            "imageId": "",
+            "posModuleId": -1
+          }
+        ],
+        "viewMode": 1,
+        "styleType": 1
+      },
+      "pattern": {
+        "e": false,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100,
+          "repeat": "no-repeat",
+          "positionX": "left",
+          "positionY": "center",
+          "size": "100% 100%"
+        },
+        "navTitleType": 0,
+        "navPalette": {
+          "type": 0,
+          "color": "#666",
+          "activeColor": "#333",
+          "highlightColor": "#3370ff"
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1013,
+      "style": 6,
+      "component": "multiGraph",
+      "content": {
+        "title": "多图文",
+        "subtitle": "副标题",
+        "style": 0,
+        "imgList": [
+          {
+            "des": "AJQBCAAQAhgAIKWqgMwGKObW7pcGMLgIOLgI",
+            "img": "AJQBCAAQAhgAIKWqgMwGKObW7pcGMLgIOLgI",
+            "imgPath": "//3444128.s148i.faieduusr.com.faidev.cc/2/110/AJQBCAAQAhgAIKWqgMwGKObW7pcGMLgIOLgI.jpg",
+            "isSelected": true,
+            "jIde": "",
+            "uid": 0
+          },
+          {
+            "des": "AJQBCAAQAhgAILfBoMkGKOyEkTIwtgk4rAk",
+            "img": "AJQBCAAQAhgAILfBoMkGKOyEkTIwtgk4rAk",
+            "imgPath": "//3444128.s148i.faieduusr.com.faidev.cc/2/110/AJQBCAAQAhgAILfBoMkGKOyEkTIwtgk4rAk.jpg",
+            "isSelected": true,
+            "jIde": "",
+            "uid": 1
+          }
+        ]
+      },
+      "pattern": {
+        "w": 0,
+        "h": 190,
+        "e": true,
+        "se": false,
+        "de": {
+          "t": 0,
+          "c": "#000"
+        },
+        "sd": 2,
+        "bd": 1,
+        "is": 1,
+        "imgh": {
+          "t": 0,
+          "n": 100
+        },
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        },
+        "pv": true
+      },
+      "hidden": false
+    },
+    {
+      "id": -1015,
+      "style": 5,
+      "component": "pack",
+      "content": {
+        "title": "自由容器",
+        "subtitle": "副标题",
+        "moduleList": [
+          {
+            "id": -1014,
+            "t": 10,
+            "l": 72,
+            "component": "countdown"
+          }
+        ]
+      },
+      "pattern": {
+        "w": 0,
+        "h": 96,
+        "e": false,
+        "se": false,
+        "bg": {
+          "v": 1,
+          "t": 0,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100
+        }
+      },
+      "hidden": false
+    },
+    {
+      "id": -1014,
+      "style": 46,
+      "component": "",
+      "content": {
+        "posBasesType": "v",
+        "tit": 1,
+        "tat": "1770886553000",
+        "rt": "[1770886553000,1770886853000]",
+        "ms": 1,
+        "pr": 4,
+        "su": true,
+        "st": true,
+        "tl": 1,
+        "tb": "距考试还剩",
+        "tp": "距结束还剩",
+        "te": "考试已结束",
+        "tr": "考试已开始"
+      },
+      "pattern": {
+        "rx": 0,
+        "by": 0,
+        "ts": 1,
+        "tfs": 14,
+        "tfc": "#000000",
+        "tfb": false,
+        "tfi": false,
+        "tfu": false,
+        "ns": 1,
+        "nfs": 24,
+        "nfc": "#000000",
+        "nfb": false,
+        "nfi": false,
+        "nfu": false,
+        "us": 1,
+        "ufs": 14,
+        "ufc": "#000000",
+        "ufb": false,
+        "ufi": false,
+        "ufu": false,
+        "bg": {
+          "v": 1,
+          "t": 1,
+          "f": "",
+          "p": "",
+          "r": 3,
+          "po": 4,
+          "c": "#fff",
+          "e": 0,
+          "o": 100,
+          "repeat": "no-repeat",
+          "positionX": "left",
+          "positionY": "center",
+          "size": "100% 100%"
+        },
+        "w": 230,
+        "h": 76
+      },
+      "hidden": false
+    },
+    {
+      "id": -1016,
+      "style": 104,
+      "component": "separator",
+      "content": {
+        "title": "辅助分隔"
+      },
+      "pattern": {
+        "e": false,
+        "se": false,
+        "h": 40,
+        "showSeparator": false,
+        "borderColor": "#000",
+        "borderStyle": 0,
+        "borderWidth": 1,
+        "marginLeft": 10,
+        "marginRight": 10
+      },
+      "hidden": false,
+      "t": 0,
+      "l": 0
+    }
+  ],
+  "delModuleIdList": []
+}

@@ -11,5 +11,13 @@ from .base_client import BaseClient
 from .admin_client import AdminClient
 from .edupc_client import EduPCClient
 from .h5_client import H5Client
+from .designer_client import EdupcDesignerClient, MobileDesignerClient
 
-__all__ = ['BaseClient', 'AdminClient', 'EduPCClient', 'H5Client']
+__all__ = [
+    'BaseClient',
+    'AdminClient',
+    'EduPCClient',
+    'H5Client',
+    'EdupcDesignerClient',
+    'MobileDesignerClient',
+]

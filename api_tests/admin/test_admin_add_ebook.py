@@ -5,6 +5,7 @@
 接口: POST /api/manage/electronicBook/addElectronicBook
 """
 import json
+from actions.delete_actions import DeleteActions
 from test_data_manager import TestDataManager
 
 
@@ -13,6 +14,7 @@ def test_admin_add_ebook(admin_client, timestamp):
     # Arrange: 准备测试数据
     ebook_name = f"接口测试电子书_{timestamp}"
     file_id = TestDataManager.get_file_id("ebook")
+    ebook_id = None
     
     info = {
         "name": ebook_name,
@@ -51,20 +53,25 @@ def test_admin_add_ebook(admin_client, timestamp):
         }
     }
     
-    # Act: 创建电子书
-    result = admin_client.post(
-        "/api/manage/electronicBook/addElectronicBook",
-        params={},
-        data={
-            "info": json.dumps(info, ensure_ascii=False),
-            "isCusAgreement": "false",
-            "isOpenAgreement": "false",
-            "agreementId": "0",
-            "agreementName": "",
-        },
-    )
-    
-    # Assert: 验证创建成功
-    admin_client.assert_success(result, "添加电子书失败")
-    ebook_id = result.get("data", {}).get("id") or result.get("id")
-    assert ebook_id, "电子书创建失败"
+    try:
+        # Act: 创建电子书
+        result = admin_client.post(
+            "/api/manage/electronicBook/addElectronicBook",
+            params={},
+            data={
+                "info": json.dumps(info, ensure_ascii=False),
+                "isCusAgreement": "false",
+                "isOpenAgreement": "false",
+                "agreementId": "0",
+                "agreementName": "",
+            },
+        )
+        
+        # Assert: 验证创建成功
+        admin_client.assert_success(result, "添加电子书失败")
+        ebook_id = result.get("data", {}).get("id") or result.get("id")
+        assert ebook_id, "电子书创建失败"
+    finally:
+        # 清理：删除创建的电子书
+        if ebook_id:
+            DeleteActions.delete_ebook(admin_client, ebook_id)
