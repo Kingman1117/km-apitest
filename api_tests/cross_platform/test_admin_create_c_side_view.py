@@ -14,6 +14,7 @@ import logging
 
 import pytest
 
+from payloads.admin_payloads import build_add_audio_payload
 from test_data_manager import TestDataManager
 from utils.response_assert import assert_field, get_field
 
@@ -35,27 +36,8 @@ def test_admin_create_audio_then_view_on_c_side(admin_client, edupc_client, h5_c
     create_result = admin_client.post(
         "/ajax/wxAppAudio_h.jsp",
         params={"cmd": "add"},
-        data={
-            "wxappId": admin_client.wxapp_id,
-            "name": audio_name,
-            "summary": summary,
-            "content": "<p>音频内容描述</p>",
-            "fileId": file_id,
-            "picIdList": "[]",
-            "classifyIdList": "[]",
-            "tdk": '{"t":"","d":"","k":""}',
-            "setting": '{"bp":0,"bml":1,"btype":0,"bmtgs":[],"pageStyle":1,"pfk":{"ss":false,"pm":0,"pa":0.01,"sst":0,"vsu":0,"atm":0,"duration":0,"asp":0,"lp":0.01,"slp":0,"validityType":0,"validityDate":""},"fdl":{"s":0,"ip":0,"fil":[],"viewType":0}}',
-            "subscriptionsNum": "0",
-            "homeworkId": "0",
-            "columnItemId": "0",
-            "isRelevancyColumn": "false",
-            "relevancyColumnId": "0",
-            "coverType": "0",
-            "isCusAgreement": "false",
-            "isOpenAgreement": "false",
-            "agreementId": "0",
-            "agreementName": "",
-        },
+        data=build_add_audio_payload(audio_name, summary, str(file_id), str(admin_client.wxapp_id)),
+        schema="admin.content.audio.create",
     )
     
     # 验收点1: 创建成功
@@ -184,6 +166,7 @@ def test_admin_create_audio_then_view_on_c_side(admin_client, edupc_client, h5_c
         "/ajax/wxAppAudio_h.jsp",
         params={"cmd": "delete"},
         data={"id": audio_id},
+        schema="common.success",
     )
     
     # 验收点8: 删除成功

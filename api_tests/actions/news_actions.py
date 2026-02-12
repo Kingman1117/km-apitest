@@ -50,7 +50,12 @@ class NewsActions:
             "agreementName": "",
             **extra_data,
         }
-        result = admin_client.post("/ajax/wxAppNews_h.jsp", params={"cmd": "addNews"}, data=data)
+        result = admin_client.post(
+            "/ajax/wxAppNews_h.jsp",
+            params={"cmd": "addNews"},
+            data=data,
+            schema="admin.content.news.create",
+        )
         admin_client.assert_success(result, "创建图文失败")
         news_id = admin_client.extract_id(result, id_field="id", data_path="data")
         logger.info("图文创建成功: id=%s name=%s", news_id, name)

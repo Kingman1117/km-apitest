@@ -6,10 +6,13 @@ BaseClient - HTTP请求基类
 import json
 import logging
 import time
+import uuid
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Union
+
+from utils.contract_validator import ContractValidationError, validate_contract
 
 
 logger = logging.getLogger(__name__)
@@ -21,6 +24,16 @@ class BaseClient:
     BASE_URL = ""  # 子类需要覆盖
     DEFAULT_TIMEOUT = 30  # 默认超时时间（秒）
     ENABLE_RETRY = True  # 是否启用重试（子类可覆盖）
+    LOG_SNIPPET_LIMIT = 800
+    SENSITIVE_KEYS = (
+        "token",
+        "password",
+        "pwd",
+        "authorization",
+        "cookie",
+        "session",
+        "_token",
+    )
     
     def __init__(self):
         self.session = requests.Session()
@@ -47,7 +60,13 @@ class BaseClient:
         """公共参数，子类可覆盖"""
         return {}
     
-    def get(self, path: str, params: Optional[Dict] = None, **kwargs) -> Dict:
+    def get(
+        self,
+        path: str,
+        params: Optional[Dict] = None,
+        schema: Optional[Union[str, Dict[str, Any]]] = None,
+        **kwargs
+    ) -> Dict:
         """
         GET请求
         
@@ -65,17 +84,42 @@ class BaseClient:
         # 设置默认超时，允许 kwargs 覆盖
         if "timeout" not in kwargs:
             kwargs["timeout"] = self.timeout
+
+        client_request_id = self._ensure_client_request_id(kwargs)
         
-        logger.debug("GET %s", url)
-        logger.debug("Params: %s", query)
+        self._log_http_event(
+            level="info",
+            event="http.request",
+            payload={
+                "method": "GET",
+                "url": url,
+                "client_request_id": client_request_id,
+                "params": self._sanitize_for_log(query),
+            },
+        )
         
         start_time = time.time()
         resp = self.session.get(url, params=query, **kwargs)
         elapsed_ms = int((time.time() - start_time) * 1000)
         
-        return self._parse_response(resp, method="GET", url=url, params=query, elapsed_ms=elapsed_ms)
+        return self._parse_response(
+            resp,
+            method="GET",
+            url=url,
+            params=query,
+            elapsed_ms=elapsed_ms,
+            schema=schema,
+            client_request_id=client_request_id,
+        )
     
-    def post(self, path: str, data=None, params: Optional[Dict] = None, **kwargs) -> Dict:
+    def post(
+        self,
+        path: str,
+        data=None,
+        params: Optional[Dict] = None,
+        schema: Optional[Union[str, Dict[str, Any]]] = None,
+        **kwargs
+    ) -> Dict:
         """
         POST请求
         
@@ -94,16 +138,35 @@ class BaseClient:
         # 设置默认超时，允许 kwargs 覆盖
         if "timeout" not in kwargs:
             kwargs["timeout"] = self.timeout
+
+        client_request_id = self._ensure_client_request_id(kwargs)
         
-        logger.debug("POST %s", url)
-        logger.debug("Params: %s", query)
-        logger.debug("Data: %s", data if not isinstance(data, str) else "[string data]")
+        self._log_http_event(
+            level="info",
+            event="http.request",
+            payload={
+                "method": "POST",
+                "url": url,
+                "client_request_id": client_request_id,
+                "params": self._sanitize_for_log(query),
+                "data": self._sanitize_for_log(data),
+            },
+        )
         
         start_time = time.time()
         resp = self.session.post(url, data=data, params=query, **kwargs)
         elapsed_ms = int((time.time() - start_time) * 1000)
         
-        return self._parse_response(resp, method="POST", url=url, params=query, data=data, elapsed_ms=elapsed_ms)
+        return self._parse_response(
+            resp,
+            method="POST",
+            url=url,
+            params=query,
+            data=data,
+            elapsed_ms=elapsed_ms,
+            schema=schema,
+            client_request_id=client_request_id,
+        )
     
     def _parse_response(
         self, 
@@ -112,7 +175,9 @@ class BaseClient:
         url: str = "",
         params: Optional[Dict] = None,
         data: Any = None,
-        elapsed_ms: int = 0
+        elapsed_ms: int = 0,
+        schema: Optional[Union[str, Dict[str, Any]]] = None,
+        client_request_id: str = "",
     ) -> Dict:
         """
         解析响应（带HTTP状态码硬断言和结构化错误信息）
@@ -134,29 +199,36 @@ class BaseClient:
         status_code = resp.status_code
         text = resp.text.strip()
         
-        # 提取 traceId/requestId（如果存在）
-        trace_id = resp.headers.get("X-Trace-Id") or resp.headers.get("X-Request-Id", "")
+        trace_id = self._extract_trace_id(resp)
+        server_request_id = (
+            resp.headers.get("X-Request-Id")
+            or resp.headers.get("x-request-id")
+            or ""
+        )
+        request_id = server_request_id or client_request_id or trace_id or ""
+        request_context = {
+            "method": method,
+            "url": url,
+            "params": self._sanitize_for_log(params),
+            "data": self._sanitize_for_log(data),
+            "client_request_id": client_request_id or "N/A",
+        }
         
         # P0-1: HTTP状态码硬断言 - 非2xx直接抛出结构化错误
         if not resp.ok:  # status_code < 200 or >= 300
-            error_context = {
-                "method": method,
-                "url": url,
-                "status_code": status_code,
-                "elapsed_ms": elapsed_ms,
-                "trace_id": trace_id,
-                "response_preview": text[:500] if text else "[empty response]",
-                "params": params,
-            }
-            
-            # P0-3: 失败时使用 ERROR 级别日志
-            logger.error(
-                "HTTP请求失败 [%s %s] status=%d elapsed=%dms trace_id=%s\n"
-                "响应预览: %s\n"
-                "请求参数: %s",
-                method, url, status_code, elapsed_ms, trace_id or "N/A",
-                text[:500] if text else "[empty]",
-                json.dumps(params, ensure_ascii=False) if params else "N/A"
+            self._log_http_event(
+                level="error",
+                event="http.response.error",
+                payload={
+                    "trace_id": trace_id or "N/A",
+                    "request_id": request_id or "N/A",
+                    "client_request_id": client_request_id or "N/A",
+                    "server_request_id": server_request_id or "N/A",
+                    "status_code": status_code,
+                    "elapsed_ms": elapsed_ms,
+                    "request": request_context,
+                    "response_snippet": self._build_response_snippet(text),
+                },
             )
             
             # 抛出包含完整诊断信息的异常
@@ -166,7 +238,7 @@ class BaseClient:
                 f"URL: {url}\n"
                 f"Elapsed: {elapsed_ms}ms\n"
                 f"TraceId: {trace_id or 'N/A'}\n"
-                f"Response: {text[:500] if text else '[empty]'}"
+                f"Response: {self._build_response_snippet(text)}"
             )
             raise requests.HTTPError(error_msg, response=resp)
         
@@ -182,22 +254,71 @@ class BaseClient:
         try:
             result = json.loads(text)
             
-            # P0-3: 成功时使用 INFO 级别记录关键信息
-            logger.info(
-                "HTTP请求成功 [%s %s] status=%d elapsed=%dms trace_id=%s success=%s",
-                method, url, status_code, elapsed_ms, trace_id or "N/A",
-                result.get("success", "unknown")
+            if not trace_id:
+                trace_id = self._extract_trace_id(resp, result)
+            if not server_request_id:
+                server_request_id = self._extract_request_id(resp, result)
+            request_id = server_request_id or client_request_id or trace_id or ""
+
+            should_validate_schema = not (
+                isinstance(result, dict) and result.get("success") is False
+            )
+
+            if schema is not None and should_validate_schema:
+                try:
+                    validate_contract(result, schema=schema)
+                except ContractValidationError:
+                    self._log_http_event(
+                        level="error",
+                        event="http.contract.error",
+                        payload={
+                            "trace_id": trace_id or "N/A",
+                            "request_id": request_id or "N/A",
+                            "client_request_id": client_request_id or "N/A",
+                            "server_request_id": server_request_id or "N/A",
+                            "status_code": status_code,
+                            "elapsed_ms": elapsed_ms,
+                            "schema": schema if isinstance(schema, str) else "<inline>",
+                            "request": request_context,
+                            "response_snippet": self._build_response_snippet(text),
+                        },
+                    )
+                    raise
+
+            self._log_http_event(
+                level="info",
+                event="http.response",
+                payload={
+                    "trace_id": trace_id or "N/A",
+                    "request_id": request_id or "N/A",
+                    "client_request_id": client_request_id or "N/A",
+                    "server_request_id": server_request_id or "N/A",
+                    "status_code": status_code,
+                    "elapsed_ms": elapsed_ms,
+                    "request": request_context,
+                    "response_snippet": self._build_response_snippet(text),
+                    "success": result.get("success", "unknown"),
+                    "schema": schema if isinstance(schema, str) else None,
+                },
             )
             
             return result
             
         except json.JSONDecodeError as e:
-            # P0-3: JSON解析失败时使用 ERROR 级别
-            logger.error(
-                "JSON解析失败 [%s %s] status=%d elapsed=%dms\n"
-                "错误: %s\n"
-                "响应内容: %s",
-                method, url, status_code, elapsed_ms, str(e), text[:500]
+            self._log_http_event(
+                level="error",
+                event="http.response.json_decode_error",
+                payload={
+                    "trace_id": trace_id or "N/A",
+                    "request_id": request_id or "N/A",
+                    "client_request_id": client_request_id or "N/A",
+                    "server_request_id": server_request_id or "N/A",
+                    "status_code": status_code,
+                    "elapsed_ms": elapsed_ms,
+                    "error": str(e),
+                    "request": request_context,
+                    "response_snippet": self._build_response_snippet(text),
+                },
             )
             
             # 返回结构化错误而不是直接抛异常（保持向后兼容）
@@ -207,6 +328,116 @@ class BaseClient:
                 "response_preview": text[:500],
                 "status_code": status_code,
             }
+
+    def _extract_trace_id(
+        self,
+        resp: requests.Response,
+        response_json: Optional[Dict[str, Any]] = None,
+    ) -> str:
+        candidates = [
+            "X-Trace-Id",
+            "x-trace-id",
+            "X-Request-Id",
+            "x-request-id",
+            "Trace-Id",
+            "trace-id",
+        ]
+        for key in candidates:
+            value = resp.headers.get(key)
+            if value:
+                return str(value)
+
+        if isinstance(response_json, dict):
+            for key in ("traceId", "trace_id", "requestId", "request_id"):
+                value = response_json.get(key)
+                if value:
+                    return str(value)
+            data = response_json.get("data")
+            if isinstance(data, dict):
+                for key in ("traceId", "trace_id", "requestId", "request_id"):
+                    value = data.get(key)
+                    if value:
+                        return str(value)
+
+        return ""
+
+    def _extract_request_id(
+        self,
+        resp: requests.Response,
+        response_json: Optional[Dict[str, Any]] = None,
+    ) -> str:
+        candidates = [
+            "X-Request-Id",
+            "x-request-id",
+            "Request-Id",
+            "request-id",
+        ]
+        for key in candidates:
+            value = resp.headers.get(key)
+            if value:
+                return str(value)
+
+        if isinstance(response_json, dict):
+            for key in ("requestId", "request_id"):
+                value = response_json.get(key)
+                if value:
+                    return str(value)
+            data = response_json.get("data")
+            if isinstance(data, dict):
+                for key in ("requestId", "request_id"):
+                    value = data.get(key)
+                    if value:
+                        return str(value)
+
+        return ""
+
+    def _ensure_client_request_id(self, request_kwargs: Dict[str, Any]) -> str:
+        headers = request_kwargs.get("headers")
+        if headers is None:
+            headers = {}
+        else:
+            headers = dict(headers)
+
+        client_request_id = headers.get("X-Client-Request-Id")
+        if not client_request_id:
+            client_request_id = uuid.uuid4().hex
+            headers["X-Client-Request-Id"] = client_request_id
+
+        request_kwargs["headers"] = headers
+        return str(client_request_id)
+
+    def _build_response_snippet(self, text: str) -> str:
+        compact = text.strip() if text else "[empty]"
+        if len(compact) > self.LOG_SNIPPET_LIMIT:
+            return compact[: self.LOG_SNIPPET_LIMIT] + "...(truncated)"
+        return compact
+
+    def _sanitize_for_log(self, value: Any) -> Any:
+        if isinstance(value, dict):
+            masked = {}
+            for key, item in value.items():
+                key_lower = str(key).lower()
+                if any(secret in key_lower for secret in self.SENSITIVE_KEYS):
+                    masked[key] = "***"
+                else:
+                    masked[key] = self._sanitize_for_log(item)
+            return masked
+        if isinstance(value, list):
+            return [self._sanitize_for_log(item) for item in value]
+        if isinstance(value, tuple):
+            return tuple(self._sanitize_for_log(item) for item in value)
+        if isinstance(value, str) and len(value) > self.LOG_SNIPPET_LIMIT:
+            return value[: self.LOG_SNIPPET_LIMIT] + "...(truncated)"
+        return value
+
+    def _log_http_event(self, level: str, event: str, payload: Dict[str, Any]) -> None:
+        message = json.dumps(
+            {"event": event, **payload},
+            ensure_ascii=False,
+            default=str,
+        )
+        log_fn = getattr(logger, level, logger.info)
+        log_fn(message)
     
     def assert_success(self, response: Dict, error_msg: str = "API调用失败") -> Dict:
         """

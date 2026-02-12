@@ -5,6 +5,7 @@
 接口: POST /ajax/eduCouponCode_h.jsp?cmd=addWafCk_saveOrUpdateCoupon
 注意：兑换码比较特殊，暂不清理测试数据
 """
+from payloads.admin_payloads import build_add_redemption_code_payload
 
 
 def test_admin_add_redemption_code(admin_client, timestamp):
@@ -16,33 +17,8 @@ def test_admin_add_redemption_code(admin_client, timestamp):
     result = admin_client.post(
         "/ajax/eduCouponCode_h.jsp",
         params={"cmd": "addWafCk_saveOrUpdateCoupon"},
-        data={
-            "name": code_name,
-            "channels": "[]",
-            "remark": "",
-            "universalCode": "",
-            "type": "1",
-            "codeType": "1",
-            "generateType": "0",
-            "startTime": "1770181200000",
-            "endTime": "1803657599000",
-            "stockNum": "1000",
-            "useCount": "1",
-            "noCountLimit": "true",
-            "rightsType": "1",
-            "noTimeLimit": "true",
-            "couponType": "0",
-            "savePrice": "9.99",
-            "saveDiscount": "0.1",
-            "useStartTime": "",
-            "useEndTime": "",
-            "ruleTxt": "说说说",
-            "pricePageInfo": '{"showPrice":0,"useNotice":""}',
-            "isAllCourse": "true",
-            "serviceList": "[]",
-            "serviceInfo": "{}",
-            "status": "0",
-        },
+        data=build_add_redemption_code_payload(code_name),
+        schema="admin.redemption_code.create",
     )
     
     # Assert: 验证创建成功

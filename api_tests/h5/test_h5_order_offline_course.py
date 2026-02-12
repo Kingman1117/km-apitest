@@ -55,6 +55,7 @@ def test_h5_order_offline_course_and_refund(h5_client, admin_client):
         headers={
             "Content-Type": "application/x-www-form-urlencoded",
         },
+        schema="order.commit",
     )
     
     h5_client.assert_success(order_result, "提交线下课订单失败")

@@ -43,6 +43,7 @@ class OrderActions:
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
                 "X-Requested-With": "XMLHttpRequest",
             },
+            schema="order.commit",
         )
         
         # 验证订单提交成功
@@ -82,6 +83,7 @@ class OrderActions:
                 amount=amount,
             ),
             headers={"Content-Type": "application/x-www-form-urlencoded"},
+            schema="order.commit",
         )
         
         # 验证订单提交成功
@@ -115,6 +117,7 @@ class OrderActions:
         result = admin_client.get(
             "/api/manage/order/v2/getOrderDetails",
             params={"orderNo": order_no},
+            schema="order.detail",
         )
         
         # 验证查询成功

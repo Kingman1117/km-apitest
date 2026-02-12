@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Designer Add Module Response",
+  "type": "object",
+  "required": [
+    "success"
+  ],
+  "properties": {
+    "success": {
+      "type": "boolean"
+    },
+    "id": {
+      "anyOf": [
+        { "type": "integer" },
+        { "type": "string", "minLength": 1 }
+      ]
+    },
+    "moduleId": {
+      "anyOf": [
+        { "type": "integer" },
+        { "type": "string", "minLength": 1 }
+      ]
+    },
+    "mid": {
+      "anyOf": [
+        { "type": "integer" },
+        { "type": "string", "minLength": 1 }
+      ]
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "anyOf": [
+            { "type": "integer" },
+            { "type": "string", "minLength": 1 }
+          ]
+        },
+        "moduleId": {
+          "anyOf": [
+            { "type": "integer" },
+            { "type": "string", "minLength": 1 }
+          ]
+        },
+        "mid": {
+          "anyOf": [
+            { "type": "integer" },
+            { "type": "string", "minLength": 1 }
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "anyOf": [
+    { "required": ["id"] },
+    { "required": ["moduleId"] },
+    { "required": ["mid"] },
+    { "required": ["data"], "properties": { "data": { "required": ["id"] } } },
+    { "required": ["data"], "properties": { "data": { "required": ["moduleId"] } } },
+    { "required": ["data"], "properties": { "data": { "required": ["mid"] } } }
+  ],
+  "additionalProperties": true
+}

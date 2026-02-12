@@ -4,8 +4,8 @@
 
 接口: POST /api/manage/electronicBook/addElectronicBook
 """
-import json
 from actions.delete_actions import DeleteActions
+from payloads.admin_payloads import build_add_ebook_payload
 from test_data_manager import TestDataManager
 from utils.response_assert import assert_any_field
 
@@ -17,55 +17,13 @@ def test_admin_add_ebook(admin_client, timestamp):
     file_id = TestDataManager.get_file_id("ebook")
     ebook_id = None
     
-    info = {
-        "name": ebook_name,
-        "pic": "",
-        "picUrl": "",
-        "author": "",
-        "summary": "",
-        "fileId": file_id,
-        "content": "",
-        "setting": {
-            "bp": 0,
-            "bml": 1,
-            "btype": 0,
-            "bmtgs": [],
-            "ds": 0,
-            "pfk": {
-                "ss": True,
-                "pm": 0,
-                "pa": 0.01,
-                "duration": 0,
-                "asp": 1
-            }
-        },
-        "fileName": "final_optimized_text_version.pdf",
-        "fileTypeStr": "pdf",
-        "relevancyColumnId": 0,
-        "isRelevancyColumn": False,
-        "isCusAgreement": False,
-        "isOpenAgreement": False,
-        "agreementId": 0,
-        "agreementName": "",
-        "globalAgreement": {
-            "open": False,
-            "id": 163,
-            "name": "购课须知"
-        }
-    }
-    
     try:
         # Act: 创建电子书
         result = admin_client.post(
             "/api/manage/electronicBook/addElectronicBook",
             params={},
-            data={
-                "info": json.dumps(info, ensure_ascii=False),
-                "isCusAgreement": "false",
-                "isOpenAgreement": "false",
-                "agreementId": "0",
-                "agreementName": "",
-            },
+            data=build_add_ebook_payload(ebook_name, str(file_id)),
+            schema="admin.ebook.create",
         )
         
         # Assert: 验证创建成功

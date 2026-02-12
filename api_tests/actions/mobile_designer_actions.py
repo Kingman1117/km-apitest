@@ -34,6 +34,7 @@ class MobileDesignerActions:
                 "X-Requested-With": "XMLHttpRequest",
                 "Referer": f"{admin_client.BASE_URL}/editorNew.jsp?_wxappId={admin_client.wxapp_id}&__aacct={admin_client.username}",
             },
+            schema="designer.mobile.add_page",
         )
         admin_client.assert_success(result, "移动端设计器新增自定义页面失败")
         col_id = assert_any_field(result, ["colId", "id", "data.colId", "data.id"], msg="新增页面成功但未返回 col_id")

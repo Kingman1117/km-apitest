@@ -54,7 +54,12 @@ class AudioActions:
             "agreementName": "",
             **extra_data,
         }
-        result = admin_client.post("/ajax/wxAppAudio_h.jsp", params={"cmd": "add"}, data=data)
+        result = admin_client.post(
+            "/ajax/wxAppAudio_h.jsp",
+            params={"cmd": "add"},
+            data=data,
+            schema="admin.content.audio.create",
+        )
         admin_client.assert_success(result, "创建音频失败")
         audio_id = admin_client.extract_id(result, id_field="id", data_path=None)
         logger.info("音频创建成功: id=%s name=%s", audio_id, name)

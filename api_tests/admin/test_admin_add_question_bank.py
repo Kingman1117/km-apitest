@@ -5,6 +5,7 @@
 接口: POST /api/manage/superQuestionBank/addSuperQuestionBank
 """
 from actions.delete_actions import DeleteActions
+from payloads.admin_payloads import build_add_question_bank_payload
 from utils.response_assert import assert_any_field
 
 
@@ -19,24 +20,8 @@ def test_admin_add_question_bank(admin_client, timestamp):
         result = admin_client.post(
             "/api/manage/superQuestionBank/addSuperQuestionBank",
             params={},  # _TOKEN 会自动添加
-            data={
-                "id": "0",
-                "name": bank_name,
-                "summary": "",
-                "pic": "",
-                "picUrl": "",
-                "classifyIdList": "[]",
-                "classifyList": "[]",
-                "introduce": "",
-                "payType": "3",
-                "price": "0.01",
-                "setting": '{"bp":0,"bml":1,"btype":0,"bmtgs":[],"memoryMode":1,"menuTypes":[1,2,3,4,5],"pfk":{"lp":0.01,"slp":0,"duration":0,"validityType":0,"asp":0,"sst":0,"vsu":0,"bpam":1}}',
-                "isCusAgreement": "false",
-                "isOpenAgreement": "false",
-                "agreementId": "0",
-                "agreementName": "",
-                "globalAgreement": '{"open":false,"id":0,"name":""}',
-            },
+            data=build_add_question_bank_payload(bank_name),
+            schema="admin.question_bank.create",
         )
         
         # Assert: 验证创建成功

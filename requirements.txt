@@ -4,6 +4,7 @@
 # HTTP 请求
 requests==2.32.5
 urllib3>=1.26.0,<3.0.0
+jsonschema>=4.0.0,<5.0.0
 
 # 测试框架
 pytest==9.0.2

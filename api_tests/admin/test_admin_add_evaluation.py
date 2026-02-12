@@ -5,6 +5,7 @@
 接口: POST /api/manage/evaluation/addEvaluation
 注意：测评活动比较特殊，暂不清理测试数据
 """
+from payloads.admin_payloads import build_add_evaluation_payload
 
 
 def test_admin_add_evaluation(admin_client, timestamp):
@@ -16,30 +17,8 @@ def test_admin_add_evaluation(admin_client, timestamp):
     result = admin_client.post(
         "/api/manage/evaluation/addEvaluation",
         params={},  # _TOKEN 会自动添加
-        data={
-            "name": evaluation_name,
-            "pic": "",
-            "picUrl": "",
-            "summary": "",
-            "payType": "3",
-            "payOpportunity": "0",
-            "price": "0.01",
-            "introduce": "",
-            "classifyIdList": "[]",
-            "setting": '{"bp":0,"btype":0,"bmtgs":[],"bml":1,"pfk":{"asp":0,"duration":0,"validityType":0,"validityDate":"","otc":0,"stct":1,"lp":0.01,"slp":0},"joinType":0,"joinNum":1,"resultType":0,"resultNum":1,"dimensionType":0,"evaluationType":0,"chartType":0,"showScore":1,"showChart":0,"wxType":0,"wxDesc":"","wxList":[{"open":0,"qrCode":"","text":"","qrCodeUrl":""},{"open":0,"qrCode":"","text":"","qrCodeUrl":""}]}',
-            "questionSort": "[-10000001]",
-            "isCusAgreement": "false",
-            "isOpenAgreement": "false",
-            "agreementId": "0",
-            "agreementName": "",
-            "globalAgreement": '{"open":false,"id":0,"name":""}',
-            "addDimensionList": "[]",
-            "addQuestionList": '[{"id":-10000001,"stem":"111","type":0,"optionContent":{"options":[{"id":1,"value":"22","score":1},{"id":2,"value":"33","score":1}]}}]',
-            "addResultList": '[{"id":-1,"name":"其他结果","section":[],"result":"无法评估，请重新测试","analysis":"","recommend":[],"isOtherResult":true,"setting":{"rulesType":0,"cl":[],"so":0,"sofs":[1],"sd":1,"sdfs":[1],"sda":1}}]',
-            "addDimensionGroupList": "[]",
-            "addOverallIndicatorList": '[{"id":-9999,"name":"测评总分","isSys":true,"formula":"#测评总分#","isTotalScore":true,"degree":{"dl":[]}},{"id":-10000,"name":"测评平均分","isSys":true,"formula":"#测评平均分#","isAverageScore":true,"degree":{"dl":[]}}]',
-            "addDimensionIndicatorList": '[{"id":-1,"name":"平均分","degree":{"dl":[]},"dimensionDegreeList":[]}]',
-        },
+        data=build_add_evaluation_payload(evaluation_name),
+        schema="admin.evaluation.create",
     )
     
     # Assert: 验证创建成功

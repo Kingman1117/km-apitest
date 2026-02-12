@@ -54,6 +54,7 @@ def test_h5_order_book_service_and_refund(h5_client, admin_client):
         headers={
             "Content-Type": "application/x-www-form-urlencoded",
         },
+        schema="order.commit",
     )
     
     h5_client.assert_success(order_result, "提交课外服务订单失败")

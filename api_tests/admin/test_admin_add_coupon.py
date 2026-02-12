@@ -4,9 +4,8 @@
 
 接口: POST /ajax/coupon_h.jsp?cmd=addCoupon
 """
-import json
-import time
 from actions.delete_actions import DeleteActions
+from payloads.admin_payloads import build_add_coupon_payload
 from utils.response_assert import assert_any_field
 
 
@@ -17,49 +16,13 @@ def test_admin_add_coupon(admin_client, timestamp):
     coupon_name = f"券{timestamp}"
     coupon_id = None
     
-    # 计算时间戳（开始时间和结束时间）
-    start_time = int(time.time() * 1000)
-    end_time = start_time + (365 * 24 * 60 * 60 * 1000)  # 1年后
-    
-    # entries: 适用范围配置
-    entries = [
-        {"type": 5, "selected": True, "name": "系列课", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}},
-        {"type": 2, "selected": True, "name": "音频", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}},
-        {"type": 4, "selected": True, "name": "视频", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}},
-        {"type": 1, "selected": True, "name": "图文", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}},
-        {"type": 0, "selected": True, "name": "线下课程", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}},
-        {"type": 14, "selected": True, "name": "商品", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}},
-        {"type": 9, "selected": True, "name": "会员卡", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}},
-        {"type": 7, "selected": True, "name": "答题", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}},
-        {"type": 24, "selected": True, "name": "测评", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}},
-        {"type": 25, "selected": True, "name": "题库", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}},
-        {"type": 15, "selected": True, "name": "课外服务", "suitableTarget": {"suitableType": 0, "category": 0, "selectedIdList": [], "selectedClassifyIdList": []}}
-    ]
-    
     try:
         # Act: 创建优惠券
         result = admin_client.post(
             "/ajax/coupon_h.jsp",
             params={"cmd": "addCoupon"},
-            data={
-                "wxappId": admin_client.wxapp_id,
-                "id": "-1",
-                "name": coupon_name,
-                "type": "0",
-                "discountPrice": "100",
-                "discount": "9.8",
-                "timeType": "1",
-                "startTime": "",
-                "endTime": "",
-                "day": "1000",
-                "remainType": "1",
-                "remainCount": "1",
-                "entries": json.dumps(entries, ensure_ascii=False),
-                "rule": "",
-                "isIntegralMall": "false",
-                "targetUser": '{"bp":0,"btype":0,"bmtgs":[],"bml":1}',
-                "isNewClassify": "true",
-            },
+            data=build_add_coupon_payload(coupon_name, str(admin_client.wxapp_id)),
+            schema="admin.coupon.create",
         )
         
         # Assert: 验证创建成功

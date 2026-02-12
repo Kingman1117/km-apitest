@@ -43,6 +43,7 @@ def test_admin_add_student(admin_client, timestamp):
             "pwd": pwd_md5,
             "pwdCheck": pwd_md5,
         },
+        schema="admin.student.create",
     )
 
     # Assert: 验证创建成功

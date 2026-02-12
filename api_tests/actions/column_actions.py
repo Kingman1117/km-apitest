@@ -55,7 +55,12 @@ class ColumnActions:
             "agreementName": "",
             **extra_data,
         }
-        result = admin_client.post("/ajax/wxAppColumn_h.jsp", params={"cmd": "addColumn"}, data=data)
+        result = admin_client.post(
+            "/ajax/wxAppColumn_h.jsp",
+            params={"cmd": "addColumn"},
+            data=data,
+            schema="admin.content.column.create",
+        )
         admin_client.assert_success(result, "创建系列课失败")
         column_id = admin_client.extract_id(result, id_field="id", data_path=None)
         logger.info("系列课创建成功: id=%s name=%s", column_id, name)

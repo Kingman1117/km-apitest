@@ -51,6 +51,7 @@ class AnswerActions:
                 "unionUserId": union_user_id,
             },
             headers=post_headers,
+            schema="common.success",
         )
         edupc_client.assert_success(student_list_resp, "获取学员列表失败")
 
@@ -60,6 +61,7 @@ class AnswerActions:
             params={},
             data={"cmd": "wafNotCk_loginInfo"},
             headers=post_headers,
+            schema="common.success",
         )
         edupc_client.assert_success(login_info_resp, "获取登录信息失败")
 
@@ -130,6 +132,7 @@ class AnswerActions:
                 "Referer": f"{edupc_client.BASE_URL}/exm.jsp?id={activity_id}",
                 "X-Requested-With": "XMLHttpRequest",
             },
+            schema="common.success",
         )
         edupc_client.assert_success(precheck, f"获取答题活动信息失败 (activity_id={activity_id})")
         
@@ -152,7 +155,8 @@ class AnswerActions:
             headers={
                 "Referer": f"{edupc_client.BASE_URL}/exm.jsp?id={activity_id}",
                 "X-Requested-With": "XMLHttpRequest",
-            }
+            },
+            schema="answer.add_record",
         )
         
         edupc_client.assert_success(result, f"创建答题记录失败 (activity_id={activity_id}, stu_id={stu_id})")
@@ -213,7 +217,8 @@ class AnswerActions:
             headers={
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
                 "X-Requested-With": "XMLHttpRequest",
-            }
+            },
+            schema="common.success",
         )
         
         edupc_client.assert_success(result, "保存答题失败")
@@ -258,7 +263,8 @@ class AnswerActions:
             headers={
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
                 "X-Requested-With": "XMLHttpRequest",
-            }
+            },
+            schema="common.success",
         )
         
         edupc_client.assert_success(result, "提交答题失败")
@@ -287,7 +293,8 @@ class AnswerActions:
                 "recordId": record_id,
                 "wxappAid": admin_client.wxapp_aid,
                 "wxappId": admin_client.wxapp_id,
-            }
+            },
+            schema="answer.detail",
         )
         
         admin_client.assert_success(result, f"查询答题记录详情失败: recordId={record_id}")
@@ -349,7 +356,8 @@ class AnswerActions:
             headers={
                 "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
                 "X-Requested-With": "XMLHttpRequest",
-            }
+            },
+            schema="common.success",
         )
 
         admin_client.assert_success(result, f"批阅答题失败: recordId={record_id}")

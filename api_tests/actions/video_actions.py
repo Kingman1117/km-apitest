@@ -57,7 +57,12 @@ class VideoActions:
             "agreementName": "",
             **extra_data,
         }
-        result = admin_client.post("/ajax/video_h.jsp", params={"cmd": "addVideo"}, data=data)
+        result = admin_client.post(
+            "/ajax/video_h.jsp",
+            params={"cmd": "addVideo"},
+            data=data,
+            schema="admin.content.video.create",
+        )
         admin_client.assert_success(result, "创建视频失败")
         video_id = admin_client.extract_id(result, id_field="id", data_path="video")
         logger.info("视频创建成功: id=%s name=%s", video_id, name)

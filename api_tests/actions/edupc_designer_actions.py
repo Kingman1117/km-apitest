@@ -51,6 +51,7 @@ class EdupcDesignerActions:
                 "X-Requested-With": "XMLHttpRequest",
                 "Referer": f"{edupc_designer_client.BASE_URL}/manage/navColEdit.jsp?fromResponsive=true",
             },
+            schema="designer.edupc.add_column",
         )
         edupc_designer_client.assert_success(result, "设计器新增栏目失败")
         col_id = assert_any_field(result, ["id", "data.id"], msg="新增栏目成功但未返回栏目ID")
@@ -71,6 +72,7 @@ class EdupcDesignerActions:
                 "X-Requested-With": "XMLHttpRequest",
                 "Referer": f"{edupc_designer_client.BASE_URL}/col.jsp?id={col_id}",
             },
+            schema="designer.edupc.add_module",
         )
         edupc_designer_client.assert_success(result, f"设计器新增模块失败: {module_info}")
         module_id = assert_any_field(

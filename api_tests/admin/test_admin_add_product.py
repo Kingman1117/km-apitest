@@ -5,6 +5,7 @@
 接口: POST /ajax/eduProduct_h.jsp?cmd=addProduct
 """
 from actions.delete_actions import DeleteActions
+from payloads.admin_payloads import build_add_product_payload
 from utils.response_assert import assert_any_field
 
 
@@ -19,31 +20,8 @@ def test_admin_add_product(admin_client, timestamp):
         result = admin_client.post(
             "/ajax/eduProduct_h.jsp",
             params={"cmd": "addProduct"},
-            data={
-                "name": product_name,
-                "remark": "",
-                "keepProp2": "",
-                "hasWeight": "false",
-                "imgList": '["AJQBCAAQAhgAIKWqgMwGKObW7pcGMLgIOLgI"]',
-                "imgPathList": '["//3444128.s148i.faieduusr.com.faidev.cc/2/110/AJQBCAAQAhgAIKWqgMwGKObW7pcGMLgIOLgI.jpg"]',
-                "distributeList": "[0,1]",
-                "shippingTmpId": "-1",
-                "specList": '[{"name":"尺码","sort":1,"inPdScValList":[{"fi":"","n":"s","path":"","c":true},{"fi":"","n":"m","path":"","c":true},{"fi":"","n":"l","path":"","c":true}]}]',
-                "specInfoList": '[{"count":1000,"nameList":["s"],"originPrice":"1500.00","price":"100.00","weight":"0.00","sort":1},{"count":1000,"nameList":["m"],"originPrice":"257.00","price":"17.00","weight":"0.00","sort":2},{"count":2000,"nameList":["l"],"originPrice":"59.00","price":"14.77","weight":"0.00","sort":3}]',
-                "setting": '{"bp":0,"bml":1,"btype":0,"bmtgs":[]}',
-                "openPresent": "false",
-                "productOtherSub": "0",
-                "classifyIdList": "[]",
-                "addPresentList": "[]",
-                "isCusAgreement": "false",
-                "isOpenAgreement": "false",
-                "agreementId": "0",
-                "agreementName": "",
-                "independentOrderProp": "false",
-                "addPropList": "[]",
-                "updatePropList": "[]",
-                "delPropIdList": "[]",
-            },
+            data=build_add_product_payload(product_name),
+            schema="admin.product.create",
         )
         
         # Assert: 验证创建成功
