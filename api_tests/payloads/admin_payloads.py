@@ -2,7 +2,7 @@
 Admin 相关测试 payload 模板。
 """
 import json
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 
 def build_add_form_payload(form_name: str, wxapp_id: str) -> Dict[str, Any]:
@@ -306,3 +306,21 @@ def build_add_audio_payload(audio_name: str, summary: str, file_id: str, wxapp_i
         "agreementId": "0",
         "agreementName": "",
     }
+
+
+def build_default_task_list() -> List[Dict[str, Any]]:
+    """生成默认 3 个任务配置，供作业/打卡用例复用。"""
+    _requirement = {
+        "t": {"c": False, "mc": 1},
+        "i": {"c": False, "mc": 1},
+        "audio": {"c": False, "mc": 1},
+        "video": {"c": False, "mc": 1},
+        "completeQuestion": {"c": False, "mc": 1},
+        "linkQuestion": {"link": [], "isOpen": False},
+    }
+    return [
+        {"id": i, "name": str(i), "rule": f'<p style="line-height:1.5em;">{i}</p>',
+         "sequence": f"{i:02d}", "dailyCount": 0, "requirement": {**_requirement},
+         "passCount": 0, "taskCount": 0, "isNewAdd": True}
+        for i in range(1, 4)
+    ]

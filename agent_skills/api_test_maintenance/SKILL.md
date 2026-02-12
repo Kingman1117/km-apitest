@@ -484,7 +484,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run tests
         run: |
-          pip install -r api_tests/requirements.txt
+          pip install -r requirements.txt
           pytest api_tests/ -v --no-tapd-report
 ```
 

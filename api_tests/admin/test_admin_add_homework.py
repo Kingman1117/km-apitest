@@ -7,7 +7,7 @@
 """
 import json
 from actions.delete_actions import DeleteActions
-from ._checkpoint_payloads import build_default_task_list
+from payloads.admin_payloads import build_default_task_list
 from utils.response_assert import assert_any_field
 
 

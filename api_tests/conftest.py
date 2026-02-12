@@ -172,3 +172,16 @@ def pytest_runtest_logreport(report):
 
 def pytest_sessionfinish(session, exitstatus):
     WECOM_RESULTS.send(TAPD_CONFIG)
+
+
+def pytest_exception_interact(node, call, report):
+    """
+    全局异常兜底：用例失败时自动打印最近请求上下文，便于排障。
+    """
+    if report.failed:
+        logger.error(
+            "=== 用例失败 === %s | 阶段: %s | 异常: %s",
+            node.nodeid,
+            call.when,
+            repr(call.excinfo.value) if call.excinfo else "N/A",
+        )

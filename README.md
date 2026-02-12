@@ -17,7 +17,7 @@
 ### 1. 安装依赖
 
 ```bash
-pip install -r api_tests/requirements.txt
+pip install -r requirements.txt
 ```
 
 ### 2. 配置账号
@@ -82,8 +82,7 @@ kmsk/
 │   ├── config_loader.py          # 配置加载器
 │   ├── data_factory.py           # 测试数据工厂
 │   ├── tapd_reporter.py          # TAPD回填模块
-│   ├── wecom_notifier.py         # 企业微信通知模块
-│   └── requirements.txt          # Python依赖
+│   └── wecom_notifier.py         # 企业微信通知模块
 ├── config/                       # 配置文件目录
 │   ├── test_data.json            # 测试数据（服务ID、文件ID等）
 │   ├── test_plan_config.json     # 账号配置（gitignore）
@@ -103,7 +102,7 @@ kmsk/
 |------|--------|------|
 | Admin | 17 | 创建音频、视频、图文、系列课、问答、电子书、线下课、商品、表单、优惠券等 |
 | EduPC | 4 | 视频/音频/专栏/系列课订单提交 |
-| H5 | 11 | 各类商品订单提交、图书服务、线下课、商品购买 |
+| H5 | 11 | 8 种标准商品参数化订单 + 3 种复杂 itemList 订单 |
 | 跨端 | 1 | Admin创建 -> C端查看验证 |
 
 ## 环境变量
@@ -143,7 +142,7 @@ kmsk/
 
 ## 新增用例指南
 
-参考 `docs/用例标准与新增模板.md`，遵循以下规范：
+参考 `docs/开发规范.md`，遵循以下规范：
 
 1. **文件命名**：`test_{module}_{feature}.py`
 2. **Docstring格式**：
@@ -207,7 +206,7 @@ python scripts/run_api_tests.py --junit --html
 
 ## 相关文档
 
-- [项目结构总览](PROJECT_STRUCTURE.md)
-- [用例标准与模板](docs/用例标准与新增模板.md)
-- [TAPD自动回填说明](docs/TAPD自动回填使用说明.md)
+- [开发规范](docs/开发规范.md)
+- [测试执行指南](docs/测试执行指南.md)
+- [TAPD与通知](docs/TAPD与通知.md)
 - [文档索引](docs/README.md)
